@@ -111,7 +111,6 @@ def first_mid_last_finder(protein_pdb):
 	res_p = re.compile(r'ATOM\s+?\d+?\s+?\w+?\s+?(\w+?)\s')
 	res = res_p.findall(protein_pdb)
 
-	pro_res ="not found"
 
 
 	if len(res) % 2 == 0:
@@ -216,19 +215,19 @@ def master(input_file,output_file):
 	of proteins that are made of two helixes seperated by a gap 
 	pro_eitherside is how many side of the gap I should search """
 	tempstring = ""
-	pdbname = str(input_file)
-	tempstring += pdbname[:4]
-	tempstring += "\n"
+	pdbname = str(input_file)[:4]
 	helicies = helix_creator(input_file)
 	for helix in (helicies):
 		helix.calculate_bond_angle()
+		tempstring += pdbname + " "
 		tempstring += (str(helix.start) + " " + str(helix.angle) )
 		tempstring += "\n"
 
 	file = open(output_file,'w')
 	file.write(tempstring)
 	file.close()
-	print(tempstring)
+
+	
 
 
 
