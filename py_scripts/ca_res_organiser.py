@@ -25,7 +25,7 @@ def win_or_linux():
 
 def windows_arguments():
 #    secstr_output = files.read()
-    ca_atom_organiser('1xzw.1hr','1xzw.res', '1xzw.format')
+    ca_atom_organiser('1whs.1hr','1whs.res', '1whs.format')
 
 def linux_arguments():
 	parser = argparse.ArgumentParser()
@@ -125,8 +125,10 @@ def first_residue_pdblines(aa_list,pdb_ca_list):
 			return
 		if x == ['']:
 			return
-		else:
+		if x in list_of_residues:
 			location.append(list_of_residues.index(x))
+		else:
+			return
 
 	location.reverse()
 	counter = 0 
