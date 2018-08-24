@@ -25,7 +25,7 @@ def win_or_linux():
 
 def windows_arguments():
 #    secstr_output = files.read()
-    ca_atom_organiser('1ju2.1hr','1ju2.res', '1ju2.format')
+    ca_atom_organiser('1xzw.1hr','1xzw.res', '1xzw.format')
 
 def linux_arguments():
 	parser = argparse.ArgumentParser()
@@ -159,8 +159,10 @@ def aa_chains_split(chains):
 			y = x[0] + "   " + x[1:]		
 		if (len(x[1:])) == 2:
 			y = x[0] + "  " + x[1:]		
-		if (len(x[1:])) >= 3:
+		if (len(x[1:])) == 3:
 			y = x[0] + " " + x[1:]
+		if (len(x[1:])) >= 4:
+			y = x[0] + "" + x[1:]
 		temparray3 += [y]
 	#temparray3 = list(filter(None,temparray3))
 	temparray3 = sorted(temparray3)
