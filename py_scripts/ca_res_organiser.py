@@ -113,7 +113,7 @@ def first_residue_pdblines(aa_list,pdb_ca_list):
 
 
 	for x in aa_list:
-		if x not:
+		if not x:
 			return
 
 
