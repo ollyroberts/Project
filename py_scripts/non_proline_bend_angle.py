@@ -147,11 +147,11 @@ def information_extractor(selected_ca,pdb_txt):
 	first 	= selected_ca[0]
 	middle 	= selected_ca[1]
 	last 	= selected_ca[2]
-	print(first,middle,last)
+
 	cord_p = re.compile(r'ATOM\s+?\d+?\s+?CA\s+?(\w+?)\s(\w\s*?\d+?)\s+?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)')
 
 	cords 			= cord_p.findall(pdb_txt)
-	print(cords)
+
 
 	first_tupple 	= (cords[first])
 	middle_tupple 	= (cords[middle])
