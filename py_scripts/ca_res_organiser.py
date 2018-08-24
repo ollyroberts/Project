@@ -25,7 +25,7 @@ def win_or_linux():
 
 def windows_arguments():
 #    secstr_output = files.read()
-    ca_atom_organiser('1mpx.2hr','1mpx.res', '1mpx.format')
+    ca_atom_organiser('1ju2.1hr','1ju2.res', '1ju2.format')
 
 def linux_arguments():
 	parser = argparse.ArgumentParser()
@@ -93,7 +93,7 @@ def first_residue_pdblines(aa_list,pdb_ca_list):
 	temp_dict2 = {}
 
 	# captures the residue numbers with chain for pdb format
-	pattern = re.compile(r'^ATOM\s+?\d+?\s+?CA\s+?\w+?\s(\w+?\s+?\d+?)\s')
+	pattern = re.compile(r'^ATOM\s+?\d+?\s+?CA\s+?\w+?\s(\w+?\s*?\d+?)\s')
 	counter = 0
 
 	#This creates a list with the index locations of each item in aa_list
