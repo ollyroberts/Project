@@ -111,8 +111,11 @@ def first_residue_pdblines(aa_list,pdb_ca_list):
 	#This creates a list with the index locations of each item in aa_list
 	# in ca_list
 	for line in pdb_ca_list:
-		if hit == True:
+
+		if pattern.search(line):
+
 			hit = pattern.search(line)
+
 			list_of_residues += [hit.group(1)]
 
 # if the file has no fist residues in a helix an empty list is returned.
