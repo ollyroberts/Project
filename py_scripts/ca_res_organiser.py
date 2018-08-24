@@ -57,6 +57,7 @@ def ca_atom_organiser(aa_chains,ca_residues,output_file):
 
 	first_aa_in_heli = aa_chains_split(aa_chain_residues)
 
+
 	# opens file of alpha carbons and splits by line 
 	ca_chain_string = fileread(ca_residues)
 	ca_chain_list = ca_chain_string.splitlines()
@@ -92,7 +93,7 @@ def first_residue_pdblines(aa_list,pdb_ca_list):
 	"""
 
 	if aa_list == '':
-			pass 
+			pass
 
 
 	list_of_residues = []
@@ -114,9 +115,7 @@ def first_residue_pdblines(aa_list,pdb_ca_list):
 
 	for x in aa_list:
 
-	# if x is blank end function
-		if not x:
-			return 
+
 		location.append(list_of_residues.index(x))
 
 	location.reverse()
@@ -178,7 +177,7 @@ def aa_chains_split(chains):
 		if (len(x[1:])) >= 4:
 			y = x[0] + "" + x[1:]
 		temparray3 += [y]
-	#temparray3 = list(filter(None,temparray3))
+
 	temparray3 = sorted(temparray3)
 
 	return(temparray3)
