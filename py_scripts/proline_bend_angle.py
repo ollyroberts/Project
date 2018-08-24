@@ -170,7 +170,7 @@ def information_extractor(selected_ca,pdb_txt):
 	middle 	= selected_ca[1]
 	last 	= selected_ca[2]
 
-	cord_p = re.compile(r'ATOM\s+?\d+?\s+?CA\s+?(\w+?)\s(\w\s*?\d+?)\s+?(-*?\d+?\.\d+)\s+?(-*?\d+?\.\d+)\s+?(-*?\d+?\.\d+)')
+	cord_p = re.compile(r'ATOM\s+?\d+?\s+?CA\s+?(\w+?)\s(\w\s*?\d+?)\s+?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)')
 
 	cords 			= cord_p.findall(pdb_txt)
 

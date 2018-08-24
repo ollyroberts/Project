@@ -37,9 +37,9 @@ def windows_arguments():
 	('4xr8.format','4xr8.agl'),('1f0x.format','1f0x.agl'),('1mpx.format','1mpx.agl')
 	]
 
-	#master('5klo.format','5klo.agl')
-	for x in test_files:
-		master(x[0],x[1])
+	master('1m1j.format','1m1j.agl')
+	#for x in test_files:
+	#	master(x[0],x[1])
 		
 
 def linux_arguments():
@@ -147,10 +147,11 @@ def information_extractor(selected_ca,pdb_txt):
 	first 	= selected_ca[0]
 	middle 	= selected_ca[1]
 	last 	= selected_ca[2]
-
-	cord_p = re.compile(r'ATOM\s+?\d+?\s+?CA\s+?(\w+?)\s(\w\s*?\d+?)\s+?(-*?\d+?\.\d+)\s+?(-*?\d+?\.\d+)\s+?(-*?\d+?\.\d+)')
+	print(first,middle,last)
+	cord_p = re.compile(r'ATOM\s+?\d+?\s+?CA\s+?(\w+?)\s(\w\s*?\d+?)\s+?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)')
 
 	cords 			= cord_p.findall(pdb_txt)
+	print(cords)
 
 	first_tupple 	= (cords[first])
 	middle_tupple 	= (cords[middle])
