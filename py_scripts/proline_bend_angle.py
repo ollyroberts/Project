@@ -37,9 +37,9 @@ def windows_arguments():
 	('4xr8.format','4xr8.agl'),('1f0x.format','1f0x.agl'),('1mpx.format','1mpx.agl')
 	]
 
-	#master('5klo.format','5klo.agl')
-	for x in test_files:
-		master(x[0],x[1])
+	master('1m1j.format','1m1j.agl')
+	#for x in test_files:
+	#	master(x[0],x[1])
 		
 
 def linux_arguments():

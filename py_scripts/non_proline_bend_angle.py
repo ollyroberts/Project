@@ -84,7 +84,7 @@ def helix_creator(input_file):
 
 
 		positions = first_mid_last_finder(x[1])
-		#print(positions)
+
 		atom_inf = information_extractor(positions,pdb_ca)
 
 		# This takes the information extracted by the information extractor and creates an atom object
