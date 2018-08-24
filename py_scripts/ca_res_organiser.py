@@ -63,7 +63,11 @@ def ca_atom_organiser(aa_chains,ca_residues,output_file):
 	ca_chain_list = ca_chain_string.splitlines()
 
 
+
+	# if there is a non value for first_residue_pdblines end the function
 	pdb_output =first_residue_pdblines(first_aa_in_heli,ca_chain_list)
+	if  not pdb_output:
+		return
 
 	output = open(output_file,'w')
 
@@ -111,13 +115,15 @@ def first_residue_pdblines(aa_list,pdb_ca_list):
 		hit = pattern.search(line)
 		list_of_residues += [hit.group(1)]
 
-
+# if the file has no fist residues in a helix an empty list is returned.
+# end program
 	for x in aa_list:
-		if not x:
+		if x == '':
 			return
-
-
-		location.append(list_of_residues.index(x))
+		if x == ['']:
+			return
+		else:
+			location.append(list_of_residues.index(x))
 
 	location.reverse()
 	counter = 0 
