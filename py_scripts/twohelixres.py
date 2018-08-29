@@ -5,10 +5,31 @@ import re
 
 import argparse
 
+"""
+This detects whether the system is windows or linux and then calls
+either windows_arguments() or linux_arguments() which controll how
+a file is opened 
 
-#This detects whether the system is windows or linux and then calls
-# either windows_arguments() or linux_arguments() which controll how
-# a file is opened 
+
+output is (minus the ######### with two /n at the end)
+#####################
+A45
+A46
+A47
+A48
+A49
+A50
+A51
+A52
+A53
+A54
+A55
+A56
+A57
+
+
+#####################
+"""
 
 def win_or_linux():
 
@@ -24,7 +45,7 @@ def win_or_linux():
 
 def windows_arguments():
 #    secstr_output = files.read()
-    double_helix_parser('1mpx.sec','1mpx.2hr')
+    double_helix_parser('1lxi_mod.sec','1lxi_mod.2hr')
 
 
 def linux_arguments():
@@ -42,11 +63,12 @@ def linux_arguments():
 
     double_helix_parser(sec_name,twohr_name)
 
-# the purpose of this function is to create a list of residues names A11
-# of proteins that are made of two helixes seperated by a gap 
-# pro_eitherside is how many side of the gap I should search 
-def double_helix_parser(input_file, output_file, helicies_length = 6, helix_gap = 3, pro_eitherside = 3):
 
+def double_helix_parser(input_file, output_file, helicies_length = 6, helix_gap = 3, pro_eitherside = 3):
+    """ the purpose of this function is to create a list of residues names A11
+    of proteins that are made of two helixes seperated by a gap 
+    pro_eitherside is how many side of the gap I should search 
+    """
     res_no_l = []       # for residue names 
     res_name_l = []     # for amino acid names
     sec_str_l = []      # for sec structure prediction
@@ -57,6 +79,8 @@ def double_helix_parser(input_file, output_file, helicies_length = 6, helix_gap 
     rx_seq = re.compile(r"^(\w+?)\s+?(\w+?)\s+?(\S)", re.MULTILINE)
     text = fileread(input_file)
 
+
+    # assign the matched groups in the text to the res_no_l, res_name_l and sec_str_str
     for match in rx_seq.finditer(text):
         res_no, res_name, sec_str = match.groups()
 
@@ -64,25 +88,39 @@ def double_helix_parser(input_file, output_file, helicies_length = 6, helix_gap 
         res_name_l.append(res_name)
         sec_str_l += sec_str
 
+
+    # creates dictionaries for each with the chain as the key
     chains_sec_str_d = keychain_value_str(res_no_l, sec_str_l)
-
     chains_res_no_d = keychain_value_list(res_no_l, res_no_l)
-
     chains_res_name_d = keychain_value_list(res_no_l, res_name_l)
 
+
+
+    # which a Pro is found a in the res_name_d[chain] its secstr in sec_str_d is replaced with a P
+    # We will then search for this P later on 
+
+    counter = 0 
+    for chain in chains_res_name_d:
+        #print(chains_res_name_d[chain])
+        counter = 0 
+        for residue in chains_res_name_d[chain]:
+            #print(chains_res_name_d[chain][counter])
+            if residue == 'PRO':
+                chains_sec_str_d[chain] = chains_sec_str_d[chain][:counter] + 'P' + chains_sec_str_d[chain][counter + 1:]
+            counter += 1 
+    print(chains_sec_str_d)
 
     # only adds if a proline is found in the gap
     # contains 2 groups, the 1st group being the whole helix and group 2 being the gap
     for x in chains_sec_str_d:
         
-        regex = "(H{"+ str(helicies_length) +",}(?:([^H]{1,"+ str(helix_gap) + "})H{" + str(helicies_length) + ",}))"
+        regex = "([h|H]{6,}(?:.?){1}P(?:.?){1}[h|H]{6,})"
         p = re.compile(r"" +regex +"")
 
         # if one is found it prints out the residues numbers of that helix
         for match in p.finditer(chains_sec_str_d[x]):
             # adjusted to check for Proline around the gap 1 before and 1 after
-            if "PRO" in chains_res_name_d[x][ (match.start(2) -pro_eitherside) : (match.end(2)+pro_eitherside) ]:
-                two_helix_l += [chains_res_no_d[x][ (match.start(1)) : (match.end(1)) ]]
+            two_helix_l += [chains_res_no_d[x][ (match.start(1)) : (match.end(1)) ]]
 
     tempstr = ""
 
@@ -95,6 +133,9 @@ def double_helix_parser(input_file, output_file, helicies_length = 6, helix_gap 
     output = open(output_file, 'w')
     output.write(tempstr)
     output.close()
+    #print('#####################')
+    print(tempstr)
+    #print('#####################')
 
 def fileread(filename):
     file = open(filename, 'r')

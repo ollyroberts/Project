@@ -19,7 +19,7 @@ done
 for file in *.res
 do
 	base=`basename $file .res`
-	ca_res_organiser.py ${base}.1hr ${base}.res ${base}.format
+	ca_res_organiser.py ${base}.2hr ${base}.res ${base}.format
 	#rm ${base}.1hr 
 	#rm ${base}.res	
 	#find . -size 0 - delete
