@@ -108,7 +108,6 @@ def double_helix_parser(input_file, output_file, helicies_length = 6, helix_gap 
             if residue == 'PRO':
                 chains_sec_str_d[chain] = chains_sec_str_d[chain][:counter] + 'P' + chains_sec_str_d[chain][counter + 1:]
             counter += 1 
-    print(chains_sec_str_d)
 
     # only adds if a proline is found in the gap
     # contains 2 groups, the 1st group being the whole helix and group 2 being the gap

@@ -24,7 +24,7 @@ def win_or_linux():
 
 def windows_arguments():
 #    secstr_output = files.read()
-    single_helix_parser('1mpx.sec','1mpx.1hr')
+    single_helix_parser('1lxi_mod.sec','1lxi_mod.1hr')
     #ca_atom_organiser('1f0x.2hr','1f0x.res', '1f0x.format')
 
 def linux_arguments():
@@ -76,7 +76,7 @@ def single_helix_parser(input_file, output_file, helicies_length = 13):
     # contains 2 groups, the 1st group being the whole helix and group 2 being the gap
     for x in chains_sec_str_d:
         
-        regex = "(H{"+ str(helicies_length) +",})"
+        regex = "([H|h]{"+ str(helicies_length) +",})"
         p = re.compile(r"" +regex +"")
 
         # if one is found it prints out the residues numbers of that helix
@@ -96,6 +96,7 @@ def single_helix_parser(input_file, output_file, helicies_length = 13):
 
     output = open(output_file, 'w')
     output.write(tempstr)
+    print(tempstr)
     output.close()
 
 
