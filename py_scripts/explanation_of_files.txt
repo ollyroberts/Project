@@ -1,0 +1,25 @@
+this is a document to contain the descirption of all my .py and .sh scripts
+
+
+description of file types 
+    -.pdb  is the basic pdb file containing all the information on a particular protein 
+    -.sec is the secondary structure of a pdb file found using a the SSTRUCK and DSSSP methods 
+    -.1hr|2hr is contains the chain and res no (A131) grouped by if they are helicies. 1hr (originally 1 helix res but no known as non proline helicies) and 2hr (two helix res but now known as proline containing helicies)
+    -.res contains only the Ca (carbon alpha) residues of a pdb file
+    -.format contains only the Ca of residues in the helix grouping of .1hr|.2hr
+    -.angle contains the .pdb file name, first res of a helix and the helix bend angle 
+
+
+
+.py scripts 
+
+ca_res_organiser.py take the (.1hr|.2hr) and .res format to create a .format file. 
+e.g. ca_res_organiser.py 1h3l.1h3 1h3l.res 1h3l.format 
+
+
+
+
+.sh scripts 
+
+one_helix_mod.sh , two_helix_mod.sh
+	- modified version of one_helix_ext.sh that works on the .mod files instead of the pdb files. 
