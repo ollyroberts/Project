@@ -28,6 +28,7 @@ done
 for file in *.format
 do
 	base=`basename $file .format`
-	proline_bend_angle.py ${base}.format ${base}.angle
+	#proline_bend_angle.py ${base}.format ${base}.angle
 	#rm ${base}.format
+	proline_middle_angle.py ${base}.format ${base}.angle
 done

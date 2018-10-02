@@ -1,7 +1,7 @@
 #!/bin/sh
-for file in *.pdb
+for file in *.mod
 do
-	base=`basename $file .pdb`
+	base=`basename $file .mod`
 	pdbsecstr $file ${base}.sec
 	onehelixres.py ${base}.sec ${base}.1hr
 	rm ${base}.sec
@@ -11,7 +11,7 @@ done
 for file in *.1hr
 do
 	base=`basename $file .1hr`
-	pdbatomsel ${base}.pdb ${base}.sel
+	pdbatomsel ${base}.mod ${base}.sel
 	pdbgetresidues ${base}.1hr ${base}.sel ${base}.res
 	rm ${base}.sel 
 	#find . -size 0 -delete

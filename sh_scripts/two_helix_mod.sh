@@ -1,25 +1,25 @@
 #!/bin/sh
-for file in *.pdb
+for file in *.mod
 do
-	base=`basename $file .pdb`
+	base=`basename $file .mod`
 	pdbsecstr $file ${base}.sec
-	onehelixres.py ${base}.sec ${base}.1hr
+	twohelixres.py ${base}.sec ${base}.2hr
 	rm ${base}.sec
 	#find . -size 0 -delete
 done
 
-for file in *.1hr
+for file in *.2hr
 do
-	base=`basename $file .1hr`
+	base=`basename $file .2hr`
 	pdbatomsel ${base}.pdb ${base}.sel
-	pdbgetresidues ${base}.1hr ${base}.sel ${base}.res
+	pdbgetresidues ${base}.2hr ${base}.sel ${base}.res
 	rm ${base}.sel 
 	#find . -size 0 -delete
 done 
 for file in *.res
 do
 	base=`basename $file .res`
-	ca_res_organiser.py ${base}.1hr ${base}.res ${base}.format
+	ca_res_organiser.py ${base}.2hr ${base}.res ${base}.format
 	#rm ${base}.1hr 
 	#rm ${base}.res	
 	#find . -size 0 - delete
@@ -28,7 +28,7 @@ done
 for file in *.format
 do
 	base=`basename $file .format`
-	#non_proline_bend_angle.py ${base}.format ${base}.angle
-	non_proline_middle_angle.py ${base}.format ${base}.angle
+	#proline_bend_angle.py ${base}.format ${base}.angle
 	#rm ${base}.format
+	proline_middle_angle.py ${base}.format ${base}.angle
 done

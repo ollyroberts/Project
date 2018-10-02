@@ -1,0 +1,1 @@
+This is crated using the central point of three pdb lines. It is different from the 08.09.2018 because it now inclused the first residue for each angle, which will henceforth be used as a naming system

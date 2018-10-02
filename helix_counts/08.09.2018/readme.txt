@@ -1,0 +1,1 @@
+This was made using the new process for calculating bond angle where lines of best fit were created at three points and the angle between them calculated. The pdblines were calculated at (mid-6:mid-1),(mid -2, mid +2) and (mid+1, mid+6)
