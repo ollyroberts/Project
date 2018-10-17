@@ -4,6 +4,7 @@ import sys
 import re
 
 import argparse
+import subprocess
 
 """
 created 07/2018
@@ -187,6 +188,72 @@ def keychain_value_list(key_provider, dict_values):
             new_dict[x[0]] = [dict_values[counter]]
             counter += 1 
     return new_dict
+
+ef shell_interface(residue_pos,input_file):
+    """
+
+    The purpose of this function is to create a string calling mutmod which is sent to the command line.
+    The purpose of this function is to wrap some residue chain and residue numbers with a wrapper that 
+    calls the pdbline in the command line
+
+    input: list of 3 strings        e.g ['E115 E120', 'E132 E136', 'E148 E153']
+
+    each string is the start and end of the resdidues involved in pdbline. The first ist the starting pdbline,
+    the second is the middle pdbline and the third is the end pdb line
+
+    output: tupple of 3 strings     
+    e.g. ('pdbline A52 A57 1m1j.pdb 1m1j_line_s.pdb', 'pdbline A64 A68 1m1j.pdb 1m1j_line_m.pdb', 'pdbline A74 A79 1m1j.pdb 1m1j_line_e.pdb')
+
+    each of these are a string which will be called on the command line 
+
+    """
+
+    filename = input_file
+
+
+    start_helix             = commandline_wrapper(residue_pos[0],filename)
+    start_helix_str         = create_mutmod_string(start_helix)
+ 
+
+
+    mid_helix               = commandline_wrapper(residue_pos[1],filename)
+    mid_helix_str           = create_mutmod_string(mid_helix)
+ 
+
+    #rint("end pdbline")
+    #rint("residue :", str(residue_pos[2]))
+    end_helix               = commandline_wrapper(residue_pos[2],filename)
+    end_helix_str           = create_mutmod_string(end_helix)
+
+    
+    #print("First point :", start_pdbline_midpoint, " ", "Second point :", middle_pdbline_midpoint, " ", "Third point :", end_pdbline_midpoint)
+
+    return(start_pdbline_midpoint,middle_pdbline_midpoint,end_pdbline_midpoint)
+
+def commandline_wrapper(res_pair,input_name):
+
+    """
+    This function creates a wrapper for mutmod in the form 
+    'mutmodel -m [c]nnn[i] (new res with -m can be repeated) ALA' 
+    """
+    temp_str    = ""
+
+    temp_str    += "pdbline"
+    temp_str    += " "
+    temp_str    += str(res_pair)
+    temp_str    += " "
+    temp_str    += input_name
+    temp_str    += ".pdb"
+
+    #print(temp_str)
+    return(temp_str)
+
+
+def create_mutmod_string(string):
+    retval=subprocess.check_output(string, shell=True)
+    retval=str(retval) # Convert from byte string
+    return(retval)
+
 
 def main ():
         win_or_linux()
