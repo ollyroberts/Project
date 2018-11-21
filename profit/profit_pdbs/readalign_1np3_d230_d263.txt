@@ -1,0 +1,8 @@
+>p1;reference_seq.txt
+ref - from  1knq.pdb starting at res a58 proline A64.
+NDDDRK---------------------------PWLQALNDAAFAMQRTN-----------------
+
+>p1:1np3_d230_d263.txt
+ref - from  1np3.pdb first res d230 proline d263.
+ELKLIVDLMYEGGIANMNYSISNNAEYGEYVTGPEVINAESRAAMRNALKRIQDGEYAKMFITEGAA
+

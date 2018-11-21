@@ -1,0 +1,7 @@
+>p1;reference_seq.txt
+Reference Sequence - from  1knq.pdb starting at res a58 proline A64.
+NDDDRK---PWLQALNDAAFAMQRTN--
+
+>p1:1pl4_a53_a62.txt
+mobile seq from 1pl4.pdb first res a53 proline a62 finish a80
+DVTAQIALQPALKFNGGGHINHSIFWTN

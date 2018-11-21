@@ -1,0 +1,7 @@
+>p1;reference_seq.txt
+ref - from  1knq.pdb starting at res a58 proline A64.
+NDDDRK----PWLQALNDAAFAMQRTN
+
+>p1;1nb5_l20_l30.txt
+Reference Sequence - from  1nb5.pdb starting at res L20 proline L30 finish L37.
+EIQEIVDKVKPQLEEKTN---------

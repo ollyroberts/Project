@@ -1,0 +1,7 @@
+>p1;reference_seq.txt
+ref - from  1knq.pdb starting at res a58 proline A64.
+NDDDRKPWLQALNDAAFAMQRTN
+
+>p1:1nj1_a118_a124.txt
+ref - from  1nj1.pdb starting at res a118 proline a124.txt
+SETVMYPMFALWV----------

@@ -1,0 +1,7 @@
+>p1;reference_seq.txt
+ref - from  1knq.pdb starting at res a58 proline A64.
+NDDDRKPWLQALNDAAFAMQRTN
+
+>p1;1knq_a58_a64.txt
+mobile from 1knq.pdb starting at res 158 proline at a64
+NDDDRKPWLQALNDAAFAMQRTN

@@ -1,0 +1,7 @@
+>p1;reference_seq.txt
+ref - from  1knq.pdb starting at res a58 proline A64.
+NDDDRK--PWLQALNDAAFAMQRTN
+
+>p1;1mv8_c128_c136.txt
+mob - from  1mv8.pdb starting at res c128 proline c136 finish 143.
+GTVNNVVIPLIEDCSG---------

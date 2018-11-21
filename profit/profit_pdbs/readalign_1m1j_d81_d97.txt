@@ -1,0 +1,7 @@
+>p1;reference_seq.txt
+ref - from  1knq.pdb starting at res a58 proline A64.
+NDDDRK----------PWLQALNDAAFAMQRTN------------------------------------------------
+
+>p1;1m1j_d81_d97.txt
+mobile Sequence - from  1m1j.pdb at res_d81 proline d97.
+YKTSNRVIVETINILKPGLEGAQQLDENYGHVSTELRRRIVTLKQRVATQVNRIKALQNSIQEQVVEMKRLEVDIDIKIRA
