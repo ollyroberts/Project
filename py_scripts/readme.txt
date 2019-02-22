@@ -83,3 +83,13 @@ distribution#
 #############
 
  Contains a series of mathmatical models to perform on .angle catconicated files 
+
+
+ARMC C++ scripts used in conjection with these scripts 
+
+pdbsecstr	- outputs the secondary structures of the selected pdb file 
+pdbastomselect 	- selects only the C-alpha atoms from specifed pdb file	- output .sel file
+pdbgetresidues 	- gets only the specified residues (from example.2hr/1hr)- output .res file 
+
+
+

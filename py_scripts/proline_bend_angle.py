@@ -82,7 +82,7 @@ def helix_creator(input_file):
 		pdb_ca = x[1]
 
 
-
+		# contains proline residue as in A,K,P,S,T output would be 0,pro would be "3"
 		positions = first_pro_last_finder(x[1])
 
 		atom_inf = information_extractor(positions,pdb_ca)
