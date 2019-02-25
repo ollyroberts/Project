@@ -1044,3 +1044,41 @@ vi) test by first creating a .full_atom using pdbgetres and a 1hr/2hr file pdb f
 	new version 
 		- pdbgetresidues ${base}.2hr ${base}.pdb ${base}.full_res
 
+v) write a python script that will select 50 random pdb ids from a certain bend angle
+
+
+Progress
+
+obtaining all atoms in a helix as opposed to just C-alpha 
+ 	- using pdbgetresidue example.2hr example.pdb example.fullatom gives the full atoms BUT does not seperate multiple helices in each file  e.g. A23,A24,A25,B74,B75,C95 is read as one atom
+ 	OPTIONS 
+ 	- test to see if ca_res_organiser can be modified to deal with multiple atoms, not just Ca
+ 	- create new program to split files
+ 	ACTION 
+ 	- Look at ca_res_organiser and see how difficult it would be to change 
+ 		- if too hard will write temporary code 
+ 	ANALYSIS
+ 		- ca_res_organiser works by creating a dictionary of lists where each list is started the first time a atom is encounted and then appending it to the correct residue. It assumes only one atom of each residue. Hence it does not work with multiple atoms per residue.
+ 		e.g (ATOM 109 CA leu A 23) but does not work if (ATOM 110 C leu A 23)
+ 	ACTION 
+ 		- create temporary script (full_res_splitter.py ) to split .full_res into multiple files e.g 5klo.full_res becomes 5klo_a25_a36.txt, 5klo_b72_b120.txt.
+
+ 	full_res_splitter.py
+
+ example of input txt 
+ 	main__func
+ 	_
+
+ 24.02.2019
+
+ Progress 
+ - have completed the file splitter to include all atoms class_test_v3.py (working title)
+ 	- attempted to create a more complex class and subclass system to replace calculate bend angle. but will have to revisit. almost complete 
+ NOW
+ 	- test that the new pdb.full_atom format is compatable with ProFit. 
+
+ Next 
+ 	- find 40~ pdbs in each range and create their full._atom folders. 
+ 		- image and see if any are interesting 
+
+
