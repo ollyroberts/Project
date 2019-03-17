@@ -126,13 +126,18 @@ def residue_pairs_for_pdbline(input_file):
 	helix_list = []
 	helix_start_mid_end = []
 	temp_list = []
+	helix_names = []
 	
-
+	# captures the first residue chain no and numer as group 1 and
+	# the block of pdb txt benith as group 2
 	pattern = re.compile(r'(\w+\s*?\d+?)\n(.+?)\n')
 	match = pattern.findall(file_txt)
 	for x in match:
 		temp_list = []
 		helix_name = (x[0])
+		helix_names.append(helix_name)
+
+
 		pdb_ca = x[1]
 
 		positions = first_mid_last_finder(x[1])
@@ -144,7 +149,7 @@ def residue_pairs_for_pdbline(input_file):
 
 		helix_start_mid_end.append(temp_list)
 
-	return(helix_start_mid_end)
+	return(helix_start_mid_end,helix_names)
 
 
 def first_mid_last_finder(protein_pdb):
@@ -357,16 +362,19 @@ def master(input_file,output_file):
 	tempstring = ""
 	pdbname = str(input_file)[:4]
 
-	pdbline_res = residue_pairs_for_pdbline(input_file)
+	pdbline_res,helix_names = (residue_pairs_for_pdbline(input_file))
 	print("all pdbline residues :",pdbline_res)
+	#print((helix_names))
 	res_counter = 0 
+
+
 	for x in pdbline_res:
 		one, two , three  = shell_interface(x,pdbname)
 		angle =calculate_angle( one,two,three)
 		#pdbline_res takes the residue for the first pdbline and splits by space, giving the first
 		first_res = str(pdbline_res[res_counter][0])
 		first_res = first_res.split(" ")
-		tempstring += input_file[:4] + " " + str(first_res[0]) + " " + str(angle)+ "\n"
+		tempstring += input_file[:4] + " " + str(helix_names[res_counter]) + " " + str(angle)+ "\n"
 		#print(tempstring)
 		res_counter += 1
 

@@ -121,6 +121,7 @@ def residue_pairs_for_pdbline(input_file):
 	helix_list = []
 	helix_start_mid_end = []
 	temp_list = []
+	helix_name =[]
 	
 	# match an object where the data is broken up by line breaks and chain res no linebreak
 	pattern = re.compile(r'(\w+\s*?\d+?)\n(.+?)\n')
@@ -129,7 +130,7 @@ def residue_pairs_for_pdbline(input_file):
 	#Each x is a helix. This helix contains the ca pdb atoms of that helix 
 	for x in match:
 		temp_list = []
-		helix_name = (x[0])
+		helix_name.append(x[0])
 		pdb_ca = x[1]
 
 		# has the first and last residue which will be used to
@@ -137,10 +138,11 @@ def residue_pairs_for_pdbline(input_file):
 		try:
 			positions = first_mid_last_finder(x[1])
 		except:
-			print("no proline found")
+			#print("no proline found")
 			break
 			
 		positions = first_mid_last_finder(x[1])
+		#print("Midpoint of each pdbline first, mid ,last" , positions)
 		if positions == None:
 			break
 
@@ -151,7 +153,7 @@ def residue_pairs_for_pdbline(input_file):
 
 		helix_start_mid_end.append(temp_list)
 
-	return(helix_start_mid_end)
+	return(helix_start_mid_end,helix_name)
 
 
 def first_mid_last_finder(protein_pdb):
@@ -181,14 +183,14 @@ def first_mid_last_finder(protein_pdb):
 
 
 		if res[midpoint - counter] == "PRO":
-			print("PRO res found :", [midpoint - counter])
+			#print("PRO res found :", [midpoint - counter])
 
 			pro_res = (midpoint - counter)
 			counter += 1 
 			break
 
 		elif res[midpoint + counter ] == "PRO":
-			print("PRO res found :", [midpoint + counter ])
+			#print("PRO res found :", [midpoint + counter ])
 
 			pro_res = (midpoint + counter)
 			counter += 1 
@@ -201,7 +203,7 @@ def first_mid_last_finder(protein_pdb):
 
 
 	if pro_res == None:
-		print("no PRO res found")
+		#print("no PRO res found")
 		return(None)
 
 	#print('First re', pro_res-6,pro_res,pro_res+6)
@@ -211,7 +213,7 @@ def first_mid_last_finder(protein_pdb):
 def information_extractor(selected_ca,pdb_txt):
 	""" 
 	input: Tupple 
-	containing the positions of the mid -6 /middle/mid +6 residue in the 
+	containing the positions of the mid -6 /PRO/mid +6 residue in the 
 	aminoacid sequence (for calculating the bend angle between them)
 
 	output:a list of 3 lists, 
@@ -318,7 +320,7 @@ def commandline_wrapper(res_pair,input_name):
 	temp_str 	+= input_name
 	temp_str 	+= ".pdb"
 
-	#print(temp_str)
+	print(temp_str)
 	return(temp_str)
 
 
@@ -349,7 +351,7 @@ def calculate_midpoint(pdbline_str):
 	y = pdbline_xyz[mid][2]
 
 	z = pdbline_xyz[mid][3]
-	print('x,y,z :',x,y,z)
+	#print('x,y,z :',x,y,z)
 	return(x,y,z)
 
 
@@ -377,6 +379,26 @@ def calculate_angle(first_xyz, second_xyz, third_xyz):
 	angle = (np.degrees(angle))
 	return(angle)
 
+def find_pro(pdb_line_res_pair):
+	"""
+	finds the proline res by taking the pdbline res pair e.g. A174 A178,
+	takes the first and adds two to get A176
+	"""
+
+	res_pair = pdb_line_res_pair
+	res_pair = res_pair.split()
+
+
+	first_res = res_pair[0]
+
+	first_res_no = first_res[1:]
+	first_res_chain = first_res[:1]
+
+	proline_res_no = int(first_res_no) + 2
+	proline_res = (first_res_chain + str(proline_res_no))
+
+	return(proline_res)
+
 
 def master(input_file,output_file):
 
@@ -388,18 +410,23 @@ def master(input_file,output_file):
 	pdbname = str(input_file)[:4]
 
 	pdbline_res = residue_pairs_for_pdbline(input_file)
-	print("all pdbline residues :",pdbline_res)
+	
 	res_counter = 0
-	for x in pdbline_res:
+	for x in pdbline_res[0]:
+
+		proline = find_pro(x[1])
+		print("proline :" + str(proline))
+
 		one, two , three  = shell_interface(x,pdbname)
 		angle =calculate_angle( one,two,three)
 		#print(angle)
 		#pdbline_res takes the residue for the first pdbline and splits by space, giving the first
-		first_res = str(pdbline_res[res_counter][0])
-		first_res = first_res.split(" ")
+		first_res = str(pdbline_res[1][res_counter])
+		first_res = first_res.replace(" ","")
+
 		
-		tempstring += input_file[:4] + " " + str(first_res[0]) + " " + str(angle)+ "\n"
-		res_counter += 0
+		tempstring += input_file[:4] + " " + str(first_res) + " " + proline + " "  + str(angle)+ "\n"
+		res_counter += 1
 
 	print(tempstring)
 	file = open(output_file,'w')
