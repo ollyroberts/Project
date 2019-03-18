@@ -1081,4 +1081,47 @@ obtaining all atoms in a helix as opposed to just C-alpha
  	- find 40~ pdbs in each range and create their full._atom folders. 
  		- image and see if any are interesting 
 
+ProFit 
+	- only show 13 residues (P in the middle) ( the residues involved in pdbline bestfit )
+	- ATOMS N,Ca,C,Cd
+	- first try comparing first P residues found P:P
+		- if that is a bit rubish will atempt to compare 1 residues either side of P e.g. SPV:KPR
+	- will collect 
 
+in the non proline observe 
+			- around the wide gausian mean=146.369 sd=21
+			- around the  gaussian mean=173 sd = 3.1 
+		- in the proline containing helicies 
+			- around the gaussian mean=118 sd=12
+			- around the gaussian mean=170 sd=4.5
+			- possibly around the 145-155 range as that is possibly a space between the two other gaussians (and a seperate gaussian using the three gaussian mixed model)
+
+Misnaming in pdb bend angle out. outputes the pdb_chain_res e.g. "5kl0_a13" using the name of the first res of the  pdbline (6res-P-6res) instead of the first res of the chain. results in 
+
+#############################
+02.03.2019
+#############################
+- problem- the file output from non_proline_middle_angle.py quotes the location of the pdb best fit instead of the start and end of the helix when making a helix file. 
+Solution
+still using non_proline_middle_angle.py and proline_middle_angle.py instead of non_proline_bend_angle.py and proline_bend_angle.py. 'bend_angle.y' gives both correct first residue and bend angle
+	- have changed the .sh files 
+	- while non proline appears to be accurate using chimera (check more thoroughly)
+		- proline_bend_angle is not running
+		- find out why tomrrow
+
+
+17.03.2019
+Tasks to do 
+- check if residues and angles are correct using pdb line fit. 
+- automate profit bend angle prediction 
+-scp not working (current ip adress is 192.168.0.46)
+
+Checking accuracy of new non/proline_bend_angle.py
+- check format residues match up file names 
+- bend angle for 
+
+IMPORTANT
+I found that I was not using pdbline in non_proline_bend_angle.py 
+The correct program is indeed non/proline_middle_angle.py (uses pdbline to calculate)
+Corrected non_proline_bend_angle.py to correctly save angle as first res of helix instead of 1st res of pdbline. 
+	- note non_proline takes the higher index of an even length list e.g. 1,2,3,4 returns 3. 
