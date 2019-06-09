@@ -1125,3 +1125,205 @@ I found that I was not using pdbline in non_proline_bend_angle.py
 The correct program is indeed non/proline_middle_angle.py (uses pdbline to calculate)
 Corrected non_proline_bend_angle.py to correctly save angle as first res of helix instead of 1st res of pdbline. 
 	- note non_proline takes the higher index of an even length list e.g. 1,2,3,4 returns 3. 
+
+###########
+29.05.2019
+###########
+
+I belive the most recent script layout 
+
+combined.sh calls one_helix_ext.sh and two_helix_ext.sh
+'
+#!/bin/bash
+for directory in dir_001 dir_002 dir_003 dir_004 dir_005 dir_006 dir_007 dir_008 dir_009 dir_010 dir_011 dir_012 dir_013 dir_014 dir_015 dir_016 dir_017
+do 	
+	path=`~/Documents/full_pdb_copy`
+	cd ${directory}
+	echo ${directory}
+	one_helix_ext.sh
+	touch ./one_angle_output.txt
+	cat *.angle > ./non_proline_output.txt
+	rm *.res *.1hr *.format *.angle 	
+	two_helix_ext.sh
+	touch ./two_angle_output.txt
+	cat *.angle > ./proline_output.txt
+	rm *.res *.2hr *.format *.angle
+	cd .. 
+done
+'
+
+one_helix_ext.sh is as follows 
+'
+#!/bin/sh
+for file in *.pdb
+do
+	base=`basename $file .pdb`
+	pdbsecstr $file ${base}.sec
+	onehelixres.py ${base}.sec ${base}.1hr
+	rm ${base}.sec
+	#find . -size 0 -delete
+done
+
+for file in *.1hr
+do
+	base=`basename $file .1hr`
+	pdbatomsel ${base}.pdb ${base}.sel
+	pdbgetresidues ${base}.1hr ${base}.sel ${base}.res
+	rm ${base}.sel 
+	#find . -size 0 -delete
+done 
+for file in *.res
+do
+	base=`basename $file .res`
+	ca_res_organiser.py ${base}.1hr ${base}.res ${base}.format
+	#rm ${base}.1hr 
+	#rm ${base}.res	
+	#find . -size 0 - delete
+done
+
+for file in *.format
+do
+	base=`basename $file .format`
+	#non_proline_bend_angle.py ${base}.format ${base}.angle
+	non_proline_middle_angle.py ${base}.format ${base}.angle
+	#rm ${base}.format
+done
+'
+
+two is quite similar.
+'
+#!/bin/sh
+for file in *.pdb
+do
+	base=`basename $file .pdb`
+	pdbsecstr $file ${base}.sec
+	twohelixres.py ${base}.sec ${base}.2hr
+	rm ${base}.sec
+	#find . -size 0 -delete
+done
+
+for file in *.2hr
+do
+	base=`basename $file .2hr`
+	pdbatomsel ${base}.pdb ${base}.sel
+	pdbgetresidues ${base}.2hr ${base}.sel ${base}.res
+	rm ${base}.sel 
+	#find . -size 0 -delete
+done 
+for file in *.res
+do
+	base=`basename $file .res`
+	ca_res_organiser.py ${base}.2hr ${base}.res ${base}.format
+	#rm ${base}.1hr 
+	#rm ${base}.res	
+	#find . -size 0 - delete
+done
+
+for file in *.format
+do
+	base=`basename $file .format`
+	#proline_bend_angle.py ${base}.format ${base}.angle
+	#rm ${base}.format
+	proline_middle_angle.py ${base}.format ${base}.angle
+done
+'
+
+These make use of of the outdated
+
+onehelixres.py, twohelixres.py
+ca_res_organiser
+proline_middle_angle.py, non_proline_middle_angle.py 
+
+what we now have is 
+
+onehelixres.py,twohelixres.py (input: .pdb file output: .sec file)
+all_res_organiser.py (input: .1hr, .res output: .format)
+fullressplitter.py (input: .format output: multiple txt files of each helix)
+
+- fullressplitter.py then creates a text file composed of a single helix for non_/proline_middle_angle.py
+non_proline_middle_angle.py, proline_middle_angle.py
+
+----------------
+Confirmed steps
+----------------
+for non proline 
+1.pdbsecstr 1ct5.pdb 1ct5.sec
+2.onehelixres.py 1ct5.sec 1ct5.1hr
+3.pdbatomselect 1ct5.pdb 1ct5.sel
+4.pdbgetresidues 1ct5.1hr 1ct5.sel 1ct5.res
+5.ca_atom_organiser 1ct5.1hr 1ct5.res 1ct5.format
+
+-----
+Note
+-----
+in newer versions i need all the atoms, not just the CA, so i do not use pdbatomselect and ca_atom_organiser.
+Instead I jump to pdbgetresides .1hr(residues I want) .pdb(input pdb) .res(output of all atoms in selected residues)
+and then use allresorganiser.
+
+this setup involves 
+for proline helicies
+1.pdbsecstr 1ct5.pdb 1ct5.sec
+2.onehelixres.py 1ct5.sec 1ct5.1hr
+3.pdbgetresidues 1ct5.1hr 1ct5.pdb 1ct5.1res
+4.all_res_organiser.py format
+5.proline_middle_angle.py 1ct5.1hr 1ct5.res 1ct5.format
+
+
+####
+Change log
+####
+i)
+bash: /home/oliver/bin/onehelixres.py: /usr/bin/python: bad interpreter: No such file or director
+This is because my scripts shebang reference python which in my previous installtion I had pathed to python3. I have instead changed my shebangs to python3 for greater compatability in the future.
+
+ii)
+in ubuntu 18.04 when I run "system.os=='linux2'" it fails as system.os now =="linux" in 18.04
+this will have to be changed for all clubs
+
+ii)change pdbatomsel to pdbatomselect in one_helix_ext.sh
+
+--------
+To Do
+--------
+i)
+change fullressplitter output to .1txt and .2txt (or some other way to differenticate between pro and non pro)
+
+ii) 
+do the same for the non_/proline_middle_angle.py
+
+iii) check linux2 and python changes in non_proline_middle_angle
+
+
+#############
+31.05.2019 - speed checks
+#############
+found that some import statement at the start of onehelixres.py had be replacined with 'import .....' preventing them from loading.
+
+attempting to decrease runtime of python code, will modify string += 'string' to a list then we append.
+will measure time differences using time.clock
+
+
+onehelixres.py 1ct5.sec 1ct5.1hr
+with print command and using str += function		:~0.045 seconds 
+no print command and str += function 			:~0.045
+with print command and using append list and then join 	:
+
+#########
+02.05.17
+#########
+
+The format that non_proline pdb takes as input (act5.res i think) is 
+
+A116
+ATOM BLARGH BLAEGH BAEGH
+ATOM BLARGH BLAEGH BAEGH
+ATOM BLARGH BLAEGH BAEGH
+
+B12
+ATOM BLARGH BLARGH BLARGH
+
+#########
+03.05.17
+#########
+The issue is when I use pdblineget residues, all_res_organiser and then non_proline_middle_angle.py is that non_proline_middle_angle.py assumes there are only CA atoms in the .format file generated by all_res_organiser. This throws off the 'first_mid_last_finder' function in non_proline_middle_angle.py.
+
