@@ -1295,7 +1295,7 @@ iii) check linux2 and python changes in non_proline_middle_angle
 
 
 #############
-31.05.2019 - speed checks
+31.04.2019 - speed checks
 #############
 found that some import statement at the start of onehelixres.py had be replacined with 'import .....' preventing them from loading.
 
