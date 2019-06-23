@@ -1,4 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python3
+
+# -*- coding: utf-8 -*-
+
 import os
 import sys
 import re
@@ -11,6 +14,7 @@ import subprocess
 """
 ver 1.0 created 11.09.2018 
 ver 1.1 updated on 26.09.2018 modified calculate midpoint function 
+ver 1.2 updated on 22.06.2019 modified shell interface and added global "pdbline_option" variable 
 
 1.1 update 
 -modifed taking of pdbmid point from 
@@ -18,6 +22,14 @@ ver 1.1 updated on 26.09.2018 modified calculate midpoint function
 to 
 	- taking the first and last LINE residue xyz adding them together then halfing them
 	((frist x + last x )/ 2) = midpoint x 
+	
+	
+ver 1.2 update 
+
+included the optional commandline argument "--pdbline" which if used also creased pdb files
+with pdbline showing how the bend angle is calculated.
+
+This also included modifying the function shell_interface 
 
 The purpose of this program is to extract the xyz coordinates of the first (a),
  middle proline(b), and last (c) ca atom of a protein from a .format file.
@@ -49,7 +61,9 @@ The program is called on the command line, then the name of the target .format
 
 """
 
-def main ():
+def main():
+	global pdbline_option
+	pdbline_option = False
 	win_or_linux()
 
 def win_or_linux():
@@ -60,7 +74,7 @@ def win_or_linux():
 	if sys.platform =='win32':
 		file = windows_arguments()
             
-	if sys.platform =='linux2':
+	if sys.platform =='linux':
 		file = linux_arguments()
 
 
@@ -88,13 +102,19 @@ def linux_arguments():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('format_file', help = 'ca atoms of proteins seperated by chains')
 	parser.add_argument('angle_file', help = 'output file which will have the pdb name and 1st residue with ABC angle')
+	parser.add_argument('--pdbline', action='store_true',
+					   help='also creates pdbfile containing pdblines used in bend angle calculation')
 
-	#This creates a namespace object which allows you to treat files as if they are open
+	# This creates a namespace object which allows you to treat files as if they are open
 	args = parser.parse_args()
 
 	format_name = vars(args)['format_file']
 	angle_name = vars(args)['angle_file']
-
+	if args.pdbline:
+		print('Pdbline creation specified')
+		global pdbline_option
+		pdbline_option = True
+		print(str(pdbline_option))
 	master(format_name,angle_name)
 
 def fileread(filename):
@@ -271,6 +291,69 @@ def shell_interface(residue_pos,input_file):
 	end_pdbline_midpoint 	= calculate_midpoint(end_helix_str)
 	
 	#print("First point :", start_pdbline_midpoint, " ", "Second point :", middle_pdbline_midpoint, " ", "Third point :", end_pdbline_midpoint)
+	"""
+	
+	# This is added as part of the optional commandline argument --pdbline, if so it writes to a new file for every
+	# is based on the horrible global variable pdbline_option which is true if argument "--pdbline" is given
+
+	# input variables;
+	 residue_pos (list of lists coordiantes) [['A14 A19', 'A18 A22', 'A21 A26']
+	 , ['A117 A122', 'A121 A125', 'A124 A129']
+	 , ['A156 A161', 'A160 A164', 'A163 A168'],
+	  ['A199 A204', 'A203 A207', 'A206 A211']]
+	  
+	  filename : string "1ct5"
+	  start_helix_str contains the atom information from pdbline for that residue pair
+	"""
+	if pdbline_option==True:
+		print('roger roger')
+		temp_res_list = []
+		for pair in residue_pos:
+			temp_res_list += pair.split()
+		temp_filename = (str(filename) + '_' + str(temp_res_list[0] +'_' + str(temp_res_list[-1])) + '_pdbline' )
+
+
+		# Accesses original .pdb filename
+		pdbline_file_list = []
+		filename += '.pdb'
+		#pdbline_file_list.append(fileread(filename))
+
+
+
+		#this is required to remove b'string' from start/mid/end_helix_str which has been converted over when it was in byte form
+		start_helix_str =start_helix_str.strip('b')
+		start_helix_str =start_helix_str.strip("''")
+		#start_helix_str = end_helix_str.split('\n')
+
+		mid_helix_str = mid_helix_str.strip('b')
+		mid_helix_str = mid_helix_str.strip("''")
+		#mid_helix_str = end_helix_str.split('\n')
+
+		end_helix_str = end_helix_str.strip('b')
+		end_helix_str = end_helix_str.strip("''")
+		#end_helix_str = end_helix_str.split('\n')
+		#print(end_helix_str)
+
+		#start_helix_str =start_helix_str.decode('utf-8')
+
+
+		# this is all an attempts to combine into one list and to replace '\\n' with '\n',
+		# i could have just used find and replace
+		pdbline_file_list.append(start_helix_str)
+		pdbline_file_list.append(mid_helix_str)
+		pdbline_file_list.append(end_helix_str)
+		#print(pdbline_file_list)
+		pdbline_file_str =('').join(pdbline_file_list)
+		pdbline_file_list=pdbline_file_str.split('\\n')
+
+
+		# writes the awakward list format to a file nicly
+		with open(temp_filename, 'w') as text_file:
+			text_file.writelines("%s\n" % line for line in pdbline_file_list)
+
+			#text_file.write(str(pdbline_file_str))
+		#print(temp_filename)
+
 
 	return(start_pdbline_midpoint,middle_pdbline_midpoint,end_pdbline_midpoint)
 
@@ -359,6 +442,7 @@ def master(input_file,output_file):
 	of proteins that are made of two helixes seperated by a gap 
 	pro_eitherside is how many side of the gap I should search """
 
+	print("pdbline is " + str(pdbline_option))
 	tempstring = ""
 	pdbname = str(input_file)[:4]
 
@@ -377,6 +461,7 @@ def master(input_file,output_file):
 		tempstring += input_file[:4] + " " + str(helix_names[res_counter]) + " " + str(angle)+ "\n"
 		#print(tempstring)
 		res_counter += 1
+
 
 	print(tempstring)
 	file = open(output_file,'w')
