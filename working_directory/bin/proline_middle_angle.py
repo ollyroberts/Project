@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+
+# -*- coding: utf-8 -*-
 import os
 import sys
 import re
@@ -44,6 +46,8 @@ call structure of major functions in master function
 """
 
 def main ():
+	global pdbline_option
+	pdbline_option = False
 	win_or_linux()
 
 def win_or_linux():
@@ -83,12 +87,20 @@ def linux_arguments():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('format_file', help = 'ca atoms of proteins seperated by chains')
 	parser.add_argument('angle_file', help = 'output file which will have the pdb name and 1st residue with ABC angle')
+	parser.add_argument('--pdbline', action='store_true',
+						help='also creates pdbfile containing pdblines used in bend angle calculation')
 
 	#This creates a namespace object which allows you to treat files as if they are open
 	args = parser.parse_args()
 
 	format_name = vars(args)['format_file']
 	angle_name = vars(args)['angle_file']
+
+	if args.pdbline:
+		print('Pdbline creation specified')
+		global pdbline_option
+		pdbline_option = True
+		print(str(pdbline_option))
 
 	master(format_name,angle_name)
 
@@ -308,6 +320,64 @@ def shell_interface(residue_pos,input_file):
 	
 	#print("First point :", start_pdbline_midpoint, " ", "Second point :", middle_pdbline_midpoint, " ", "Third point :", end_pdbline_midpoint)
 
+	"""
+
+		# This is added as part of the optional commandline argument --pdbline, if so it writes to a new file for every
+		# is based on the horrible global variable pdbline_option which is true if argument "--pdbline" is given
+
+		# input variables;
+		 residue_pos (list of lists coordiantes) [['A14 A19', 'A18 A22', 'A21 A26']
+		 , ['A117 A122', 'A121 A125', 'A124 A129']
+		 , ['A156 A161', 'A160 A164', 'A163 A168'],
+		  ['A199 A204', 'A203 A207', 'A206 A211']]
+
+		  filename : string "1ct5"
+		  start_helix_str contains the atom information from pdbline for that residue pair
+		"""
+	if pdbline_option == True:
+		print('roger roger')
+		temp_res_list = []
+		for pair in residue_pos:
+			temp_res_list += pair.split()
+		temp_filename = (str(filename) + '_' + str(temp_res_list[0] + '_' + str(temp_res_list[-1])) + '_pdbline')
+
+		# Accesses original .pdb filename
+		pdbline_file_list = []
+		filename += '.pdb'
+		# pdbline_file_list.append(fileread(filename))
+
+		# this is required to remove b'string' from start/mid/end_helix_str which has been converted over when it was in byte form
+		start_helix_str = start_helix_str.strip('b')
+		start_helix_str = start_helix_str.strip("''")
+		# start_helix_str = end_helix_str.split('\n')
+
+		mid_helix_str = mid_helix_str.strip('b')
+		mid_helix_str = mid_helix_str.strip("''")
+		# mid_helix_str = end_helix_str.split('\n')
+
+		end_helix_str = end_helix_str.strip('b')
+		end_helix_str = end_helix_str.strip("''")
+		# end_helix_str = end_helix_str.split('\n')
+		# print(end_helix_str)
+
+		# start_helix_str =start_helix_str.decode('utf-8')
+
+		# this is all an attempts to combine into one list and to replace '\\n' with '\n',
+		# i could have just used find and replace
+		pdbline_file_list.append(start_helix_str)
+		pdbline_file_list.append(mid_helix_str)
+		pdbline_file_list.append(end_helix_str)
+		# print(pdbline_file_list)
+		pdbline_file_str = ('').join(pdbline_file_list)
+		pdbline_file_list = pdbline_file_str.split('\\n')
+
+		# writes the awakward list format to a file nicly
+		with open(temp_filename, 'w') as text_file:
+			text_file.writelines("%s\n" % line for line in pdbline_file_list)
+
+	# text_file.write(str(pdbline_file_str))
+
+	# print(temp_filename)
 	return(start_pdbline_midpoint,middle_pdbline_midpoint,end_pdbline_midpoint)
 
 def commandline_wrapper(res_pair,input_name):
