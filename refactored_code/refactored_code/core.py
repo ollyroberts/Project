@@ -5,15 +5,15 @@ import re
 
 import argparse
 
-#This detects whether the system is windows or linux and then calls
-# either windows_arguments() or linux_arguments() which controll how
-# a file is opened
-
-
-
-
-
 def linux_arguments():
+    """
+    uses argparse and returns the 1st argument as the imput file, and 2nd
+    argument as the output file.
+    Input: .sec file made using psbsecstr on a pdbfile
+    output: .1hr or .2hr file dependend on the helix parser.
+    returns: input_file,output_file
+
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         'sec_file',
@@ -25,18 +25,12 @@ def linux_arguments():
         help='output filename which will contain single alpha helicies residues'
     )
 
-    #This creates a namespace object which allows you to treat files as if they are open
+    # This creates a namespace object which allows you to treat files as if they are open
     args = parser.parse_args()
 
     sec_name = vars(args)['sec_file']
     onehr_name = vars(args)['1hr_file']
-    return(sec_name,onehr_name)
-    #single_helix_parser(sec_name, onehr_name)
-
-
-# the purpose of this function is to create a list of residues names A11
-# of proteins that are made of two helixes seperated by a gap
-# pro_eitherside is how many side of the gap I should search
+    return (sec_name, onehr_name)
 
 
 def single_helix_parser(input_file, helicies_length=13):
@@ -65,8 +59,6 @@ def single_helix_parser(input_file, helicies_length=13):
     one_helix_l = []  # contains one a list aminoacids (also a list)
 
     text = fileread(input_file)
-    
-    
 
     # Extracts the residue no, amino acid and secstr and signs to variables
     rx_seq = re.compile(r"^(\w+?)\s+?(\w+?)\s+?(\S)", re.MULTILINE)
@@ -87,7 +79,7 @@ def single_helix_parser(input_file, helicies_length=13):
     # only adds if a proline is found in the gap
     # contains 2 groups, the 1st group being the whole helix and group 2 being the gap
     for x in chains_sec_str_d:
-        #print(x)
+        # print(x)
         regex = "([H|h]{" + str(helicies_length) + ",})"
         p = re.compile(r"" + regex + "")
 
@@ -98,11 +90,10 @@ def single_helix_parser(input_file, helicies_length=13):
             one_helix_l += [
                 chains_res_no_d[x][(match.start(1)):(match.end(1))]
             ]
-    return(one_helix_l,chains_sec_str_d,chains_res_no_d,chains_res_name_d)
+    return (one_helix_l, chains_sec_str_d, chains_res_no_d, chains_res_name_d)
 
 
-
-def filewrite_nestedlist(filename,outerlist):
+def filewrite_nestedlist(filename, outerlist):
     """
     input:
     filename:name of file to be written to
@@ -117,20 +108,18 @@ def filewrite_nestedlist(filename,outerlist):
         tempstr += ("\n")
 
     with open(filename, 'w') as out_file:
-     out_file.write(tempstr)
-    
-
-def fileread(filename):
-    file = open(filename, 'r')
-    output = file.read()
-    file.close()
-    return (output)
+        out_file.write(tempstr)
 
 
-# creates a dictionary where the list key providesr first nonwhitespace is used as the
-# key in this case it is the chain of the residue number. The key value is made into
-# a string associated with each chain.
 def keychain_value_str(key_provider, dict_values):
+    """
+    creates a dictionary where the list key providesr first nonwhitespace is
+     used as the key in this case it is the chain of the residue number. The
+      key value is made into string associated with each chain.
+    :param key_provider: takes the first character from key provider
+    :param dict_values: either res_no,pdbsecstr,res_type
+    :return:
+    """
     counter = 0
     new_dict = {}
     for x in key_provider:
@@ -157,13 +146,8 @@ def keychain_value_list(key_provider, dict_values):
             counter += 1
     return new_dict
 
-
-
-
-if __name__ == "__main__":
-    print('start onehelixres')
-    input_file,output_file = linux_arguments()
-    list_of_helices,helix_secstr,helix_resno,helix_resname = single_helix_parser(input_file)
-    filewrite_nestedlist(output_file,list_of_helices)
-    print('finish onehelixre')
-    #main()
+def fileread(filename):
+    file = open(filename, 'r')
+    output = file.read()
+    file.close()
+    return (output)

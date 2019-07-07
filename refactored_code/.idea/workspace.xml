@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3e2bc1e-3c4e-4281-83c5-731634957256" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/existing_code/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/refactored_code/functions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/refactored_code/twohelixres_refactored.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/refactored_code/core.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/functions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/onehelixres_refactored.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/onehelixres_refactored.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,31 +18,10 @@
       <split-first>
         <leaf>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/refactored_code/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="60">
-                  <caret line="4" column="78" selection-start-line="4" selection-start-column="78" selection-end-line="4" selection-end-column="78" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/refactored_code/1h3l_old.2hr">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-730" />
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/refactored_code/1ct5_old.1hr">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/refactored_code/twohelixres_refactored.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="440">
-                  <caret line="182" column="17" lean-forward="true" selection-start-line="182" selection-start-column="17" selection-end-line="182" selection-end-column="17" />
+                <state relative-caret-position="769">
+                  <caret line="176" column="38" lean-forward="true" selection-start-line="176" selection-start-column="38" selection-end-line="176" selection-end-column="38" />
                   <folding>
                     <element signature="e#18#27#0" expanded="true" />
                   </folding>
@@ -51,9 +29,25 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/refactored_code/core.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1380">
+                  <caret line="92" column="78" selection-start-line="92" selection-start-column="78" selection-end-line="92" selection-end-column="78" />
+                  <folding>
+                    <element signature="e#19#28#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/refactored_code/functions.py">
-              <provider selected="true" editor-type-id="text-editor" />
+            <entry file="file://$PROJECT_DIR$/refactored_code/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="45">
+                  <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+                </state>
+              </provider>
             </entry>
           </file>
         </leaf>
@@ -63,8 +57,11 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/refactored_code/onehelixres_refactored.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1110">
-                  <caret line="159" column="6" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="53" />
+                <state relative-caret-position="375">
+                  <caret line="52" column="14" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+                  <folding>
+                    <element signature="e#19#28#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -80,6 +77,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>output_file</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -88,6 +90,8 @@
       <list>
         <option value="$PROJECT_DIR$/refactored_code/main.py" />
         <option value="$PROJECT_DIR$/refactored_code/twohelixres_refactored.py" />
+        <option value="$PROJECT_DIR$/refactored_code/onehelixres_refactored.py" />
+        <option value="$PROJECT_DIR$/refactored_code/functions.py" />
       </list>
     </option>
   </component>
@@ -134,7 +138,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/Project_scripts/HELANAL_python_module" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/refactored_code/onehelixres_refactored.py" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -159,7 +163,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.two_helixres_refactored">
+  <component name="RunManager" selected="Python.one_helixres_refactored">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -174,6 +178,27 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="one_helixres_refactored" type="PythonConfigurationType" factoryName="Python">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="-s" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/onehelixres_refactored.py" />
+      <option name="PARAMETERS" value="&quot;../existing_code/1ct5.sec&quot; &quot;../existing_code/1ct5.1hr&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -204,6 +229,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.two_helixres_refactored" />
+      <item itemvalue="Python.one_helixres_refactored" />
       <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
@@ -230,7 +256,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20485003" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.279515" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" weight="0.3291536" />
       <window_info anchor="bottom" id="Python Console" />
@@ -268,40 +294,50 @@
     <entry file="file://$PROJECT_DIR$/existing_code/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/refactored_code/1ct5_old.1hr">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/refactored_code/1h3l_old.2hr">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-730" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/refactored_code/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="78" selection-start-line="4" selection-start-column="78" selection-end-line="4" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/refactored_code/onehelixres_refactored.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="159" column="6" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="53" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/refactored_code/1ct5_old.1hr">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/refactored_code/twohelixres_refactored.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="182" column="17" lean-forward="true" selection-start-line="182" selection-start-column="17" selection-end-line="182" selection-end-column="17" />
+        <state relative-caret-position="769">
+          <caret line="176" column="38" lean-forward="true" selection-start-line="176" selection-start-column="38" selection-end-line="176" selection-end-column="38" />
           <folding>
             <element signature="e#18#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/refactored_code/functions.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/refactored_code/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="92" column="78" selection-start-line="92" selection-start-column="78" selection-end-line="92" selection-end-column="78" />
+          <folding>
+            <element signature="e#19#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/refactored_code/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/refactored_code/onehelixres_refactored.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="52" column="14" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+          <folding>
+            <element signature="e#19#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
