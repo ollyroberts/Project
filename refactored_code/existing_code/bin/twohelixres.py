@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import os
 import sys
 import re
@@ -39,7 +39,7 @@ def win_or_linux():
         file = windows_arguments()
 
             
-    if sys.platform =='linux2':
+    if sys.platform =='linux':
         file = linux_arguments()
 
 
