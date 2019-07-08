@@ -4,37 +4,41 @@ import argparse
 import core_functions as core
 
 """
-for one_helix shell 
 #!/bin/sh
 for file in *.pdb
 do
         base=`basename $file .pdb`
         pdbsecstr $file ${base}.sec
-        onehelixres.py ${base}.sec ${base}.1hr
+        twohelixres.py ${base}.sec ${base}.2hr
         #rm ${base}.sec
         #find . -size 0 -delete
 done
 
-for file in *.1hr
+for file in *.2hr
 do
-        base=`basename $file .1hr`
-        pdbatomselect ${base}.pdb ${base}.sel
-        pdbgetresidues ${base}.1hr ${base}.sel ${base}.1res
+        base=`basename $file .2hr`
+        #pdbatomselect ${base}.pdb ${base}.sel
+        pdbgetresidues ${base}.2hr ${base}.sel ${base}.2res
         #rm ${base}.sel 
         #find . -size 0 -delete
 done 
-for file in *.1res
+for file in *.2res
 do
-        base=`basename $file .1res`
-        ca_res_organiser.py ${base}.1hr ${base}.1res ${base}.1format
-
-for file in *.1format
-do
-        base=`basename $file .1format`
-        #non_proline_bend_angle.py ${base}.1format ${base}.1angle
-        non_proline_middle_angle.py ${base}.1format ${base}.1angle
-        #rm ${base}.1format
+        base=`basename $file .2res`
+        ca_res_organiser.py ${base}.2hr ${base}.2res ${base}.2format
+        #rm ${base}.2hr 
+        #find . -size 0 - delete
 done
+
+for file in *.2format
+do
+        base=`basename $file .2format`
+        #proline_bend_angle.py ${base}.2format ${base}.angle
+        proline_middle_angle.py ${base}.2format ${base}.2angle
+        #rm ${base}.2format
+done
+
+
 
 """
 
@@ -42,6 +46,8 @@ done
 
 
 if __name__=="__main__":
+
+    # calls pdbsecstr
     subprocess.call(['pdbsecstr', '../existing_code/1ct5.pdb', '../existing_code/1ct5.sec'])
     #x = subprocess.call(['pdbsecstr', '../existing_code/1ct5.pdb'])
 
@@ -49,8 +55,29 @@ if __name__=="__main__":
     print(helix_type)
     if helix_type == 1:
         #Do the non proline 1 helix option
+        #subprocess.call(
+        #    ['python', 'onehelixres_refactored.py', '../existing_code/1ct5.sec', '../existing_code/1ct5.1hr'])
+        print('start onehelixres')
+        #input_file, output_file = core.linux_arguments()
+        list_of_helices, helix_secstr, helix_resno, helix_resname = core.single_helix_parser(input_file)
+        print(list_of_helices)
+        core.filewrite_nestedlist(output_file, list_of_helices)
+        print('finish onehelixre with %d helix ' % (len(list_of_helices)))
+
+        #print('start onehelixres')
+        #
+        # list_of_helices, helix_secstr, helix_resno, helix_resname = core.single_helix_parser(input_file)
+        # print(list_of_helices)
+        # sec_file = str(input_file[0:-3])
+        # core.filewrite_nestedlist(output_file, list_of_helices)
+        # print('finish onehelixre with %d helix ' % (len(list_of_helices)))
+        #
+
+
     if helix_type == 2:
         # Do the proline 2 helix option
+        subprocess.call(
+            ['python', 'onehelixres_refactored.py', '../existing_code/1ct5.sec', '../existing_code/1ct5.1hr'])
     print(input_file)
     subprocess.call(['python', 'onehelixres_refactored.py', '../existing_code/1ct5.sec', '../existing_code/1ct5.1hr'])
     print('Start Main twohelixres')
