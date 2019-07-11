@@ -4,31 +4,31 @@ do
 	base=`basename $file .pdb`
 	pdbsecstr $file ${base}.sec
 	twohelixres.py ${base}.sec ${base}.2hr
-	rm ${base}.sec
+	#rm ${base}.sec
 	#find . -size 0 -delete
 done
 
 for file in *.2hr
 do
 	base=`basename $file .2hr`
-	pdbatomsel ${base}.pdb ${base}.sel
-	pdbgetresidues ${base}.2hr ${base}.sel ${base}.res
-	rm ${base}.sel 
+	pdbatomselect ${base}.pdb ${base}.2sel
+	pdbgetresidues ${base}.2hr ${base}.2sel ${base}.2res
+	#rm ${base}.2sel 
 	#find . -size 0 -delete
 done 
-for file in *.res
+for file in *.2res
 do
-	base=`basename $file .res`
-	ca_res_organiser.py ${base}.2hr ${base}.res ${base}.format
-	#rm ${base}.1hr 
-	#rm ${base}.res	
+	base=`basename $file .2res`
+	ca_res_organiser.py ${base}.2hr ${base}.2res ${base}.2format
+	#rm ${base}.2hr 
+	#rm ${base}.2res	
 	#find . -size 0 - delete
 done
 
-for file in *.format
+for file in *.2format
 do
-	base=`basename $file .format`
-	#proline_bend_angle.py ${base}.format ${base}.angle
-	#rm ${base}.format
-	proline_middle_angle.py ${base}.format ${base}.angle
+	base=`basename $file .2format`
+	#proline_bend_angle.py ${base}.2format ${base}.2angle
+	#rm ${base}.2format
+	proline_middle_angle.py ${base}.2format ${base}.2angle
 done

@@ -1265,7 +1265,7 @@ for proline helicies
 1.pdbsecstr 1ct5.pdb 1ct5.sec
 2.onehelixres.py 1ct5.sec 1ct5.1hr
 3.pdbgetresidues 1ct5.1hr 1ct5.pdb 1ct5.1res
-4.all_res_organiser.py format
+4.all_res_organiser.py 1ct5.1hr 1ct5.1res 1ct5.1format
 5.proline_middle_angle.py 1ct5.1hr 1ct5.res 1ct5.format
 
 

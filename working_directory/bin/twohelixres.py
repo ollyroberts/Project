@@ -113,7 +113,7 @@ def double_helix_parser(input_file, output_file, helicies_length = 6, helix_gap 
     # contains 2 groups, the 1st group being the whole helix and group 2 being the gap
     for x in chains_sec_str_d:
         
-        regex = "([h|H]{6,}(?:.?){1}P(?:.?){1}[h|H]{6,})"
+        regex = "([h|H]{6,}(?:.?){0}P(?:.?){0}[h|H]{6,})"
         p = re.compile(r"" +regex +"")
 
         # if one is found it prints out the residues numbers of that helix

@@ -4,13 +4,13 @@ do
 	path=`~/Documents/full_pdb_copy`
 	cd ${directory}
 	echo ${directory}
-	one_helix_ext.sh
-	touch ./one_angle_output.txt
-	cat *.angle > ./non_proline_output.txt
-	rm *.res *.1hr *.format *.angle 	
+	#one_helix_ext.sh
+	#touch ./one_angle_output.txt
+	#cat *.1angle > ./non_proline_output.txt
+	#rm *.1res *.1hr *.1format *.1angle 	
 	two_helix_ext.sh
 	touch ./two_angle_output.txt
-	cat *.angle > ./proline_output.txt
-	rm *.res *.2hr *.format *.angle
+	cat *.2angle > ./proline_output.txt
+	#rm *.2res *.2hr *.2format *.2angle
 	cd .. 
 done
