@@ -11,8 +11,8 @@ done
 for file in *.2hr
 do
 	base=`basename $file .2hr`
-	pdbatomselect ${base}.pdb ${base}.sel
-	pdbgetresidues ${base}.2hr ${base}.sel ${base}.2res
+	pdbatomselect ${base}.pdb ${base}.2sel
+	pdbgetresidues ${base}.2hr ${base}.2sel ${base}.2res
 	#rm ${base}.2sel 
 	#find . -size 0 -delete
 done 
@@ -29,6 +29,6 @@ for file in *.2format
 do
 	base=`basename $file .2format`
 	#proline_bend_angle.py ${base}.2format ${base}.2angle
-	proline_middle_angle.py ${base}.2format ${base}.2angle
 	#rm ${base}.2format
+	proline_middle_angle.py ${base}.2format ${base}.2angle
 done

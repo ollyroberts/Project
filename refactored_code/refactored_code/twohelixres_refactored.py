@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 
-
 import core_functions as core
-
 
 
 if __name__ == "__main__":

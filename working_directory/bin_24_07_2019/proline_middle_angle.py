@@ -451,8 +451,8 @@ def calculate_angle(first_xyz, second_xyz, third_xyz):
 
 def find_pro(pdb_line_res_pair):
 	"""
-	finds the proline res by taking the pdbline res pair (which contains 5 residues) e.g. A174 A178,
-	takes the first and adds two to get the middle residue A176
+	finds the proline res by taking the pdbline res pair e.g. A174 A178,
+	takes the first and adds two to get A176
 	"""
 
 	res_pair = pdb_line_res_pair
@@ -480,8 +480,7 @@ def master(input_file,output_file):
 	pdbname = str(input_file)[:4]
 
 	pdbline_res = residue_pairs_for_pdbline(input_file)
-	print("Residues used in pdblines")
-	print(pdbline_res)
+	
 	res_counter = 0
 	for x in pdbline_res[0]:
 
