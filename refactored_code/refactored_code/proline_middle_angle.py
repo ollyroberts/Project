@@ -50,12 +50,16 @@ used in angle calculation
 
 - moved the contents of the main function into the "if __name__==__main__"
 - made linux arguments return instead of calling master
+- modified residue_pairs_for_pdbline to also return the last residues of the whole helix
+- i have not yet made use of this in the main function
 
 """
 
 
 
-def linux_arguments():
+
+
+def middle_angle_linux_arguments():
 	"""
 	This determins the arguments for the program when in a linux enviroment
 	"""
@@ -110,21 +114,21 @@ def residue_pairs_for_pdbline(input_file):
 
 	file_txt = fileread(input_file)
 
-	helix_list = []
+
 	helix_start_mid_end = []
-	temp_list = []
+
 	first_res_no =[]
 	last_res_no =[]
 	
 	# match an object where the data is broken up by line breaks and chain res no linebreak
-	pattern = re.compile(r'(\w+\s*?\d+?)\n(.+?)\n')
+	pattern = re.compile(r'(\w+\s*?\d+?)\n(.+?)(?:(\w\s*?\d+?)\s+?(?:-*?\d+?\.\d+\s*?){1,}C\s+?)\n')
 	match = pattern.findall(file_txt)
 
 	#Each x is a helix. This helix contains the ca pdb atoms of that helix 
 	for x in match:
 		temp_list = []
 		first_res_no.append(x[0])
-		last_res_no.append(x[-1])
+		last_res_no.append(x[2])
 		pdb_ca = x[1]
 
 		# has the first and last residue which will be used to
@@ -147,7 +151,7 @@ def residue_pairs_for_pdbline(input_file):
 
 		helix_start_mid_end.append(temp_list)
 
-	return(helix_start_mid_end, first_res_no,last_res_no)
+	return(helix_start_mid_end, first_res_no)
 
 
 def linefirst_mid_last_finder(protein_pdb):
@@ -228,9 +232,7 @@ def lineinformation_extractor(selected_ca,pdb_txt):
 
 	cords 			= cord_p.findall(pdb_txt)
 
-	first_tupple 	= (cords[first])
-	middle_tupple 	= (cords[middle])
-	last_tupple 	= (cords[last])
+
 
 	temp_str 	= 	(str(cords[first][1]))
 	temp_str 	= 	temp_str.replace(" ", "")
@@ -456,7 +458,7 @@ def find_pro(pdb_line_res_pair):
 if __name__== "__main__":
 
 
-	format_file, angle_file, pdbline_option = linux_arguments()
+	format_file, angle_file, pdbline_option = middle_angle_linux_arguments()
 	"""the purpose of this function is to create a list of residues names A11
 	of proteins that are made of two helixes seperated by a gap 
 	pro_eitherside is how many side of the gap I should search """

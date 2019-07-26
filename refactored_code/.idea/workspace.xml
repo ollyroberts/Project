@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3e2bc1e-3c4e-4281-83c5-731634957256" name="Default Changelist" comment="" />
+    <list default="true" id="c3e2bc1e-3c4e-4281-83c5-731634957256" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/refactored_code/modifying_pdbline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/proline_middle_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/proline_middle_angle.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,74 +14,85 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/refactored_code/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="116" selection-start-line="116" selection-end-line="116" />
-              <folding>
-                <element signature="e#19#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/refactored_code/proline_middle_angle.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="458" column="58" selection-start-line="458" selection-start-column="4" selection-end-line="458" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="384" column="26" selection-start-line="384" selection-start-column="26" selection-end-line="384" selection-end-column="26" />
-              <folding>
-                <element signature="e#19#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/extracting_ca_inf_with_first_res.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="46" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/refactored_code/core_functions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4578">
-              <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
-              <folding>
-                <element signature="e#19#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/refactored_code/ca_res_organiser_refactored.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="183" column="19" selection-start-line="183" selection-start-column="19" selection-end-line="183" selection-end-column="19" />
-              <folding>
-                <element signature="e#20#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.501787">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/refactored_code/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1055">
+                  <caret line="116" selection-start-line="116" selection-end-line="116" />
+                  <folding>
+                    <element signature="e#19#36#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1575">
+                  <caret selection-end-column="18" />
+                  <folding>
+                    <element signature="e#19#28#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/refactored_code/core_functions.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1326">
+                  <caret line="251" lean-forward="true" selection-start-line="251" selection-end-line="251" />
+                  <folding>
+                    <element signature="e#19#28#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/refactored_code/ca_res_organiser_refactored.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="349">
+                  <caret line="183" column="19" selection-start-line="183" selection-start-column="19" selection-end-line="183" selection-end-column="19" />
+                  <folding>
+                    <element signature="e#20#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/refactored_code/proline_middle_angle.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="113">
+                  <caret line="53" column="54" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/refactored_code/modifying_pdbline.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="279">
+                  <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="98" />
+                  <folding>
+                    <element signature="e#24#33#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -105,6 +121,12 @@
       <find>#####</find>
       <find>sel_filename</find>
       <find>input_file</find>
+      <find>[</find>
+      <find>]</find>
+      <find>,</find>
+      <find>helix_names</find>
+      <find>optional_linux_argument</find>
+      <find>proline</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,9 +148,11 @@
         <option value="$PROJECT_DIR$/refactored_code/proline_bend_angle.py" />
         <option value="$PROJECT_DIR$/existing_code/bin/proline_middle_angle.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/extracting_ca_inf_with_first_res.py" />
-        <option value="$PROJECT_DIR$/refactored_code/proline_middle_angle.py" />
         <option value="$PROJECT_DIR$/existing_code/bin/non_proline_middle_angle.py" />
         <option value="$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/modifying_pdbline.py" />
+        <option value="$PROJECT_DIR$/refactored_code/modifying_pdbline.py" />
+        <option value="$PROJECT_DIR$/refactored_code/proline_middle_angle.py" />
       </list>
     </option>
   </component>
@@ -184,18 +208,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/refactored_code/proline_bend_angle.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/refactored_code/modifying_pdbline.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/refactored_code" />
       <recent name="$APPLICATION_CONFIG_DIR$/scratches" />
+      <recent name="$PROJECT_DIR$/refactored_code" />
       <recent name="$PROJECT_DIR$/existing_code" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/existing_code" />
       <recent name="$PROJECT_DIR$/refactored_code" />
+      <recent name="$PROJECT_DIR$/existing_code" />
       <recent name="$PROJECT_DIR$/existing_code/two_helix" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -212,7 +236,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.non_proline_middle_angle ">
+  <component name="RunManager" selected="Python.proline_middle_angle">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
@@ -297,6 +321,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="modified_pdbline" type="PythonConfigurationType" factoryName="Python">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/modifying_pdbline.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="non_proline_middle_angle " type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
@@ -360,7 +405,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="proline_middle_angle" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="proline_middle_angle" type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
       <option name="PARENT_ENVS" value="true" />
@@ -430,6 +475,7 @@
       <item itemvalue="Python.two_helixres_refactored" />
       <item itemvalue="Python.ca_res_organiser_refactored" />
       <item itemvalue="Python.proline_middle_angle" />
+      <item itemvalue="Python.modified_pdbline" />
       <item itemvalue="Python.proline_bend_angle " />
       <item itemvalue="Python.non_proline_middle_angle " />
       <item itemvalue="Python.main" />
@@ -457,7 +503,7 @@
     <frame x="1987" y="25" width="1613" height="1025" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22718571" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10721123" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -533,32 +579,22 @@
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/refactored_code/proline_middle_angle.py</url>
-          <line>489</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py</url>
+          <line>407</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/refactored_code/proline_middle_angle.py</url>
-          <line>486</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/refactored_code/proline_middle_angle.py</url>
-          <line>485</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/refactored_code/proline_middle_angle.py</url>
-          <line>470</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/refactored_code/proline_middle_angle.py</url>
-          <line>483</line>
-          <option name="timeStamp" value="15" />
+          <line>469</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="pdbline_res" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/existing_code/twohelixres.py" />
@@ -730,16 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/refactored_code/core_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4578">
-          <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
-          <folding>
-            <element signature="e#19#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/refactored_code/1h3l.2format">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -754,16 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/refactored_code/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="116" selection-start-line="116" selection-end-line="116" />
-          <folding>
-            <element signature="e#19#36#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -787,20 +803,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py">
+    <entry file="file://$PROJECT_DIR$/refactored_code/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="384" column="26" selection-start-line="384" selection-start-column="26" selection-end-line="384" selection-end-column="26" />
+        <state relative-caret-position="1055">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="e#19#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/1h3l.2format">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/refactored_code/core_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="251" lean-forward="true" selection-start-line="251" selection-end-line="251" />
           <folding>
             <element signature="e#19#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1575">
+          <caret selection-end-column="18" />
+          <folding>
+            <element signature="e#19#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/refactored_code/modifying_pdbline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="98" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/refactored_code/proline_middle_angle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="458" column="58" selection-start-line="458" selection-start-column="4" selection-end-line="458" selection-end-column="63" />
+        <state relative-caret-position="113">
+          <caret line="53" column="54" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
         </state>
       </provider>
     </entry>
