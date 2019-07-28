@@ -52,7 +52,7 @@ used in angle calculation
 - made linux arguments return instead of calling master
 - modified residue_pairs_for_pdbline to also return the last residues of the whole helix
 - i have not yet made use of this in the main function
-
+-added residue_extractor_from_ca_pdb
 """
 
 
@@ -68,6 +68,7 @@ def middle_angle_linux_arguments():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('format_file', help = 'ca atoms of proteins seperated by chains')
 	parser.add_argument('angle_file', help = 'output file which will have the pdb name and 1st residue with ABC angle')
+	parser.add_argument('helix_type',type=int, choices=[1,2], default='1', help='specifies if it is a proline or non proline helix')
 	parser.add_argument('--pdbline', action='store_true',
 						help='also creates pdbfile containing pdblines used in bend angle calculation')
 
@@ -76,6 +77,7 @@ def middle_angle_linux_arguments():
 
 	format_name 	= vars(args)['format_file']
 	angle_name 		= vars(args)['angle_file']
+	helix_type		= vars(args)['helix_type']
 
 
 	if args.pdbline:
@@ -86,7 +88,7 @@ def middle_angle_linux_arguments():
 	else:
 		pdbline_option = False
 
-	return(format_name,angle_name,pdbline_option)
+	return(format_name,angle_name,helix_type, pdbline_option)
 
 def fileread(filename):
 	""" opens a file object, removes the contents and strips lhwhitespace
@@ -99,7 +101,7 @@ def fileread(filename):
 
 	return(output)
 
-def residue_pairs_for_pdbline(input_file):
+def residue_pairs_for_pdbline(input_file,helix_type):
 	"""
 	input: string 
 	the file name 
@@ -110,6 +112,9 @@ def residue_pairs_for_pdbline(input_file):
 	this calls the input files and outputs a list of helicies.
 	it calls first_pro_last_finder() and information_extracter() 
 	to determine the 3 residues and their attributes
+
+	it calls either proline/non_proline_segment_first_mid_last_finder depending on the
+	helix type
 	"""
 
 	file_txt = fileread(input_file)
@@ -117,44 +122,61 @@ def residue_pairs_for_pdbline(input_file):
 
 	helix_start_mid_end = []
 
-	first_res_no =[]
-	last_res_no =[]
+	first_res_no 	=[]
+	last_res_no 	=[]
+	whole_helix_single_residues =[]
+	pdbline_single_residues = []
 	
 	# match an object where the data is broken up by line breaks and chain res no linebreak
 	pattern = re.compile(r'(\w+\s*?\d+?)\n(.+?)(?:(\w\s*?\d+?)\s+?(?:-*?\d+?\.\d+\s*?){1,}C\s+?)\n')
 	match = pattern.findall(file_txt)
 
 	#Each x is a helix. This helix contains the ca pdb atoms of that helix 
-	for x in match:
+	for helix_residues in match:
 		temp_list = []
-		first_res_no.append(x[0])
-		last_res_no.append(x[2])
-		pdb_ca = x[1]
+		first_res_no.append(helix_residues[0])
+		last_res_no.append(helix_residues[2])
+		pdb_ca = helix_residues[1]
 
 		# has the first and last residue which will be used to
 		#create the pdblines. if no proline is found that helix is skipped
 		try:
-			positions = linefirst_mid_last_finder(x[1])
+			positions = proline_segment_first_mid_last_finder(helix_residues[1])
 		except:
 
 			break
-			
-		positions = linefirst_mid_last_finder(x[1])
+		# Positions are the index locations of the helix segment used for calculating
+		# bend angle made
+
+		if helix_type == 1:
+			positions = non_proline_segment_first_mid_last_finder(helix_residues[1])
+			print("non proline")
+
+		elif helix_type ==2:
+			positions = proline_segment_first_mid_last_finder(helix_residues[1])
+			print("proline")
+
+
 
 		if positions == None:
 			break
 
 		atom_inf = lineinformation_extractor(positions,pdb_ca)
-		for x in atom_inf:
-			temp_list += [x]
+		for helix_residues in atom_inf:
+			temp_list += [helix_residues]
 
 
 		helix_start_mid_end.append(temp_list)
 
-	return(helix_start_mid_end, first_res_no)
+		whole_helix_single_residues.append(residue_extractor_from_ca_pdb(pdb_ca))
+
+		pdbline_single_residues.append(whole_helix_single_residues[0][positions[0]:positions[2]+1])
+		#print("The index of the first residues is " +str(positions[0]) +" and "+ str(positions[2]+1))
+	print("halp jesus")
+	return(helix_start_mid_end, first_res_no,last_res_no,whole_helix_single_residues,pdbline_single_residues)
 
 
-def linefirst_mid_last_finder(protein_pdb):
+def proline_segment_first_mid_last_finder(protein_pdb):
 	""" 
 	input: a string 
 
@@ -430,7 +452,7 @@ def calculate_angle(first_xyz, second_xyz, third_xyz):
 	angle = (np.degrees(angle))
 	return(angle)
 
-def find_pro(pdb_line_res_pair):
+def segment_middle_res(pdb_line_res_pair):
 	"""
 	finds the proline res by taking the pdbline res pair e.g. A174 A178,
 	takes the first and adds two to get A176
@@ -450,43 +472,96 @@ def find_pro(pdb_line_res_pair):
 
 	return(proline_res)
 
+	def residue_extractor_from_ca_pdb(helix_pdb_info):
+		helix_pdb_info
 
+def residue_extractor_from_ca_pdb(ca_string):
+    single_letter_res = []
+    residue_finder = re.compile(r'ATOM\s+?\d+?\s+?\w+?\s+?(\w+?)\s')
+    residues = residue_finder.findall(ca_string)
 
-	
+    three_letter_res_d = {'CYS': 'C', 'ASP': 'D', 'SER': 'S', 'GLN': 'Q', 'LYS': 'K',
+                          'ILE': 'I', 'PRO': 'P', 'THR': 'T', 'PHE': 'F', 'ASN': 'N',
+                          'GLY': 'G', 'HIS': 'H', 'LEU': 'L', 'ARG': 'R', 'TRP': 'W',
+                          'ALA': 'A', 'VAL': 'V', 'GLU': 'E', 'TYR': 'Y', 'MET': 'M'}
+
+    for residue in residues:
+        single_letter_res.append(three_letter_res_d[residue])
+    single_letter_res = "".join(single_letter_res)
+    return(single_letter_res)
+
+def non_proline_segment_first_mid_last_finder(protein_pdb):
+	"""
+	input: a string
+
+	output: a tupple
+	containing 3 integers
+
+	this finds the position that will be used for pdbline for creating
+	lines of best fit. The first residue of the first pdbline, the proline
+	at the middle of the second pdbline and the last residue of the third
+	pdb line.
+
+	"""
+	res_p = re.compile(r'ATOM\s+?\d+?\s+?\w+?\s+?(\w+?)\s')
+	res = res_p.findall(protein_pdb)
+
+	mid = int((len(res) -1) / 2)
+
+	return(mid-6,mid,mid+6)
 
 
 if __name__== "__main__":
 
 
-	format_file, angle_file, pdbline_option = middle_angle_linux_arguments()
+	format_file, angle_file,helix_type, pdbline_option = middle_angle_linux_arguments()
 	"""the purpose of this function is to create a list of residues names A11
 	of proteins that are made of two helixes seperated by a gap 
-	pro_eitherside is how many side of the gap I should search """
-
+	pro_eitherside is how many side of the gap I should search 
+	1h3l A28 A28 A58 100.71272063185602
+	"""
 	tempstring = ""
 	pdbname = str(format_file)[:4]
 
-	pdbline_res = residue_pairs_for_pdbline(format_file)
-	print("Residues used in pdblines")
-	print(pdbline_res)
+	pdbline_res = residue_pairs_for_pdbline(format_file,helix_type)
+	print("Helix type is %s"%helix_type)
 
-	res_counter = 0
-	for x in pdbline_res[0]:
+	helix_counter = 0
+	for pdbline_segment in pdbline_res[0]:
 
 		# I would insert the extracting_ca_inf_with_first_res.py scratch here
-		print(x)
-		proline = find_pro(x[1])
-		print("proline :" + str(proline))
+		print("x or pdbline{0] is:")
+		print(pdbline_segment)
+		center_pdbline_segment = segment_middle_res(pdbline_segment[1])
 
-		one, two, three = shell_interface(x, pdbname,pdbline_option)
+
+		one, two, three = shell_interface(pdbline_segment, pdbname, pdbline_option)
 		angle = calculate_angle(one, two, three)
-		# print(angle)
-		# pdbline_res takes the residue for the first pdbline and splits by space, giving the first
-		first_res = str(pdbline_res[1][res_counter])
-		first_res = first_res.replace(" ", "")
 
-		tempstring += format_file[:4] + " " + str(first_res) + " " + proline + " " + str(angle) + "\n"
-		res_counter += 1
+		# pdbline_res takes the residue for the first pdbline and splits by space, giving the first
+		whole_helix_first_res = str(pdbline_res[1][helix_counter])
+		whole_helix_first_res = whole_helix_first_res.replace(" ", "")
+		whole_helix_last_res = str(pdbline_res[2][helix_counter])
+		whole_helix_last_res = whole_helix_last_res.replace(" ", "")
+
+		pdbline_segment_first_res = pdbline_segment[0].split()[0]
+		pdbline_segment_last_res = pdbline_segment[2].split()[1]
+
+		#print("pdbline_segment first res is " + str(pdbline_segment_first_res) + "with last res " + pdbline_segment_last_res)
+
+
+
+
+		whole_helix_single_residues = pdbline_res[3][helix_counter]
+		pdbline_segment_residues = pdbline_res[4][helix_counter]
+
+
+
+		tempstring += format_file[:4] + " " + str(whole_helix_first_res) + " " + str(whole_helix_last_res) + " " \
+					  + center_pdbline_segment + " " + whole_helix_single_residues + " " + " " + str(angle) + " " + pdbline_segment_first_res + " " + pdbline_segment_last_res + " " + pdbline_segment_residues + " " + "\n"
+
+
+		helix_counter += 1
 
 	print(tempstring)
 	file = open(angle_file, 'w')

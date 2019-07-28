@@ -11,173 +11,29 @@ Current output
 ['B52 B57', 'B56 B60', 'B59 B64']], ['A  28', 'B  28'])
 """
 
-
-def residue_pairs_for_pdbline(input_file):
-    """
-    input: string
-    the file name
-
-    output: list of objects
+ca_string ='ATOM      2  CA  SER A  28      -6.673  35.547  43.263  1.00 65.15           C  ATOM      8  CA  THR A  29      -5.149  34.066  40.170  1.00 62.92           C  ATOM     15  CA  ALA A  30      -3.750  37.421  39.301  1.00 54.80           C  ATOM     20  CA  GLU A  31      -2.187  38.017  42.701  1.00 48.37           C  ATOM     29  CA  ARG A  32      -0.323  34.751  42.923  1.00 38.68           C  ATOM     35  CA  SER A  33       0.947  35.274  39.419  1.00 34.66           C  ATOM     41  CA  ALA A  34       2.142  38.794  40.128  1.00 28.99           C  ATOM     46  CA  ARG A  35       3.849  37.542  43.212  1.00 26.69           C  ATOM     57  CA  PHE A  36       5.497  34.707  41.203  1.00 25.63           C  ATOM     68  CA  GLU A  37       6.786  37.269  38.678  1.00 22.68           C  ATOM     77  CA  ARG A  38       8.468  39.407  41.275  1.00 22.85           C  ATOM     88  CA  ASP A  39       9.838  36.395  43.036  1.00 22.34           C  ATOM     96  CA  ALA A  40      11.231  35.171  39.695  1.00 20.99           C  ATOM    101  CA  LEU A  41      12.684  38.564  38.867  1.00 20.43           C  ATOM    109  CA  GLU A  42      14.402  38.804  42.110  1.00 21.39           C  ATOM    118  CA  PHE A  43      16.597  36.011  40.640  1.00 24.14           C  ATOM    129  CA  LEU A  44      17.096  37.573  37.189  1.00 24.73           C  ATOM    137  CA  ASP A  45      20.576  38.598  37.958  1.00 21.97           C  ATOM    145  CA  GLN A  46      21.709  35.353  39.411  1.00 22.99           C  ATOM    154  CA  MET A  47      20.153  33.881  36.217  1.00 24.23           C  ATOM    162  CA  TYR A  48      21.866  36.142  33.768  1.00 24.20           C  ATOM    174  CA  SER A  49      25.074  35.654  35.541  1.00 27.02           C  ATOM    180  CA  ALA A  50      24.754  31.885  35.156  1.00 28.86           C  ATOM    185  CA  ALA A  51      23.781  32.597  31.565  1.00 30.20           C  ATOM    190  CA  LEU A  52      26.968  34.472  30.939  1.00 31.96           C  ATOM    198  CA  ARG A  53      28.862  31.391  31.987  1.00 34.38           C  ATOM    209  CA  MET A  54      27.075  28.970  29.744  1.00 33.35           C  ATOM    217  CA  THR A  55      27.019  31.041  26.448  1.00 36.80           C  ATOM    224  CA  ARG A  56      30.205  32.953  26.861  1.00 44.95           C  ATOM    235  CA  ASN A  57      28.530  35.946  25.064  1.00 43.86           C  ATOM    243  CA  PRO A  58      26.519  38.915  26.554  1.00 38.44           C  ATOM    250  CA  ALA A  59      24.238  39.069  23.596  1.00 33.26           C  ATOM    255  CA  ASP A  60      23.540  35.305  23.809  1.00 29.44           C  ATOM    263  CA  ALA A  61      23.465  35.413  27.589  1.00 22.73           C  ATOM    268  CA  GLU A  62      20.649  38.048  27.376  1.00 24.62           C  ATOM    277  CA  ASP A  63      18.668  36.290  24.746  1.00 27.48           C  ATOM    285  CA  LEU A  64      18.890  33.093  26.751  1.00 25.64           C  ATOM    293  CA  VAL A  65      17.712  34.746  29.972  1.00 27.10           C  ATOM    300  CA  GLN A  66      14.849  36.586  28.180  1.00 24.03           C  ATOM    309  CA  GLU A  67      13.545  33.508  26.614  1.00 24.82           C  ATOM    318  CA  THR A  68      13.739  31.636  29.916  1.00 23.89           C  ATOM    325  CA  TYR A  69      11.607  34.268  31.799  1.00 21.56           C  ATOM    337  CA  ALA A  70       9.091  34.428  28.949  1.00 22.30           C  ATOM    342  CA  LYS A  71       8.901  30.732  29.182  1.00 25.88           C  ATOM    348  CA  ALA A  72       8.624  31.045  32.993  1.00 24.28           C  ATOM    353  CA  TYR A  73       5.754  33.647  32.821  1.00 26.12           C  ATOM    365  CA  ALA A  74       3.942  31.462  30.339  1.00 35.37           C  ATOM    370  CA  SER A  75       3.956  28.365  32.616  1.00 40.78           C  ATOM    376  CA  PHE '
 
 
-    this calls the input files and outputs a list of helicies.
-    it calls first_pro_last_finder() and information_extracter()
-    to determine the 3 residues and their attributes
-    """
+def residue_extractor_from_ca_pdb(ca_string):
+    single_letter_res = []
+    residue_finder = re.compile(r'ATOM\s+?\d+?\s+?\w+?\s+?(\w+?)\s')
+    residues = residue_finder.findall(ca_string)
 
-    file_txt = fileread(input_file)
+    three_letter_res_d = {'CYS': 'C', 'ASP': 'D', 'SER': 'S', 'GLN': 'Q', 'LYS': 'K',
+                          'ILE': 'I', 'PRO': 'P', 'THR': 'T', 'PHE': 'F', 'ASN': 'N',
+                          'GLY': 'G', 'HIS': 'H', 'LEU': 'L', 'ARG': 'R', 'TRP': 'W',
+                          'ALA': 'A', 'VAL': 'V', 'GLU': 'E', 'TYR': 'Y', 'MET': 'M'}
 
-    helix_start_mid_end = []
-
-    first_res_no = []
-    last_res_no = []
-
-    # match an object where the data is broken up by line breaks and chain res no linebreak
-    pattern = re.compile(r'(\w+\s*?\d+?)\n(.+?)(?:(\w\s*?\d+?)\s+?(?:-*?\d+?\.\d+\s*?){1,}C\s+?)\n')
-    #pattern = re.compile(r'ATOM\s+?\d+?\s+?CA\s+?(\w+?)\s(\w\s*?\d+?)\s')
-    match = pattern.findall(file_txt)
-
-    # Each x is a helix. This helix contains the ca pdb atoms of that helix
-    for x in match:
-        temp_list = []
-        first_res_no.append(x[0])
-        last_res_no.append(x[2])
-        pdb_ca = x[1]
-
-        # has the first and last residue which will be used to
-        # create the pdblines. if no proline is found that helix is skipped
-        try:
-            positions = linefirst_mid_last_finder(x[1])
-        except:
-
-            break
-
-        positions = linefirst_mid_last_finder(x[1])
-
-        if positions == None:
-            break
-
-        atom_inf = lineinformation_extractor(positions, pdb_ca)
-        for x in atom_inf:
-            temp_list += [x]
-
-        helix_start_mid_end.append(temp_list)
-
-    return (helix_start_mid_end, first_res_no, last_res_no)
-
-
-def linefirst_mid_last_finder(protein_pdb):
-    """
-    input: a string
-
-	output: a tupple
-	containing 3 integers
-
-	this finds the position that will be used for pdbline for creating
-	lines of best fit. The first residue of the first pdbline, the proline
-	at the middle of the second pdbline and the last residue of the third
-	pdb line.
-
-	"""
-    res_p = re.compile(r'ATOM\s+?\d+?\s+?\w+?\s+?(\w+?)\s')
-
-    res = res_p.findall(protein_pdb)
-
-    counter = 0
-    gap_window = int(0.5 * len(res)) - 6
-    pro_res = None
-
-    while counter <= (gap_window):
-
-        midpoint = int((len(res) - 1) / 2)
-
-        if res[midpoint - counter] == "PRO":
-
-            pro_res = (midpoint - counter)
-            counter += 1
-            break
-
-        elif res[midpoint + counter] == "PRO":
-
-            pro_res = (midpoint + counter)
-            counter += 1
-            break
-
-        else:
-
-            counter += 1
-
-    if pro_res == None:
-        print("no PRO res found")
-        return (None)
-
-    return (pro_res - 6, pro_res, pro_res + 6)
-
-
-def lineinformation_extractor(selected_ca, pdb_txt):
-    """
-    input: Tupple
-    containing the positions of the mid -6 /PRO/mid +6 residue in the
-    aminoacid sequence (for calculating the bend angle between them)
-
-    output:a list of 3 lists,
-    each containing the information for first/mid/last res
-
-    This extracts the the aminoacid, resno and the xyz cords for creating the atom
-    objects. The
-    """
-    first = selected_ca[0]
-    middle = selected_ca[1]
-    last = selected_ca[2]
-
-    first_six = ""
-    middle_five = ""
-    last_six = ""
-
-    cord_p = re.compile(
-        r'ATOM\s+?\d+?\s+?CA\s+?(\w+?)\s(\w\s*?\d+?)\s+?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)')
-
-    cords = cord_p.findall(pdb_txt)
-
-    temp_str = (str(cords[first][1]))
-    temp_str = temp_str.replace(" ", "")
-    first_six += temp_str
-    first_six += (" ")
-    temp_str = (str(cords[first + 5][1]))
-    temp_str = temp_str.replace(" ", "")
-    first_six += temp_str
-
-    temp_str = (str(cords[middle - 2][1]))
-    temp_str = temp_str.replace(" ", "")
-    middle_five += temp_str
-    middle_five += (" ")
-    temp_str = (str(cords[middle + 2][1]))
-    temp_str = temp_str.replace(" ", "")
-    middle_five += temp_str
-
-    temp_str = (str(cords[last - 5][1]))
-    temp_str = temp_str.replace(" ", "")
-    last_six += temp_str
-    last_six += (" ")
-    temp_str = (str(cords[last][1]))
-    temp_str = temp_str.replace(" ", "")
-    last_six += temp_str
-    return [first_six, middle_five, last_six]
-
-
-def fileread(filename):
-    """ opens a file object, removes the contents and strips lhwhitespace
-    """
-
-    file = open(filename, 'r')
-    output = file.read()
-    output = output.lstrip()
-    file.close()
-
-    return (output)
+    for residue in residues:
+        single_letter_res.append(three_letter_res_d[residue])
+    single_letter_res = "".join(single_letter_res)
+    return(single_letter_res)
 
 
 if __name__ == "__main__":
-    format_file = "1h3l.2format"
-    x = residue_pairs_for_pdbline(format_file)
-    print(x)
+
+    single_letter_res =[]
+    ca_string ='ATOM      2  CA  SER A  28      -6.673  35.547  43.263  1.00 65.15           C  ATOM      8  CA  THR A  29      -5.149  34.066  40.170  1.00 62.92           C  ATOM     15  CA  ALA A  30      -3.750  37.421  39.301  1.00 54.80           C  ATOM     20  CA  GLU A  31      -2.187  38.017  42.701  1.00 48.37           C  ATOM     29  CA  ARG A  32      -0.323  34.751  42.923  1.00 38.68           C  ATOM     35  CA  SER A  33       0.947  35.274  39.419  1.00 34.66           C  ATOM     41  CA  ALA A  34       2.142  38.794  40.128  1.00 28.99           C  ATOM     46  CA  ARG A  35       3.849  37.542  43.212  1.00 26.69           C  ATOM     57  CA  PHE A  36       5.497  34.707  41.203  1.00 25.63           C  ATOM     68  CA  GLU A  37       6.786  37.269  38.678  1.00 22.68           C  ATOM     77  CA  ARG A  38       8.468  39.407  41.275  1.00 22.85           C  ATOM     88  CA  ASP A  39       9.838  36.395  43.036  1.00 22.34           C  ATOM     96  CA  ALA A  40      11.231  35.171  39.695  1.00 20.99           C  ATOM    101  CA  LEU A  41      12.684  38.564  38.867  1.00 20.43           C  ATOM    109  CA  GLU A  42      14.402  38.804  42.110  1.00 21.39           C  ATOM    118  CA  PHE A  43      16.597  36.011  40.640  1.00 24.14           C  ATOM    129  CA  LEU A  44      17.096  37.573  37.189  1.00 24.73           C  ATOM    137  CA  ASP A  45      20.576  38.598  37.958  1.00 21.97           C  ATOM    145  CA  GLN A  46      21.709  35.353  39.411  1.00 22.99           C  ATOM    154  CA  MET A  47      20.153  33.881  36.217  1.00 24.23           C  ATOM    162  CA  TYR A  48      21.866  36.142  33.768  1.00 24.20           C  ATOM    174  CA  SER A  49      25.074  35.654  35.541  1.00 27.02           C  ATOM    180  CA  ALA A  50      24.754  31.885  35.156  1.00 28.86           C  ATOM    185  CA  ALA A  51      23.781  32.597  31.565  1.00 30.20           C  ATOM    190  CA  LEU A  52      26.968  34.472  30.939  1.00 31.96           C  ATOM    198  CA  ARG A  53      28.862  31.391  31.987  1.00 34.38           C  ATOM    209  CA  MET A  54      27.075  28.970  29.744  1.00 33.35           C  ATOM    217  CA  THR A  55      27.019  31.041  26.448  1.00 36.80           C  ATOM    224  CA  ARG A  56      30.205  32.953  26.861  1.00 44.95           C  ATOM    235  CA  ASN A  57      28.530  35.946  25.064  1.00 43.86           C  ATOM    243  CA  PRO A  58      26.519  38.915  26.554  1.00 38.44           C  ATOM    250  CA  ALA A  59      24.238  39.069  23.596  1.00 33.26           C  ATOM    255  CA  ASP A  60      23.540  35.305  23.809  1.00 29.44           C  ATOM    263  CA  ALA A  61      23.465  35.413  27.589  1.00 22.73           C  ATOM    268  CA  GLU A  62      20.649  38.048  27.376  1.00 24.62           C  ATOM    277  CA  ASP A  63      18.668  36.290  24.746  1.00 27.48           C  ATOM    285  CA  LEU A  64      18.890  33.093  26.751  1.00 25.64           C  ATOM    293  CA  VAL A  65      17.712  34.746  29.972  1.00 27.10           C  ATOM    300  CA  GLN A  66      14.849  36.586  28.180  1.00 24.03           C  ATOM    309  CA  GLU A  67      13.545  33.508  26.614  1.00 24.82           C  ATOM    318  CA  THR A  68      13.739  31.636  29.916  1.00 23.89           C  ATOM    325  CA  TYR A  69      11.607  34.268  31.799  1.00 21.56           C  ATOM    337  CA  ALA A  70       9.091  34.428  28.949  1.00 22.30           C  ATOM    342  CA  LYS A  71       8.901  30.732  29.182  1.00 25.88           C  ATOM    348  CA  ALA A  72       8.624  31.045  32.993  1.00 24.28           C  ATOM    353  CA  TYR A  73       5.754  33.647  32.821  1.00 26.12           C  ATOM    365  CA  ALA A  74       3.942  31.462  30.339  1.00 35.37           C  ATOM    370  CA  SER A  75       3.956  28.365  32.616  1.00 40.78           C  ATOM    376  CA  PHE '
+    helix_residues = residue_extractor_from_ca_pdb(ca_string)
+    print(['STAERSARFERDALEFLDQMYSAALRMTRNPADAEDLVQETYAKAYASF'][0][23:])
+
