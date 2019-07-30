@@ -8,7 +8,6 @@ import numpy as np
 
 import argparse
 import subprocess
-import core_functions as core
 
 """
 
@@ -488,12 +487,13 @@ def non_proline_segment_first_mid_last_finder(protein_pdb):
 
     return (mid - 6, mid, mid + 6)
 
-def proline_and_nonproline_middle_angle(format_file, angle_file, helix_type, pdbline_option):
+    def proline_and_nonproline_middle_angle()
+if __name__ == "__main__":
 
-
+    format_file, angle_file, helix_type, pdbline_option = middle_angle_linux_arguments()
     """the purpose of this function is to create a list of residues names A11
-    of proteins that are made of two helixes seperated by a gap
-    pro_eitherside is how many side of the gap I should search
+    of proteins that are made of two helixes seperated by a gap 
+    pro_eitherside is how many side of the gap I should search 
     1h3l A28 A28 A58 100.71272063185602
     """
     tempstring = ""
@@ -536,7 +536,3 @@ def proline_and_nonproline_middle_angle(format_file, angle_file, helix_type, pdb
     file = open(angle_file, 'w')
     file.write(tempstring)
     file.close()
-
-if __name__ == "__main__":
-    format_file, angle_file, helix_type, pdbline_option = core.middle_angle_linux_arguments()
-    core.proline_and_nonproline_middle_angle(format_file, angle_file, helix_type, pdbline_option)
