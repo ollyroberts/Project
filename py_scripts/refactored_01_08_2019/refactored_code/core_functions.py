@@ -537,9 +537,7 @@ def residue_pairs_for_pdbline(input_file, helix_type):
     pdbline_single_residues = []
 
     # match an object where the data is broken up by line breaks and chain res no linebreak
-    # captures 3 groups per helix: the first resno, the CA info for helix, The last resno
-    # The  usees lookahead to capture the CA inf while also capturing the last resno
-    pattern = re.compile(r'(\w+\s*?\d+?)\n(?=(.*))(?:.*?)(?:(\w\s*?\d+?)\s+?(?:-*?\d+?\.\d+\s*?){1,}C\s+?)\n')
+    pattern = re.compile(r'(\w+\s*?\d+?)\n(.+?)(?:(\w\s*?\d+?)\s+?(?:-*?\d+?\.\d+\s*?){1,}C\s+?)\n')
     match = pattern.findall(file_txt)
 
     # Each x is a helix. This helix contains the ca pdb atoms of that helix

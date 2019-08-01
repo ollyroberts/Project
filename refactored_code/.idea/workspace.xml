@@ -3,9 +3,42 @@
   <component name="ChangeListManager">
     <list default="true" id="c3e2bc1e-3c4e-4281-83c5-731634957256" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/existing_code/1ct5.1hr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/existing_code/1ct5.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.1angle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.1format" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.1format_old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.1hr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.1res" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.2angle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.2format" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.2hr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.2res" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.sel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5_old.1hr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.1angle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.1format" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.1hr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.1res" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.2angle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.2format" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.2hr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.2res" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/1h3l.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.sec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.sel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l_old.2hr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/ca_res_organiser_refactored.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/ca_res_organiser_refactored.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/refactored_code/core_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/core_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/proline_and_nonproline_middle_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/proline_and_nonproline_middle_angle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/filereadoutput.txt" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/filereadoutput.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/filereadoutput2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/filereadoutput2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/modifying_pdbline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/non_proline_middle_angle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/onehelixres_refactored.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/onehelixres_refactored.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/proline_and_nonproline_middle_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/proline_and_nonproline_middle_angle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/proline_bend_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/proline_bend_angle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/proline_middle_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/proline_middle_angle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/twohelixres_refactored.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/twohelixres_refactored.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +49,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Stub" />
         <option value="Python Script" />
       </list>
     </option>
@@ -37,16 +71,17 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/refactored_code" />
+      <recent name="$PROJECT_DIR$/existing_code/bin" />
+      <recent name="$PROJECT_DIR$/existing_code" />
+      <recent name="$PROJECT_DIR$/existing_code/two_helix" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$APPLICATION_CONFIG_DIR$/scratches" />
       <recent name="$PROJECT_DIR$/refactored_code" />
       <recent name="$PROJECT_DIR$/existing_code" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/refactored_code" />
-      <recent name="$PROJECT_DIR$/existing_code" />
-      <recent name="$PROJECT_DIR$/existing_code/two_helix" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -61,7 +96,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main_1h3l">
+  <component name="RunManager" selected="Python.main_1i60 (1)">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
@@ -76,69 +111,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/proline_middle_angle.py" />
       <option name="PARAMETERS" value="1ct5.1format  1ct5.1angle" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="ca_res_organiser_refactored_1ct5" type="PythonConfigurationType" factoryName="Python">
-      <module name="refactored_code" />
-      <option name="INTERPRETER_OPTIONS" value="-s" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/ca_res_organiser_refactored.py" />
-      <option name="PARAMETERS" value="1ct5.1hr 1ct5.1res 1ct5.1format" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="ca_res_organiser_refactored_1h3l" type="PythonConfigurationType" factoryName="Python">
-      <module name="refactored_code" />
-      <option name="INTERPRETER_OPTIONS" value="-s" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/ca_res_organiser_refactored.py" />
-      <option name="PARAMETERS" value="1h3l.2hr 1h3l.2res 1h3l.2format" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="list_argument_test.py" type="PythonConfigurationType" factoryName="Python">
-      <module name="refactored_code" />
-      <option name="INTERPRETER_OPTIONS" value="-s" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/list_argument_test.py" />
-      <option name="PARAMETERS" value="--listb 1ct5.pdb 1h3l.pdb 7 8 --lista 1 2 3 4" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -188,20 +160,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="modified_pdbline" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="main_1i60 (1)" type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_OPTIONS" value="-s" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/modifying_pdbline.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
+      <option name="PARAMETERS" value="1i60.pdb -p 1" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -209,20 +181,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="non_proline_middle_angle " type="PythonConfigurationType" factoryName="Python">
+    <configuration name="main_1i60 (2)" type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py" />
-      <option name="PARAMETERS" value="1ct5.1format  1ct5.1angle" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
+      <option name="PARAMETERS" value="1i60.pdb -p 2" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -230,20 +202,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="one_helixres_refactored" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="main_1i60 (3)" type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/onehelixres_refactored.py" />
-      <option name="PARAMETERS" value="&quot;../existing_code/1ct5.sec&quot; &quot;../existing_code/1ct5.1hr&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
+      <option name="PARAMETERS" value="1i60.pdb -p 0" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -263,7 +235,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/proline_and_nonproline_middle_angle.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/existing_code/bin/proline_and_nonproline_middle_angle.py" />
       <option name="PARAMETERS" value="1ct5.1format  1ct5.1angle 1" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -284,7 +256,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/proline_and_nonproline_middle_angle.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/existing_code/bin/proline_and_nonproline_middle_angle.py" />
       <option name="PARAMETERS" value="1h3l.2format  1h3l.2angle 2" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -293,7 +265,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="proline_middle_angle" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="testing_index_error_lineinformation_extractor_1i60" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
       <option name="PARENT_ENVS" value="true" />
@@ -305,50 +277,8 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/proline_middle_angle.py" />
-      <option name="PARAMETERS" value="1h3l.2format  1h3l.2angle 2" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="testing" type="PythonConfigurationType" factoryName="Python">
-      <module name="refactored_code" />
-      <option name="INTERPRETER_OPTIONS" value="-s" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/testing_args.py" />
-      <option name="PARAMETERS" value="1ct5.sec -p 1" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="two_helixres_refactored" type="PythonConfigurationType" factoryName="Python">
-      <module name="refactored_code" />
-      <option name="INTERPRETER_OPTIONS" value="-s" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/twohelixres_refactored.py" />
-      <option name="PARAMETERS" value="&quot;1h3l.sec&quot; &quot;1h3l.2hr&quot;" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/testing_index_error_lineinformation_extractor_1i60.py" />
+      <option name="PARAMETERS" value="1ct5.1format  1ct5.1angle" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -357,22 +287,18 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.list_argument_test.py" />
-      <item itemvalue="Python.one_helixres_refactored" />
-      <item itemvalue="Python.testing" />
-      <item itemvalue="Python.two_helixres_refactored" />
-      <item itemvalue="Python.ca_res_organiser_refactored_1ct5" />
-      <item itemvalue="Python.ca_res_organiser_refactored_1h3l" />
-      <item itemvalue="Python.proline_middle_angle" />
-      <item itemvalue="Python.modified_pdbline" />
       <item itemvalue="Python.proline_and_nonproline_bend_angle_1h3l" />
       <item itemvalue="Python.proline_and_nonproline_bend_angle_1ct5" />
-      <item itemvalue="Python.non_proline_middle_angle " />
       <item itemvalue="Python.main_1h3l" />
       <item itemvalue="Python.main_1ct5" />
+      <item itemvalue="Python.main_1i60 (1)" />
+      <item itemvalue="Python.main_1i60 (2)" />
+      <item itemvalue="Python.main_1i60 (3)" />
+      <item itemvalue="Python.testing_index_error_lineinformation_extractor_1i60" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.testing_index_error_lineinformation_extractor_1i60" />
         <item itemvalue="Python.main_1ct5" />
       </list>
     </recent_temporary>
@@ -421,14 +347,24 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/refactored_code/proline_middle_angle.py</url>
+          <url>file://$PROJECT_DIR$/existing_code/bin/proline_middle_angle.py</url>
           <line>538</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
+          <line>681</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/refactored_code/main.py</url>
-          <line>70</line>
-          <option name="timeStamp" value="56" />
+          <line>46</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
+          <line>545</line>
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

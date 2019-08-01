@@ -8,6 +8,8 @@ import numpy as np
 import argparse
 import subprocess
 
+import proline_middle_angle as proline_mid
+
 """
 ver 1.0 created 11.09.2018 
 ver 1.1 updated on 26.09.2018 modified calculate midpoint function 
@@ -49,37 +51,8 @@ The program is called on the command line, then the name of the target .format
 
 """
 
-def main():
-	win_or_linux()
 
-def win_or_linux():
-	"""This detects whether the system is windows or linux and then calls
-	either windows_arguments() or linux_arguments() which controll how
- 	a file is opened """
-
-	if sys.platform =='win32':
-		file = windows_arguments()
-            
-	if sys.platform =='linux':
-		file = linux_arguments()
-
-
-def windows_arguments():
-	""" contains a battery of test files for when in a windows enviroment
-	"""
-
-	#test_files = [
-	#('5dvi.format','5dvi.agl'),('5dz2.format','5dz2.agl'),('5e2x.format','5e2x.agl'),('5klo.format','5klo.agl'),
-	#('2q8g.format','2q8g.agl'),('3ix3.format','3ix3.agl'),('4beu.format','4beu.agl'),('4pmo.format','4pmo.agl'),
-	#('4xr8.format','4xr8.agl'),('1f0x.format','1f0x.agl'),('1mpx.format','1mpx.agl')
-	#]
-
-	master('1h3l.format','1h3l.agl')
-	#for x in test_files:
-	#	master(x[0],x[1])
-		
-
-def linux_arguments():
+def middle_angle_linux_arguments():
 	"""
 	This determins the arguments for the program when in a linux enviroment
 	"""
@@ -88,14 +61,25 @@ def linux_arguments():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('format_file', help = 'ca atoms of proteins seperated by chains')
 	parser.add_argument('angle_file', help = 'output file which will have the pdb name and 1st residue with ABC angle')
+	parser.add_argument('--pdbline', action='store_true',
+						help='also creates pdbfile containing pdblines used in bend angle calculation')
 
 	#This creates a namespace object which allows you to treat files as if they are open
 	args = parser.parse_args()
 
-	format_name = vars(args)['format_file']
-	angle_name = vars(args)['angle_file']
+	format_name 	= vars(args)['format_file']
+	angle_name 		= vars(args)['angle_file']
 
-	master(format_name,angle_name)
+
+	if args.pdbline:
+		print('Pdbline creation specified')
+
+		pdbline_option = True
+		print(str(pdbline_option))
+	else:
+		pdbline_option = False
+
+	return(format_name,angle_name,pdbline_option)
 
 def fileread(filename):
 	""" opens a file object, removes the contents and strips lhwhitespace
@@ -110,49 +94,58 @@ def fileread(filename):
 
 def residue_pairs_for_pdbline(input_file):
 	"""
-	input: string 
-	the file name 
+	input: string
+	the file name
 
-	output: list of objects 
+	output: list of objects
 
 
 	this calls the input files and outputs a list of helicies.
-	it calls first_pro_last_finder() and information_extracter() 
+	it calls first_pro_last_finder() and information_extracter()
 	to determine the 3 residues and their attributes
 	"""
 
 	file_txt = fileread(input_file)
 
-	helix_list = []
+
 	helix_start_mid_end = []
-	temp_list = []
-	helix_names = []
-	
+
+	first_res_no = []
+	last_res_no 	=[]
+	whole_helix_single_residues =[]
+	pdbline_single_residues = []
+
 	# captures the first residue chain no and numer as group 1 and
 	# the block of pdb txt benith as group 2
-	pattern = re.compile(r'(\w+\s*?\d+?)\n(.+?)\n')
+	pattern = re.compile(r'(\w+\s*?\d+?)\n(.+?)(?:(\w\s*?\d+?)\s+?(?:-*?\d+?\.\d+\s*?){1,}C\s+?)\n')
 	match = pattern.findall(file_txt)
-	for x in match:
+	for helix_residues in match:
 		temp_list = []
-		helix_name = (x[0])
-		helix_names.append(helix_name)
+		first_res_no.append(helix_residues[0])
+		last_res_no.append(helix_residues[2])
+		pdb_ca = helix_residues[1]
 
+		positions = non_proline_segment_first_mid_last_finder(helix_residues[1])
 
-		pdb_ca = x[1]
-
-		positions = first_mid_last_finder(x[1])
-
-		atom_inf = information_extractor(positions,pdb_ca)
-		for x in atom_inf:
-			temp_list += [x]
+		atom_inf = lineinformation_extractor(positions,pdb_ca)
+		for helix_residues in atom_inf:
+			temp_list += [helix_residues]
 			#print(x)
 
 		helix_start_mid_end.append(temp_list)
 
-	return(helix_start_mid_end,helix_names)
+		whole_helix_single_residues.append(residue_extractor_from_ca_pdb(pdb_ca))
+		pdbline_single_residues.append(whole_helix_single_residues[0][positions[0]:positions[2] + 1])
+
+	print("Halp Jesus")
 
 
-def first_mid_last_finder(protein_pdb):
+
+	return(helix_start_mid_end, first_res_no,last_res_no,whole_helix_single_residues,pdbline_single_residues)
+	#return (helix_start_mid_end, first_res_no)
+
+
+def non_proline_segment_first_mid_last_finder(protein_pdb):
 	""" 
 	input: a string 
 
@@ -173,17 +166,17 @@ def first_mid_last_finder(protein_pdb):
 	return(mid-6,mid,mid+6)
 
 
-def information_extractor(selected_ca,pdb_txt):
-	""" 
-	input: Tupple 
-	containing the positions of the mid -6 /middle/mid +6 residue in the 
+def lineinformation_extractor(selected_ca,pdb_txt):
+	"""
+	input: Tupple
+	containing the positions of the mid -6 /PRO/mid +6 residue in the
 	aminoacid sequence (for calculating the bend angle between them)
 
-	output:a list of 3 lists, 
+	output:a list of 3 lists,
 	each containing the information for first/mid/last res
 
 	This extracts the the aminoacid, resno and the xyz cords for creating the atom
-	objects. The 
+	objects. The
 	"""
 	first 	= selected_ca[0]
 	middle 	= selected_ca[1]
@@ -197,9 +190,7 @@ def information_extractor(selected_ca,pdb_txt):
 
 	cords 			= cord_p.findall(pdb_txt)
 
-	first_tupple 	= (cords[first])
-	middle_tupple 	= (cords[middle])
-	last_tupple 	= (cords[last])
+
 
 	temp_str 	= 	(str(cords[first][1]))
 	temp_str 	= 	temp_str.replace(" ", "")
@@ -226,13 +217,12 @@ def information_extractor(selected_ca,pdb_txt):
 	temp_str 	=	(str(cords[last][1]))
 	temp_str 	= 	temp_str.replace(" ", "")
 	last_six 	+= 	temp_str
-
 	return [first_six,middle_five,last_six]
 
 
 
 
-def shell_interface(residue_pos,input_file):
+def shell_interface(residue_pos,input_file,pdbline_option):
 	"""
 	The purpose of this function is to wrap some residue chain and residue numbers with a wrapper that 
 	calls the pdbline in the command line
@@ -248,30 +238,85 @@ def shell_interface(residue_pos,input_file):
 	each of these are a string which will be called on the command line 
 
 	"""
-	#print("##################################")
-	#print("This helix residues are :",residue_pos)
-	#print("pdb file :",input_file)
-	filename = input_file
-	#output_name = filename + ".line"
+	print("##################################")
 
-	#rint("start pdbline")
+	filename = input_file
+
+
+
 	start_helix 			= commandline_wrapper(residue_pos[0],filename)
 	start_helix_str 		= create_pdbline_string(start_helix)
 	start_pdbline_midpoint 	= calculate_midpoint(start_helix_str)
 
-	#rint("middle pdbline")
+
 	mid_helix 				= commandline_wrapper(residue_pos[1],filename)
 	mid_helix_str 			= create_pdbline_string(mid_helix)
 	middle_pdbline_midpoint = calculate_midpoint(mid_helix_str)
 
-	#rint("end pdbline")
-	#rint("residue :", str(residue_pos[2]))
+
 	end_helix 				= commandline_wrapper(residue_pos[2],filename)
 	end_helix_str 			= create_pdbline_string(end_helix)
 	end_pdbline_midpoint 	= calculate_midpoint(end_helix_str)
-	
-	#print("First point :", start_pdbline_midpoint, " ", "Second point :", middle_pdbline_midpoint, " ", "Third point :", end_pdbline_midpoint)
 
+
+	"""
+
+		# This is added as part of the optional commandline argument --pdbline, if so it writes to a new file for every
+		# is based on the horrible global variable pdbline_option which is true if argument "--pdbline" is given
+
+		# input variables;
+		 residue_pos (list of lists coordiantes) [['A14 A19', 'A18 A22', 'A21 A26']
+		 , ['A117 A122', 'A121 A125', 'A124 A129']
+		 , ['A156 A161', 'A160 A164', 'A163 A168'],
+		  ['A199 A204', 'A203 A207', 'A206 A211']]
+
+		  filename : string "1ct5"
+		  start_helix_str contains the atom information from pdbline for that residue pair
+		"""
+	if pdbline_option == True:
+		print('roger roger')
+		temp_res_list = []
+		for pair in residue_pos:
+			temp_res_list += pair.split()
+		temp_filename = (str(filename) + '_' + str(temp_res_list[0] + '_' + str(temp_res_list[-1])) + '_pdbline')
+
+		# Accesses original .pdb filename
+		pdbline_file_list = []
+		filename += '.pdb'
+		# pdbline_file_list.append(fileread(filename))
+
+		# this is required to remove b'string' from start/mid/end_helix_str which has been converted over when it was in byte form
+		start_helix_str = start_helix_str.strip('b')
+		start_helix_str = start_helix_str.strip("''")
+		# start_helix_str = end_helix_str.split('\n')
+
+		mid_helix_str = mid_helix_str.strip('b')
+		mid_helix_str = mid_helix_str.strip("''")
+		# mid_helix_str = end_helix_str.split('\n')
+
+		end_helix_str = end_helix_str.strip('b')
+		end_helix_str = end_helix_str.strip("''")
+		# end_helix_str = end_helix_str.split('\n')
+		# print(end_helix_str)
+
+		# start_helix_str =start_helix_str.decode('utf-8')
+
+		# this is all an attempts to combine into one list and to replace '\\n' with '\n',
+		# i could have just used find and replace
+		pdbline_file_list.append(start_helix_str)
+		pdbline_file_list.append(mid_helix_str)
+		pdbline_file_list.append(end_helix_str)
+		# print(pdbline_file_list)
+		pdbline_file_str = ('').join(pdbline_file_list)
+		pdbline_file_list = pdbline_file_str.split('\\n')
+
+		# writes the awakward list format to a file nicly
+		with open(temp_filename, 'w') as text_file:
+			text_file.writelines("%s\n" % line for line in pdbline_file_list)
+
+	# text_file.write(str(pdbline_file_str))
+
+	# print(temp_filename)
 	return(start_pdbline_midpoint,middle_pdbline_midpoint,end_pdbline_midpoint)
 
 def commandline_wrapper(res_pair,input_name):
@@ -284,7 +329,7 @@ def commandline_wrapper(res_pair,input_name):
 	temp_str 	+= input_name
 	temp_str 	+= ".pdb"
 
-	#print(temp_str)
+	print(temp_str)
 	return(temp_str)
 
 
@@ -296,36 +341,27 @@ def create_pdbline_string(string):
 
 def calculate_midpoint(pdbline_str):
 
-	""" 
-	input: a string containing the residue information from a pdb file 
-
-	output: a tupple of three floats  representing the x,y,z midpoints of hte pdblines 
-
-	This calculate the bend angle by measureing pdblines created at the tips and
+	""" This calculate the bend angle by measureing pdblines created at the tips and
 	the middle
 	"""
-	# regex extractor to find the xyz cords in the .format file 
+
 	pdbline = re.compile(r'ATOM\s+?(\d+?)\s+?X\s+?\w+?\s\w\s*?\d+?\s+?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)')
 	pdbline_xyz 	= pdbline.findall(pdbline_str)
 
-	#finds len of number of residues 
-	no_res = int(len(pdbline_xyz))
+	#print(" .line file findall :",pdbline_xyz)
+	#print("##################")
+	mid = int((len(pdbline_xyz) - 1)/2)
 
+	#print(pdbline_xyz[mid])
+	#print(mid)
 
-	# finds the x,y,z of the first resdue  
-	first_x, first_y, first_z = pdbline_xyz[no_res -1][1], pdbline_xyz[no_res -1][2], pdbline_xyz[no_res -1][3]
+	x = pdbline_xyz[mid][1]
 
+	y = pdbline_xyz[mid][2]
 
-	# finds the x,y,z of the last residue 
-	last_x, last_y, last_z = pdbline_xyz[0][1], pdbline_xyz[0][2], pdbline_xyz[0][3]
-
-
-	# finds the midpoint x,yz, of the first x,y,z and the last x,y,z 
-	mid_x = ((float(first_x) + float(last_x))/2)
-	mid_y = ((float(first_y) + float(last_y))/2)
-	mid_z = ((float(first_z) + float(last_z))/2)
-
-	return(mid_x, mid_y,mid_z)
+	z = pdbline_xyz[mid][3]
+	#print('x,y,z :',x,y,z)
+	return(x,y,z)
 
 
 def calculate_angle(first_xyz, second_xyz, third_xyz):
@@ -352,39 +388,102 @@ def calculate_angle(first_xyz, second_xyz, third_xyz):
 	angle = (np.degrees(angle))
 	return(angle)
 
+def segment_middle_res(pdb_line_res_pair):
+	"""
+	finds the proline res by taking the pdbline res pair e.g. A174 A178,
+	takes the first and adds two to get A176
+	"""
 
-def master(input_file,output_file):
-
-	"""the purpose of this function is to create a list of residues names A11
-	of proteins that are made of two helixes seperated by a gap 
-	pro_eitherside is how many side of the gap I should search """
-
-	tempstring = ""
-	pdbname = str(input_file)[:4]
-
-	pdbline_res,helix_names = (residue_pairs_for_pdbline(input_file))
-	print("all pdbline residues :",pdbline_res)
-	#print((helix_names))
-	res_counter = 0 
+	res_pair = pdb_line_res_pair
+	res_pair = res_pair.split()
 
 
-	for x in pdbline_res:
-		one, two , three  = shell_interface(x,pdbname)
-		angle =calculate_angle( one,two,three)
-		#pdbline_res takes the residue for the first pdbline and splits by space, giving the first
-		first_res = str(pdbline_res[res_counter][0])
-		first_res = first_res.split(" ")
-		tempstring += input_file[:4] + " " + str(helix_names[res_counter]) + " " + str(angle)+ "\n"
-		#print(tempstring)
-		res_counter += 1
+	first_res = res_pair[0]
 
-	print(tempstring)
-	file = open(output_file,'w')
-	file.write(tempstring)
-	file.close()
+	first_res_no = first_res[1:]
+	first_res_chain = first_res[:1]
+
+	proline_res_no = int(first_res_no) + 2
+	proline_res = (first_res_chain + str(proline_res_no))
+
+	return(proline_res)
+
+	def residue_extractor_from_ca_pdb(helix_pdb_info):
+		helix_pdb_info
+
+def residue_extractor_from_ca_pdb(ca_string):
+    single_letter_res = []
+    residue_finder = re.compile(r'ATOM\s+?\d+?\s+?\w+?\s+?(\w+?)\s')
+    residues = residue_finder.findall(ca_string)
+
+    three_letter_res_d = {'CYS': 'C', 'ASP': 'D', 'SER': 'S', 'GLN': 'Q', 'LYS': 'K',
+                          'ILE': 'I', 'PRO': 'P', 'THR': 'T', 'PHE': 'F', 'ASN': 'N',
+                          'GLY': 'G', 'HIS': 'H', 'LEU': 'L', 'ARG': 'R', 'TRP': 'W',
+                          'ALA': 'A', 'VAL': 'V', 'GLU': 'E', 'TYR': 'Y', 'MET': 'M'}
+
+    for residue in residues:
+        single_letter_res.append(three_letter_res_d[residue])
+    single_letter_res = "".join(single_letter_res)
+    return(single_letter_res)
+
+
 
 	
 
 
 if __name__== "__main__":
-	main()
+
+
+	format_file, angle_file, pdbline_option = middle_angle_linux_arguments()
+	"""the purpose of this function is to create a list of residues names A11
+	of proteins that are made of two helixes seperated by a gap 
+	pro_eitherside is how many side of the gap I should search 
+	1h3l A28 A28 A58 100.71272063185602
+	"""
+	tempstring = ""
+	pdbname = str(format_file)[:4]
+
+	pdbline_res = residue_pairs_for_pdbline(format_file)
+
+
+	helix_counter = 0
+	for pdbline_segment in pdbline_res[0]:
+
+		# I would insert the extracting_ca_inf_with_first_res.py scratch here
+		print("x or pdbline{0] is:")
+		print(pdbline_segment)
+		center_pdbline_segment = segment_middle_res(pdbline_segment[1])
+		#print("proline :" + str(proline))
+
+		one, two, three = shell_interface(pdbline_segment, pdbname, pdbline_option)
+		angle = calculate_angle(one, two, three)
+		# print(angle)
+		# pdbline_res takes the residue for the first pdbline and splits by space, giving the first
+		whole_helix_first_res = str(pdbline_res[1][helix_counter])
+		whole_helix_first_res = whole_helix_first_res.replace(" ", "")
+		whole_helix_last_res = str(pdbline_res[2][helix_counter])
+		whole_helix_last_res = whole_helix_last_res.replace(" ", "")
+
+		pdbline_segment_first_res = pdbline_segment[0].split()[0]
+		pdbline_segment_last_res = pdbline_segment[2].split()[1]
+
+		#print("pdbline_segment first res is " + str(pdbline_segment_first_res) + "with last res " + pdbline_segment_last_res)
+
+
+
+
+		whole_helix_single_residues = pdbline_res[3][helix_counter]
+		pdbline_segment_residues = pdbline_res[4][helix_counter]
+
+
+
+		tempstring += format_file[:4] + " " + str(whole_helix_first_res) + " " + str(whole_helix_last_res) + " " \
+					  + center_pdbline_segment + " " + whole_helix_single_residues + " " + " " + str(angle) + " " + pdbline_segment_first_res + " " + pdbline_segment_last_res + " " + pdbline_segment_residues + " " + "\n"
+
+
+		helix_counter += 1
+
+	print(tempstring)
+	file = open(angle_file, 'w')
+	file.write(tempstring)
+	file.close()
