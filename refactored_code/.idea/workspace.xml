@@ -2,43 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3e2bc1e-3c4e-4281-83c5-731634957256" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../kink_finder_tests/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kink_finder_tests/1mpxa.pdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kink_finder_tests/small_sample.2angle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/existing_code/1ct5.1hr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/existing_code/1ct5.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.1angle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.1format" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.1format_old" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.1hr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.1res" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.2angle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.2format" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.2hr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.2res" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5.sel" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1ct5_old.1hr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.1angle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.1format" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.1hr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.1res" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.2angle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.2format" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.2hr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.2res" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/1h3l.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.sec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l.sel" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/1h3l_old.2hr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/ca_res_organiser_refactored.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/ca_res_organiser_refactored.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kink_finder_tests/1mpx.2angle" beforeDir="false" afterPath="$PROJECT_DIR$/kink_finder_tests/2angle/1mpx.2angle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/refactored_code/core_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/core_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/filereadoutput.txt" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/filereadoutput.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/filereadoutput2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/filereadoutput2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/modifying_pdbline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/non_proline_middle_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/non_proline_middle_angle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/onehelixres_refactored.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/onehelixres_refactored.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/proline_and_nonproline_middle_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/proline_and_nonproline_middle_angle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/proline_bend_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/proline_bend_angle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/proline_middle_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/proline_middle_angle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/twohelixres_refactored.py" beforeDir="false" afterPath="$PROJECT_DIR$/existing_code/bin/twohelixres_refactored.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,31 +27,26 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1987" />
-    <option name="y" value="25" />
-    <option name="width" value="1613" />
-    <option name="height" value="1025" />
-  </component>
   <component name="ProjectId" id="1OjrUFm9au21FD57IKQPZ1p2r8m" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/refactored_code/proline_and_nonproline_middle_angle.py" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/kink_finder_tests" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/refactored_code" />
-      <recent name="$PROJECT_DIR$/existing_code/bin" />
-      <recent name="$PROJECT_DIR$/existing_code" />
-      <recent name="$PROJECT_DIR$/existing_code/two_helix" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/kink_finder_tests" />
       <recent name="$APPLICATION_CONFIG_DIR$/scratches" />
       <recent name="$PROJECT_DIR$/refactored_code" />
       <recent name="$PROJECT_DIR$/existing_code" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/kink_finder_tests" />
+      <recent name="$APPLICATION_CONFIG_DIR$/scratches" />
+      <recent name="$PROJECT_DIR$/kink_finder_tests/1angle" />
+      <recent name="$PROJECT_DIR$/kink_finder_tests/2angle" />
+      <recent name="$PROJECT_DIR$/existing_code/kink_finder_tests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -96,7 +61,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main_1i60 (1)">
+  <component name="RunManager" selected="Python.string_modification_kink_finder (1)">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
@@ -111,6 +76,27 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/proline_middle_angle.py" />
       <option name="PARAMETERS" value="1ct5.1format  1ct5.1angle" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="kinkfinder_using_oneTwoHelixesoutput" type="PythonConfigurationType" factoryName="Python">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="-s" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kink_finder_tests/kinkfinder_using_oneTwoHelixesoutput.py" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -265,6 +251,48 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="string_modification_kink_finder (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="string_modification_kink_finder" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="-s" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/string_modification_kink_finder.py" />
+      <option name="PARAMETERS" value="1ct5.1format  1ct5.1angle" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="testing_index_error_lineinformation_extractor_1i60" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
@@ -287,17 +315,22 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.kinkfinder_using_oneTwoHelixesoutput" />
       <item itemvalue="Python.proline_and_nonproline_bend_angle_1h3l" />
       <item itemvalue="Python.proline_and_nonproline_bend_angle_1ct5" />
       <item itemvalue="Python.main_1h3l" />
-      <item itemvalue="Python.main_1ct5" />
       <item itemvalue="Python.main_1i60 (1)" />
       <item itemvalue="Python.main_1i60 (2)" />
       <item itemvalue="Python.main_1i60 (3)" />
+      <item itemvalue="Python.main_1ct5" />
       <item itemvalue="Python.testing_index_error_lineinformation_extractor_1i60" />
+      <item itemvalue="Python.string_modification_kink_finder" />
+      <item itemvalue="Python.string_modification_kink_finder (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.string_modification_kink_finder (1)" />
+        <item itemvalue="Python.string_modification_kink_finder" />
         <item itemvalue="Python.testing_index_error_lineinformation_extractor_1i60" />
         <item itemvalue="Python.main_1ct5" />
       </list>
@@ -352,19 +385,24 @@
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
-          <line>681</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/refactored_code/main.py</url>
           <line>46</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
-          <line>545</line>
-          <option name="timeStamp" value="59" />
+          <line>581</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py</url>
+          <line>224</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py</url>
+          <line>218</line>
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
