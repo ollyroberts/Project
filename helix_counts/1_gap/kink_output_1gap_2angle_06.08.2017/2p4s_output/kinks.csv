@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2p4sA,178,190,183,177,189,30.424,PLAKCAMPVRVMH,2.019,0.406,1.901,0.291,7.378
+2p4sB,178,190,186,180,192,31.624,KCAMPVRVMHLIG,1.900,0.503,1.899,0.287,8.696
+2p4sC,178,190,186,180,192,35.330,KCAMPVRVMHLIG,1.940,0.485,1.898,0.290,8.502

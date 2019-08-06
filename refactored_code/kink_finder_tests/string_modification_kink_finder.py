@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import subproces
+import subprocess
 """
 Lets seperate this into blocks
 i)  I wish to grab all rwos with the same pdb file
@@ -151,16 +151,6 @@ v)
 create a new  file which takes the original and add the .angle
 
 
-"""
-
-
-
-
-
-
-
-
-
 two_helix_res_input ="1cza N414 N435 N421 GSLYKTHPQYSRRFHKTLRRLV  110.72633798240781 N415 N427 SLYKTHPQYSRRF"
 
 
@@ -168,8 +158,8 @@ two_helix_res_input ="1cza N414 N435 N421 GSLYKTHPQYSRRFHKTLRRLV  110.7263379824
 target_output =  "python2.7 ~/Downloads/KF_err_lin/Kink_Finder.py -f " \
                  "~/Git/Project/refactored_code/kink_finder_tests/2angle/1cza.pdb -o " \
                  "~/Git/Project/refactored_code/kink_finder_tests/2angle/1cza.pdb_output/ -l '415-427' -d"
-print("Target output")
-print(target_output)
+#print("Target output")
+#print(target_output)
 
 
 split_output = two_helix_res_input.split()
@@ -191,10 +181,10 @@ residues_display_str ="-l "+ residues +" -d"
 list_of_strings=[kink_finder_str, pdb_file_location_str, kink_output_location_str, residues_display_str]
 final_string = " ".join(list_of_strings)
 #print(final_string)
+"""
 
 
-
-def function1(angle_imput_string):
+def pdb_res_pair(angle_imput_string):
     """
 
     :param angle_imput_string:
@@ -224,7 +214,7 @@ def function1(angle_imput_string):
 
     return(pdb_dict)
 
-def function2(pdb_dict):
+def kink_string_maker(pdb_dict, folder_directory, output_directory):
     """
     pdb_file ="1cza.pdb"
     residues ="'415-427'"
@@ -243,39 +233,52 @@ def function2(pdb_dict):
 
     for pdb_name in pdb_dict:
         residue_pairs = []
-        for line in pdb_dict[pdb_name]:
-            new_pair = line[1]+ "-" + line[2]
+
+        for pdb_res in pdb_dict[pdb_name]:
+            new_pair = pdb_res[1]+ "-" + pdb_res[2]
             if new_pair in residue_pairs:
                 pass
             else:
                 residue_pairs.append(new_pair)
         residue_pairs_string = (" ").join(residue_pairs)
 
-        #print(residue_pairs_string)
-        #print(pdb_name,residue_pairs)
-
-        folder_directory = "~/Git/Project/refactored_code/kink_finder_tests/2angle/"
-
         kink_finder_str = "python2.7 ~/Downloads/KF_err_lin/Kink_Finder.py"
         pdb_file_location_str = "-f "+ folder_directory + pdb_name +".pdb"
-        kink_output_location_str = "-o " + folder_directory + pdb_name + "_output/"
+        kink_output_location_str = "-o " + output_directory + pdb_name + "_output/"
         residues_display_str = "-l '" + residue_pairs_string + "' -d"
 
-        list_of_strings = [kink_finder_str, pdb_file_location_str, kink_output_location_str, residues_display_str]
-        commandline_string = " ".join(list_of_strings)
+        temp_string = [kink_finder_str, pdb_file_location_str, kink_output_location_str, residues_display_str]
+        commandline_string = " ".join(temp_string)
+        list_of_strings.append(commandline_string)
 
-        list_of_strings.append((commandline_string))
+
     return(list_of_strings)
 
 
-def function3():
-    # do blargh
+def bash_command_process(list_of_strings,output_directory):
+    for bash_command in list_of_strings:
+
+        subprocess.run([bash_command], shell=True)
+        angles_csv = output_directory +"angles.scv"
+        print(angles_csv)
     return()
 
 def function4():
     # do blargh
     return()
 
-angle_filename = "/home/oliver/Git/Project/refactored_code/kink_finder_tests/small_sample.2angle"
-pdb_dict=(function1(angle_filename))
-function2(pdb_dict)
+#angle_filename = "/home/oliver/Git/Project/refactored_code/kink_finder_tests/small_sample.2angle"
+#folder_directory = "~/Git/Project/refactored_code/kink_finder_tests/"
+#output_directory = folder_directory +"kink_output/"
+
+angle_filename = "/home/oliver/Documents/one_dir_all_pdbs/2gap_exactly_06.08.2019.txt"
+folder_directory = "/home/oliver/Documents/one_dir_all_pdbs/"
+output_directory = folder_directory +"2gap_exactly_06.08.2019kink_output/"
+
+
+pdb_dict=(pdb_res_pair(angle_filename))
+list_of_commandline_strings = kink_string_maker(pdb_dict, folder_directory, output_directory)
+for x in list_of_commandline_strings:
+    print(x)
+
+bash_command_process(list_of_commandline_strings,output_directory)

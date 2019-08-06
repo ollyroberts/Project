@@ -1,0 +1,3 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+1g57A,6,18,14,8,20,86.501,SFGTPFERVENAL,2.090,0.661,1.858,0.293,10.514
+1g57B,6,18,14,8,20,83.855,SFGTPFERVENAL,2.188,0.693,1.871,0.304,10.912

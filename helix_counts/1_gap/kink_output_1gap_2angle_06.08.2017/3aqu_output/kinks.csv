@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+3aquA,83,95,88,82,94,113.904,YASMASNPTSRKS,1.960,0.376,1.910,0.306,7.138
+3aquB,83,95,88,82,94,111.828,YASMASNPTSRKS,1.966,0.376,1.923,0.300,7.041
+3aquC,83,95,88,82,94,111.777,YASMASNPTSRKS,1.964,0.391,1.944,0.303,7.341
+3aquD,83,95,88,82,94,113.591,YASMASNPTSRKS,1.950,0.461,1.951,0.312,8.468

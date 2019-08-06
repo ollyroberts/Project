@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+5suvA,27,39,35,29,41,91.506,RILTPEELLEFPQ,2.504,0.696,1.945,0.446,12.101
+5suvB,27,39,33,27,39,90.870,AGRILTPEELLEF,2.404,0.707,1.929,0.326,11.233
+5suvC,27,39,32,26,38,118.748,FAGRILTPEELLE,2.301,0.649,1.834,0.322,10.682

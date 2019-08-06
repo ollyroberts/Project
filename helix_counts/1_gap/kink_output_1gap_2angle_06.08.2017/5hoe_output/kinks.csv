@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+5hoeA,71,83,76,70,82,31.837,LNGSTYLPMALAS,1.970,0.445,1.946,0.410,9.479
+5hoeB,71,83,76,70,82,32.115,LNGSTYLPMALAS,1.967,0.456,1.941,0.424,9.755
+5hoeC,71,83,76,70,82,29.892,LNGSTYLPMALAS,1.963,0.450,1.968,0.407,9.498
+5hoeD,71,83,76,70,82,31.823,LNGSTYLPMALAS,1.964,0.460,1.933,0.421,9.768

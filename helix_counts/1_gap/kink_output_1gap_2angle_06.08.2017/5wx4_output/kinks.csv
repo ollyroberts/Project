@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+5wx4A,103,115,107,101,113,11.421,HAILVEEVPKLGK,2.113,0.448,1.878,0.306,8.217
+5wx4B,103,115,107,101,113,20.725,HAILVEEVPKLGK,2.095,0.456,1.885,0.310,8.385
+5wx4C,103,115,107,101,113,16.568,HAILVEEVPKLGK,2.116,0.401,1.876,0.300,7.443

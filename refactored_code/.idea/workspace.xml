@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3e2bc1e-3c4e-4281-83c5-731634957256" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../kink_finder_tests/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kink_finder_tests/1mpxa.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kink_finder_tests/small_sample.2angle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kink_finder_tests/1mpx.2angle" beforeDir="false" afterPath="$PROJECT_DIR$/kink_finder_tests/2angle/1mpx.2angle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/refactored_code/core_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/core_functions.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -391,18 +387,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
-          <line>581</line>
+          <line>585</line>
           <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py</url>
-          <line>224</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py</url>
-          <line>218</line>
-          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

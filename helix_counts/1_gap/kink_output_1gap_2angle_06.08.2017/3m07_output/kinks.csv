@@ -1,0 +1,3 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+3m07A,131,143,139,133,145,31.974,IAKLPYLAELGVT,1.804,0.488,1.950,0.584,11.558
+3m07A,240,252,248,242,254,28.395,IIEAPLYWLTEYH,1.903,0.401,2.019,0.348,8.150

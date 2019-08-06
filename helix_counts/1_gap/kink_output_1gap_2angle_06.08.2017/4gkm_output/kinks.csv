@@ -1,0 +1,3 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+4gkmA,68,80,75,69,81,102.814,MTMKAPTADEVGE,2.529,0.642,1.949,0.382,11.153
+4gkmB,68,80,75,69,81,100.256,MTMKAPTADEVGE,2.534,0.650,1.980,0.393,11.316

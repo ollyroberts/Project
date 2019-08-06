@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+4uozA,612,624,617,611,623,44.443,DGISQSLPEICAA,1.876,0.465,1.936,0.337,8.843
+4uozB,612,624,617,611,623,41.001,DGISQSLPEICAA,1.873,0.468,1.961,0.348,9.024
+4uozC,612,624,617,611,623,36.789,DGISQSLPEICAA,1.993,0.399,1.954,0.295,7.332

@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+1ychA,85,97,90,84,96,34.320,SDHAGAFPAIMEL,1.789,0.560,1.976,0.350,10.073
+1ychB,85,97,90,84,96,40.347,SDHAGAFPAIMEL,1.663,0.536,2.050,0.491,11.174
+1ychC,85,97,90,84,96,34.524,SDHAGAFPAIMEL,1.787,0.550,1.957,0.336,9.823
+1ychD,85,97,90,84,96,33.062,SDHAGAFPAIMEL,1.747,0.537,1.968,0.348,9.813

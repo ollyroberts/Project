@@ -1,0 +1,3 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+3szaA,117,129,121,115,127,12.750,YPFNLTIQPMVGA,2.223,0.396,1.901,0.298,7.333
+3szaB,117,129,121,115,127,13.600,YPFNLTIQPMVGA,2.222,0.408,1.891,0.304,7.614
