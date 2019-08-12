@@ -207,7 +207,10 @@ def double_helix_parser(input_file, helicies_length=6, helix_gap=3, pro_eithersi
     res_name_l = []  # for amino acid names
     sec_str_l = []  # for sec structure prediction
 
+
     two_helix_l = []  # contains one a list aminoacids (also a list)
+    proline_secstr = {}
+    proline_res_index = []
 
     # Extracts the residue no, amino acid and secstr and signs to variables
     rx_seq = re.compile(r"^(\w+?)\s+?(\w+?)\s+?(\S)", re.MULTILINE)
@@ -228,6 +231,7 @@ def double_helix_parser(input_file, helicies_length=6, helix_gap=3, pro_eithersi
     chains_sec_str_d = keychain_value_str(res_no_l, sec_str_l)
     chains_res_no_d = keychain_value_list(res_no_l, res_no_l)
     chains_res_name_d = keychain_value_list(res_no_l, res_name_l)
+    mod_chains_sec_str_d = chains_sec_str_d.copy()
 
     # which a Pro is found a in the res_name_d[chain] its secstr in sec_str_d is replaced with a P
     # We will then search for this P later on
@@ -238,29 +242,57 @@ def double_helix_parser(input_file, helicies_length=6, helix_gap=3, pro_eithersi
         counter = 0
         for residue in chains_res_name_d[chain]:
             # print(chains_res_name_d[chain][counter])
-            if residue == 'PRO':
-                chains_sec_str_d[chain] = chains_sec_str_d[chain][:counter] + 'P' + chains_sec_str_d[chain][
+
+            # default is
+            # #if residue == 'PRO':
+
+            #If you want to recive any proline within secstr H (no gap)
+            # if residue == 'PRO' and chains_sec_str_d[chain][counter] =='H':
+            # Proline with secstr h (no gap)
+            # if residue == 'PRO' and chains_sec_str_d[chain][counter] =='h':
+            #or
+
+
+            # and to capture only 1 gap
+            #if residue == 'PRO' and (chains_sec_str_d[chain][counter] !='h' and chains_sec_str_d[chain][counter] != 'H'):
+
+            if residue == 'PRO' and chains_sec_str_d[chain][counter] =='h':
+
+                #chains_sec_str_d[chain] = chains_sec_str_d[chain][:counter] + 'P' + chains_sec_str_d[chain][
+                #                                                                    counter + 1:]
+
+                mod_chains_sec_str_d[chain] = mod_chains_sec_str_d[chain][:counter] + 'P' + mod_chains_sec_str_d[chain][
                                                                                     counter + 1:]
             counter += 1
 
             # only adds if a proline is found in the gap
     # contains 2 groups, the 1st group being the whole helix and group 2 being the gap
-    for x in chains_sec_str_d:
+
+    for chain in mod_chains_sec_str_d:
         # The {1} either side of the P creates a 3 gap
         #  so it captures anything in a gap             regex = "([h|H]{5,}(?:.?){1}P(?:.?){1}[h|H]{5,})"
         # to capture ONLY three gap                     regex = "([h|H]{5,}[^Hh]P[^Hh][h|H]{5,})"
         # to capture ONLY two gap                       regex = "([h|H]{5,}[^Hh]P[h|H]{6,}|[h|H]{6,}P[^Hh][h|H]{5,})"
         # To capture ONLY 1 gap (only allowing proline) regex = "([h|H]{6,}P[h|H]{6,})"
 
-        regex = "([h|H]{5,}[^Hh]P[^Hh][h|H]{5,})"
+        regex = "([h|H]{6,}(P)[h|H]{6,})"
         p = re.compile(r"" + regex + "")
 
         # if one is found it prints out the residues numbers of that helix
-        for match in p.finditer(chains_sec_str_d[x]):
+        for match in p.finditer(mod_chains_sec_str_d[chain]):
             # adjusted to check for Proline around the gap 1 before and 1 after
-            two_helix_l += [chains_res_no_d[x][(match.start(1)): (match.end(1))]]
+            two_helix_l += [chains_res_no_d[chain][(match.start(1)): (match.end(1))]]
+            # if chain in proline_res_index:
+            #     proline_res_index[chain] = proline_res_index[chain].append(match.start(2))
+            # else:
+            #     proline_res_index[chain] = match.start(2)
 
-    return(two_helix_l,chains_sec_str_d,chains_res_no_d,chains_res_name_d)
+            temp_list = list((chains_res_no_d[chain][match.start(2)], chains_sec_str_d[chain][match.start(2)]))
+
+            proline_res_index.append(temp_list)
+            #proline_secstr[chain] =   (chains_sec_str_d[chain][match.start(2)],proline_res_index)
+
+    return(two_helix_l,mod_chains_sec_str_d,chains_res_no_d,chains_res_name_d, proline_res_index)
 
 def ca_atom_organiser(aa_chains, ca_residues, output_file):
     # opens aa_chains file and splits by blank line and line
@@ -516,7 +548,7 @@ def middle_angle_linux_arguments():
     return (format_name, angle_name, helix_type, pdbline_option)
 
 
-def residue_pairs_for_pdbline(input_file, helix_type):
+def residue_pairs_for_pdbline(input_file, helix_type,proline_res_d):
     """
     input: string
     the file name
@@ -540,7 +572,7 @@ def residue_pairs_for_pdbline(input_file, helix_type):
     last_res_no = []
     whole_helix_single_residues = []
     pdbline_single_residues = []
-
+    counter = 0
     # match an object where the data is broken up by line breaks and chain res no linebreak
     # captures 3 groups per helix: the first resno, the CA info for helix, The last resno
     # The  usees lookahead to capture the CA inf while also capturing the last resno
@@ -549,6 +581,7 @@ def residue_pairs_for_pdbline(input_file, helix_type):
 
     # Each x is a helix. This helix contains the ca pdb atoms of that helix
     for helix_residues in match:
+
         temp_list = []
         first_res_no.append(helix_residues[0])
         last_res_no.append(helix_residues[2])
@@ -556,11 +589,7 @@ def residue_pairs_for_pdbline(input_file, helix_type):
 
         # has the first and last residue which will be used to
         # create the pdblines. if no proline is found that helix is skipped
-        try:
-            positions = proline_segment_first_mid_last_finder(helix_residues[1])
-        except:
 
-            break
         # Positions are the index locations of the helix segment used for calculating
         # bend angle made
 
@@ -569,7 +598,7 @@ def residue_pairs_for_pdbline(input_file, helix_type):
             #print("non proline")
 
         elif helix_type == 2:
-            positions = proline_segment_first_mid_last_finder(helix_residues[1])
+            positions = proline_segment_first_mid_last_finder(helix_residues[1],proline_res_d[counter])
             #print("proline")
 
         if positions == None:
@@ -584,12 +613,14 @@ def residue_pairs_for_pdbline(input_file, helix_type):
         whole_helix_single_residues.append(residue_extractor_from_ca_pdb(pdb_ca))
 
         pdbline_single_residues.append(whole_helix_single_residues[0][positions[0]:positions[2] + 1])
+
+        counter += 1
     # print("The index of the first residues is " +str(positions[0]) +" and "+ str(positions[2]+1))
 
     return (helix_start_mid_end, first_res_no, last_res_no, whole_helix_single_residues, pdbline_single_residues)
 
 
-def proline_segment_first_mid_last_finder(protein_pdb):
+def proline_segment_first_mid_last_finder(protein_pdb, proline_information):
     """
     input: a string
 
@@ -602,7 +633,7 @@ def proline_segment_first_mid_last_finder(protein_pdb):
     pdb line.
 
     """
-    res_p = re.compile(r'ATOM\s+?\d+?\s+?\w+?\s+?(\w+?)\s')
+    res_p = re.compile(r'ATOM\s+?\d+?\s+?\w+?\s+?(\w+?)\s(\w\s*?\w+?)\s')
     res = res_p.findall(protein_pdb)
 
     counter = 0
@@ -612,14 +643,17 @@ def proline_segment_first_mid_last_finder(protein_pdb):
     while counter <= (gap_window):
 
         midpoint = int((len(res) - 1) / 2)
+        current_resno = res[midpoint - counter][1].replace(" ", "")
+        proline_resiude_no = proline_information[0]
+        if current_resno == proline_resiude_no:
 
-        if res[midpoint - counter] == "PRO":
+
 
             pro_res = (midpoint - counter)
             counter += 1
             break
 
-        elif res[midpoint + counter] == "PRO":
+        elif res[midpoint + counter][0] == "PRO":
 
             pro_res = (midpoint + counter)
             counter += 1
@@ -907,7 +941,7 @@ def non_proline_segment_first_mid_last_finder(protein_pdb):
 
     return (mid - 6, mid, mid + 6)
 
-def proline_and_nonproline_middle_angle(format_file, angle_file, helix_type, pdbline_option):
+def proline_and_nonproline_middle_angle(format_file, angle_file, helix_type,proline_res_d, pdbline_option):
 
 
     """the purpose of this function is to create a list of residues names A11
@@ -918,11 +952,12 @@ def proline_and_nonproline_middle_angle(format_file, angle_file, helix_type, pdb
     tempstring = ""
     pdbname = str(format_file)[:4]
 
-    pdbline_res = residue_pairs_for_pdbline(format_file, helix_type)
-    print("Helix type is %s" % helix_type)
+    pdbline_res = residue_pairs_for_pdbline(format_file, helix_type,proline_res_d)
+    print("Checking helix type  %s" % helix_type)
 
     helix_counter = 0
     for pdbline_segment in pdbline_res[0]:
+
         # I would insert the extracting_ca_inf_with_first_res.py scratch here
         #print("x or pdbline{0] is:")
         #print(pdbline_segment)
@@ -947,8 +982,12 @@ def proline_and_nonproline_middle_angle(format_file, angle_file, helix_type, pdb
 
         tempstring += format_file[:4] + " " + str(whole_helix_first_res) + " " + str(whole_helix_last_res) + " " \
                       + center_pdbline_segment + " " + whole_helix_single_residues + " " + " " + str(
-            angle) + " " + pdbline_segment_first_res + " " + pdbline_segment_last_res + " " + pdbline_segment_residues + " " + "\n"
-
+            angle) + " " + pdbline_segment_first_res + " " + pdbline_segment_last_res + " " + pdbline_segment_residues +\
+                      " "
+        if helix_type == 2:
+            tempstring += " " +  str(proline_res_d[helix_counter][1]) +"\n"
+        else:
+            tempstring +="\n"
         helix_counter += 1
 
     print(tempstring)

@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+1tgrA,5,17,13,11.386,LCGAELVDALQFV
+1tgrA,26,38,30,22.302,NKPKAKGIVDECC
+1tgrB,5,17,9,6.443,LCGAELVDALQFV
+1tgrB,26,38,34,25.362,NKPKAKGIVDECC

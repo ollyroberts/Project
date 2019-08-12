@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+2xusA,68,80,75,2.733,EKQFSELKEKLFR
+2xusA,64,76,68,11.779,MLDLEKQFSELKE
+2xusB,68,80,72,4.115,EKQFSELKEKLFR
+2xusB,64,76,68,13.442,MLDLEKQFSELKE

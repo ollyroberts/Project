@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+3f5hA,3,15,8,6.412,SSNEQLVDALRAS
+3f5hA,2,14,8,5.167,TSSNEQLVDALRA
+3f5hB,3,15,8,7.599,SSNEQLVDALRAS
+3f5hB,2,14,8,6.404,TSSNEQLVDALRA

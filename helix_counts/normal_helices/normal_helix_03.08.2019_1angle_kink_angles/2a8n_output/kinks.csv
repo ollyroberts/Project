@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2a8nA,6,18,12,6,18,4.792,HFMELALVEARSA,1.853,0.290,1.873,0.294,5.305
+2a8nA,54,66,62,56,68,5.370,IAVIRMACEALGQ,1.919,0.288,1.929,0.339,6.161
+2a8nB,6,18,12,6,18,5.483,HFMELALVEARSA,1.879,0.298,1.894,0.297,5.516
+2a8nB,54,66,59,53,65,4.735,HAEIAVIRMACEA,1.924,0.290,1.940,0.337,6.175

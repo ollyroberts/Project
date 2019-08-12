@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+3gwoA,22,34,27,5.640,NQQEKNEQELLEL
+3gwoA,26,38,31,5.813,KNEQELLELDKWA
+3gwoB,22,34,30,5.957,NQQEKNEQELLEL
+3gwoB,26,38,30,6.482,KNEQELLELDKWA

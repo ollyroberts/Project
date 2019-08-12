@@ -1,0 +1,3 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+5omtA,47,59,51,45,57,10.096,SRYPETGAHISDA,1.948,0.384,1.913,0.295,7.089
+5omtA,115,127,120,114,126,8.145,SSDNRGAGSWVGN,1.913,0.289,1.922,0.299,5.384

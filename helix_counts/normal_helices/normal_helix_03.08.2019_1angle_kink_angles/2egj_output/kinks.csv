@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2egjA,25,37,29,23,35,0.575,SNYFRYFEEARGE,1.864,0.292,1.908,0.285,5.141
+2egjA,24,36,30,24,36,1.564,NYFRYFEEARGEF,1.849,0.296,1.905,0.284,5.205
+2egjB,25,37,29,23,35,1.208,SNYFRYFEEARGE,1.873,0.292,1.884,0.286,5.163
+2egjB,24,36,29,23,35,2.003,SNYFRYFEEARGE,1.861,0.296,1.901,0.281,5.124

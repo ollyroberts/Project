@@ -1,0 +1,2 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2rknA,8,20,12,6,18,45.607,GMSQDELNECKPA,1.923,0.394,1.913,0.467,9.553

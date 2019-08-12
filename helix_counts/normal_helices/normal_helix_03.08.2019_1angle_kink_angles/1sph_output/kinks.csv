@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+1sphA,15,27,19,13,25,11.209,GIHARPATVLVQT,1.989,0.397,1.946,0.309,7.518
+1sphA,70,82,77,71,83,3.734,NDALNALEETMKS,1.933,0.285,1.901,0.296,5.223
+1sphB,15,27,19,13,25,12.918,GIHARPATVLVQT,2.025,0.387,1.949,0.313,7.435
+1sphB,70,82,77,71,83,4.658,NDALNALEETMKS,1.959,0.300,1.857,0.285,5.325

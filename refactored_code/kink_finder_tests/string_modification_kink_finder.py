@@ -271,9 +271,9 @@ def function4():
 #folder_directory = "~/Git/Project/refactored_code/kink_finder_tests/"
 #output_directory = folder_directory +"kink_output/"
 
-angle_filename = "/home/oliver/Documents/one_dir_all_pdbs/2gap_exactly_06.08.2019.txt"
+angle_filename = "/home/oliver/Git/Project/helix_counts/normal_helices/normal_helix_03.08.2019_1angle.txt"
 folder_directory = "/home/oliver/Documents/one_dir_all_pdbs/"
-output_directory = folder_directory +"2gap_exactly_06.08.2019kink_output/"
+output_directory = folder_directory +"normal_helix_03.08.2019_1angle_kink_angles/"
 
 
 pdb_dict=(pdb_res_pair(angle_filename))

@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+3filA,23,35,30,10.175,AATAEKVFKQYAN
+3filA,24,36,30,7.912,ATAEKVFKQYAND
+3filB,23,35,30,7.587,AATAEKVFKQYAN
+3filB,24,36,30,6.382,ATAEKVFKQYAND

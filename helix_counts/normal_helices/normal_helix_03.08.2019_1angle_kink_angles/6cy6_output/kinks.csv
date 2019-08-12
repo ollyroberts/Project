@@ -1,0 +1,2 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+6cy6A,100,112,104,98,110,11.935,GLATRAAKLAMDY,1.976,0.306,1.865,0.293,5.617

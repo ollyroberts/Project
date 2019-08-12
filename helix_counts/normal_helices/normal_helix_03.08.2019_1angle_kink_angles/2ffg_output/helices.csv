@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+2ffgA,8,20,14,3.401,ITRLQSLQETAEA
+2ffgA,6,18,10,3.576,GIITRLQSLQETA
+2ffgB,8,20,13,12.138,ITRLQSLQETAEA
+2ffgB,6,18,13,5.048,GIITRLQSLQETA

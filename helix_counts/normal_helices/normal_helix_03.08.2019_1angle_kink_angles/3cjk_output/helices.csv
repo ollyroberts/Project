@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+3cjkA,13,25,18,5.131,GGCAEAVSRVLNK
+3cjkA,15,27,23,15.180,CAEAVSRVLNKLG
+3cjkB,13,25,19,50.866,MTCNSCVWTIEQQ
+3cjkB,15,27,23,7.334,CNSCVWTIEQQIG

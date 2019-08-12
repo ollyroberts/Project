@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+1sphA,15,27,19,11.209,HARPATVLVQTAS
+1sphA,70,82,77,3.734,ENDALNALEETMK
+1sphB,15,27,19,12.918,HARPATVLVQTAS
+1sphB,70,82,77,4.658,ENDALNALEETMK

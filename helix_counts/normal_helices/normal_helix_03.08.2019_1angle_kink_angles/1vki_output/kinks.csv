@@ -1,0 +1,3 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+1vkiA,8,20,16,10,22,20.696,TELFEFLDGLGIS,1.875,0.291,1.920,0.666,10.541
+1vkiB,8,20,13,7,19,13.067,KTATELFEFLDGL,1.862,0.282,1.964,0.642,10.215

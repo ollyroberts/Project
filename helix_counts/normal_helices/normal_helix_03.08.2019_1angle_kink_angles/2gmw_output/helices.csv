@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+2gmwA,87,99,91,4.977,QFETLTEWMDWSL
+2gmwA,86,98,92,5.389,AQFETLTEWMDWS
+2gmwB,87,99,92,4.368,QFETLTEWMDWSL
+2gmwB,86,98,92,7.556,AQFETLTEWMDWS

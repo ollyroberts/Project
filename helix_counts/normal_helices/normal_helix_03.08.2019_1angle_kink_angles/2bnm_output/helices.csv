@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+2bnmA,7,19,15,12.572,ASTGFAELLKDRR
+2bnmA,8,20,15,12.568,STGFAELLKDRRE
+2bnmB,7,19,11,15.817,ASTGFAELLKDRR
+2bnmB,8,20,15,10.753,STGFAELLKDRRE

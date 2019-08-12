@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/refactored_code/core_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/core_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +58,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.string_modification_kink_finder (1)">
+  <component name="RunManager" selected="Python.main_1ct5">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
@@ -100,6 +101,69 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="list_testing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="-s" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/list_testing.py" />
+      <option name="PARAMETERS" value="1ct5.1format  1ct5.1angle" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_1a4e _2" type="PythonConfigurationType" factoryName="Python">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="-s" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
+      <option name="PARAMETERS" value="1a4e.pdb -p 2" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_1bin" type="PythonConfigurationType" factoryName="Python">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="-s" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
+      <option name="PARAMETERS" value="1bin.pdb -p 2" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main_1ct5" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
@@ -134,7 +198,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
-      <option name="PARAMETERS" value="1h3l.pdb -p 0" />
+      <option name="PARAMETERS" value="1h3l.pdb -p 2" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_1i60 (0)" type="PythonConfigurationType" factoryName="Python">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="-s" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
+      <option name="PARAMETERS" value="1i60.pdb -p 0" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -177,27 +262,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
       <option name="PARAMETERS" value="1i60.pdb -p 2" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main_1i60 (3)" type="PythonConfigurationType" factoryName="Python">
-      <module name="refactored_code" />
-      <option name="INTERPRETER_OPTIONS" value="-s" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
-      <option name="PARAMETERS" value="1i60.pdb -p 0" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -315,20 +379,24 @@
       <item itemvalue="Python.proline_and_nonproline_bend_angle_1h3l" />
       <item itemvalue="Python.proline_and_nonproline_bend_angle_1ct5" />
       <item itemvalue="Python.main_1h3l" />
+      <item itemvalue="Python.main_1bin" />
+      <item itemvalue="Python.main_1a4e _2" />
       <item itemvalue="Python.main_1i60 (1)" />
       <item itemvalue="Python.main_1i60 (2)" />
-      <item itemvalue="Python.main_1i60 (3)" />
+      <item itemvalue="Python.main_1i60 (0)" />
       <item itemvalue="Python.main_1ct5" />
       <item itemvalue="Python.testing_index_error_lineinformation_extractor_1i60" />
       <item itemvalue="Python.string_modification_kink_finder" />
       <item itemvalue="Python.string_modification_kink_finder (1)" />
+      <item itemvalue="Python.list_testing" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main_1ct5" />
+        <item itemvalue="Python.list_testing" />
         <item itemvalue="Python.string_modification_kink_finder (1)" />
         <item itemvalue="Python.string_modification_kink_finder" />
         <item itemvalue="Python.testing_index_error_lineinformation_extractor_1i60" />
-        <item itemvalue="Python.main_1ct5" />
       </list>
     </recent_temporary>
   </component>
@@ -381,14 +449,14 @@
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/refactored_code/main.py</url>
-          <line>46</line>
-          <option name="timeStamp" value="58" />
+          <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
+          <line>954</line>
+          <option name="timeStamp" value="115" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
-          <line>585</line>
-          <option name="timeStamp" value="60" />
+          <line>957</line>
+          <option name="timeStamp" value="116" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

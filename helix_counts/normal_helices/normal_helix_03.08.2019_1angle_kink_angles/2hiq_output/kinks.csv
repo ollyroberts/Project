@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2hiqA,24,36,30,24,36,58.156,DAMAEQLKPLAES,1.910,0.320,1.894,0.279,5.605
+2hiqA,67,79,72,66,78,16.166,EKSALAYLEKHTA,1.911,0.300,1.880,0.298,5.589
+2hiqB,24,36,30,24,36,55.922,DAMAEQLKPLAES,1.910,0.303,1.865,0.300,5.691
+2hiqB,67,79,73,67,79,14.281,KSALAYLEKHTAR,1.925,0.300,1.917,0.307,5.781

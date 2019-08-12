@@ -20,12 +20,14 @@ def onehelix(file_basename, secstr_output,helix_type):
         print("%s has no one helix"%file_basename)
         pass
     else:
+        proline_res_d = None
+
         core.filewrite_nestedlist(filename_hr, list_of_helices)
         print('finish onehelixre with %d helix ' % (len(list_of_helices)))
         subprocess.run(['pdbgetresidues', filename_hr, sel_filename, filename_res])
         dict_of_ca_in_helix = core.ca_atom_organiser(filename_hr, filename_res, filename_format)
 
-        core.proline_and_nonproline_middle_angle(filename_format, filename_angle, helix_type, verbose)
+        core.proline_and_nonproline_middle_angle(filename_format, filename_angle, helix_type,proline_res_d, verbose)
 
 def twohelix(file_basename, secstr_output,helix_type):
     filename_hr = (file_basename + ".2hr")
@@ -34,7 +36,8 @@ def twohelix(file_basename, secstr_output,helix_type):
     filename_angle = (file_basename + ".2angle")
 
     print('start twohelixres')
-    list_of_helices, helix_secstr, helix_resno, helix_resname = core.double_helix_parser(secstr_output)
+    list_of_helices, helix_secstr, helix_resno, helix_resname, proline_res_d = core.double_helix_parser(secstr_output)
+    print("proline_res_d %s "%proline_res_d)
     if not list_of_helices:
         print("%s has no two helix"%file_basename)
         pass
@@ -44,7 +47,7 @@ def twohelix(file_basename, secstr_output,helix_type):
         subprocess.run(['pdbgetresidues', filename_hr, sel_filename, filename_res])
         dict_of_ca_in_helix = core.ca_atom_organiser(filename_hr, filename_res, filename_format)
 
-        core.proline_and_nonproline_middle_angle(filename_format, filename_angle, helix_type, verbose)
+        core.proline_and_nonproline_middle_angle(filename_format, filename_angle, helix_type, proline_res_d, verbose)
 
 
 if __name__=="__main__":

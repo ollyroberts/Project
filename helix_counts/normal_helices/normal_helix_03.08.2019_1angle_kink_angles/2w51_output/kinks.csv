@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2w51A,8,20,13,7,19,4.658,EVCISYLGRFYQD,2.040,0.292,1.902,0.306,5.606
+2w51A,28,40,32,26,38,19.734,TFSPATIENELIK,1.921,0.501,1.945,0.324,9.125
+2w51A,77,89,82,76,88,21.745,IPVEKICEKLKKK,1.905,0.314,1.942,0.456,8.427
