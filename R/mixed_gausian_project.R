@@ -37,7 +37,7 @@ mixmdl3 <- (normalmixEM(proline_angles, k = 3, maxit=10000))
 #mixmdl6 <- (normalmixEM(proline_angles, k = 6, maxit=10000))
 #mixmdl7 <- (normalmixEM(proline_angles, k = 7, maxit=10000))
 
-
+non_pro_mixmdl1 <- (normalmixEM(non_proline_angles, k = 1, maxit=10000))
 
 
 
@@ -115,5 +115,5 @@ ggplot(non_proline_angle_df, aes(x=non_proline_angles)) +
   geom_density(alpha=.2, fill="#FF6666") +  # Overlay with transparent density plot
   ggtitle("non proline bend angles with density function")
 
-non_pro_mixmdl1 <- (normalmixEM(non_proline_angles, k = 1, maxit=10000))
+
 

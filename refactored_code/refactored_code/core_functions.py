@@ -253,16 +253,17 @@ def double_helix_parser(input_file, helicies_length=6, helix_gap=3, pro_eithersi
             #or
 
 
-            # and to capture only 1 gap
+            # and to capture only 1 gap with only no H or h
             #if residue == 'PRO' and (chains_sec_str_d[chain][counter] !='h' and chains_sec_str_d[chain][counter] != 'H'):
+            # to capture only with H or h
+            # if residue == 'PRO' and (chains_sec_str_d[chain][counter] =='h' or chains_sec_str_d[chain][counter] == 'H')
 
-            if residue == 'PRO' and chains_sec_str_d[chain][counter] =='h':
+            if residue == 'PRO' and (chains_sec_str_d[chain][counter] =='h' or chains_sec_str_d[chain][counter] == 'H')
 
                 #chains_sec_str_d[chain] = chains_sec_str_d[chain][:counter] + 'P' + chains_sec_str_d[chain][
                 #                                                                    counter + 1:]
 
-                mod_chains_sec_str_d[chain] = mod_chains_sec_str_d[chain][:counter] + 'P' + mod_chains_sec_str_d[chain][
-                                                                                    counter + 1:]
+                mod_chains_sec_str_d[chain] = mod_chains_sec_str_d[chain][:counter] + 'P' + mod_chains_sec_str_d[chain][counter + 1:]
             counter += 1
 
             # only adds if a proline is found in the gap
@@ -270,10 +271,10 @@ def double_helix_parser(input_file, helicies_length=6, helix_gap=3, pro_eithersi
 
     for chain in mod_chains_sec_str_d:
         # The {1} either side of the P creates a 3 gap
-        #  so it captures anything in a gap             regex = "([h|H]{5,}(?:.?){1}P(?:.?){1}[h|H]{5,})"
-        # to capture ONLY three gap                     regex = "([h|H]{5,}[^Hh]P[^Hh][h|H]{5,})"
-        # to capture ONLY two gap                       regex = "([h|H]{5,}[^Hh]P[h|H]{6,}|[h|H]{6,}P[^Hh][h|H]{5,})"
-        # To capture ONLY 1 gap (only allowing proline) regex = "([h|H]{6,}P[h|H]{6,})"
+        #  so it captures anything in a gap             regex = "([h|H]{5,}(?:.?){1}(P)(?:.?){1}[h|H]{5,})"
+        # to capture ONLY three gap                     regex = "([h|H]{5,}[^Hh](P)[^Hh][h|H]{5,})"
+        # to capture ONLY two gap                       regex = "([h|H]{5,}[^Hh](P)[h|H]{6,}|[h|H]{6,}(P)[^Hh][h|H]{5,})"
+        # To capture ONLY 1 gap (only allowing proline) regex = "([h|H]{6,}(P)[h|H]{6,})"
 
         regex = "([h|H]{6,}(P)[h|H]{6,})"
         p = re.compile(r"" + regex + "")

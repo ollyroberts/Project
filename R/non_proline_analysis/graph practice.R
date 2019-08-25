@@ -6,27 +6,63 @@ setwd("/home/oliver/Git/Project/R/non_proline_analysis")
 
 write(1:10,file="test.txt")
 getwd()
+write.csv(combo1_2_3, file = "one_two_three_gap_prolines.csv")
 
 
-oneGap       <- read.delim("1gap_only_03.08.2019_2angle.txt", header = FALSE, sep = "", dec = ".")
-twoGap       <- read.table("2gap_only_06.08.2019.txt", header = FALSE, sep = " ", dec = ".")
-threeGap     <- read.table("3_gap_only_06.08.19.txt", header = FALSE, sep = " ", dec = ".")
-threeAndLess <-read.table("3gap_and_less_03.08.2019_2angle.txt", header = FALSE, sep = " ", dec = ".")
-View(oneGap$V6)
 
 breaks <- (seq(1,180,by=1))
 breaksDf <- data.frame(breaks)
-one_gap_angles <-data.frame(oneGap$V6)
-
-combo <- c(oneGap$V6)
 
 
 
-ggplot(breaks,aes(x = one_gap_angles)) +
-  geom_histogram(breaks = breaks,aes(x=one_gap_angles,y=..density..),      # Histogram with density instead of count on y-axis
-    col="black",fill="white") +
-  geom_density(col=2) +  # Overlay with transparent density plot
-  ggtitle("non proline bend angles with density function")
+one_gap_angles <-oneGap$V6
+
+
+# import the files and asign the angle vector (in this case column 6) to a dataframe
+one_gap_anglesDf   <- data.frame(X1gap_only_03_08_2019_2angle$X6)
+two_gap_anglesDf   <- data.frame(X2gap_only_06_08_2019$X6)
+three_gap_anglesDf <- data.frame(X3_gap_only_06_08_19$X6)
+
+one_gap_anglesDf$Type   <- "1"
+two_gap_anglesDf$Type   <- "2"
+three_gap_anglesDf$Type <- "3"
+
+names(one_gap_anglesDf)[names(one_gap_anglesDf) == "X1gap_only_03_08_2019_2angle.X6"] <-"angles"
+names(two_gap_anglesDf)[names(two_gap_anglesDf) == "X2gap_only_06_08_2019.X6"] <-"angles"
+names(three_gap_anglesDf)[names(three_gap_anglesDf) == "X3_gap_only_06_08_19.X6"] <-"angles"
+
+
+combo1_2 <-rbind(one_gap_anglesDf,two_gap_anglesDf)
+combo1_2_3 <-rbind(combo1_2,three_gap_anglesDf)
+
+
+
+
+
+oneGapNumeric <- numeric(oneGap$V6)
+
+ggplot(oneGap,aes(x = oneGap$V6)) +
+  geom_histogram(alpha =0.2,breaks = breaks,aes(x=oneGap$V6))+
+  geom_density(aes(x=oneGap$V6),col="red")
+ 
+# using the type ggplot(data, aes(x = rating, fill = type)) to seperate out data 
+# to use this we must combine ooneGap,twoGap,ThreeGap
   
+#ggplot(oneGap,aes(x = oneGap$V6)) +
+#  geom_density() +
+#  geom_density(aes(x=twoGap$V6,col="red")) +
+#  geom_histogram(alpha = 0.1, aes(y = ..density..))
+
+
+ggplot(combo1_2_3, aes(x = angles, fill = Type)) +
+  #geom_histogram(binwidth = .5, alpha =.5, position = "identity") +
+  geom_density(alpha = .3)+
+  ggtitle("Density of Proline bend anglein alpha helices seperated by gap length") 
+  ylab("Density") +
+  xlab("Bend angle of helices")
+
+
+
+
 
 

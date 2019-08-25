@@ -2,10 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3e2bc1e-3c4e-4281-83c5-731634957256" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../R/1_and_3_mixed_gaussian_analysis/1_3_gap_non_proline_05_08_2019.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/1_and_3_mixed_gaussian_analysis/1_3_gap_non_proline_df.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/1_and_3_mixed_gaussian_analysis/1_3_gap_proline_df.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/1_and_3_mixed_gaussian_analysis/three_gaussian_1_3_gap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/1_and_3_mixed_gaussian_analysis/two_gaussian_1_3_gap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/mixed_gausian_project.R" beforeDir="false" afterPath="$PROJECT_DIR$/../R/mixed_gausian_project.R" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/non_proline_analysis/.Rhistory" beforeDir="false" afterPath="$PROJECT_DIR$/../R/non_proline_analysis/.Rhistory" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../R/non_proline_analysis/graph practice.R" beforeDir="false" afterPath="$PROJECT_DIR$/../R/non_proline_analysis/graph practice.R" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/kink_finder_tests/string_modification_kink_finder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kink_finder_tests/kinkfinder_using_oneTwoHelixesoutput.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1a4e.2angle" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/1a4e.2angle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1a4e.2format" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/1a4e.2format" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1a4e.2hr" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/1a4e.2hr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refactored_code/1a4e.2res" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/1a4e.2res" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/refactored_code/core_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/core_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refactored_code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/refactored_code/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +69,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main_1ct5">
+  <component name="RunManager" selected="Python.main_1a4e_2">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
@@ -122,7 +133,49 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main_12as" type="PythonConfigurationType" factoryName="Python">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="-s" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
+      <option name="PARAMETERS" value="12as.pdb -p 2" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main_1a4e _2" type="PythonConfigurationType" factoryName="Python">
+      <module name="refactored_code" />
+      <option name="INTERPRETER_OPTIONS" value="-s" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/refactored_code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/refactored_code/main.py" />
+      <option name="PARAMETERS" value="1a4e.pdb -p 2" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_1a4e_2" type="PythonConfigurationType" factoryName="Python">
       <module name="refactored_code" />
       <option name="INTERPRETER_OPTIONS" value="-s" />
       <option name="PARENT_ENVS" value="true" />
@@ -380,6 +433,8 @@
       <item itemvalue="Python.proline_and_nonproline_bend_angle_1ct5" />
       <item itemvalue="Python.main_1h3l" />
       <item itemvalue="Python.main_1bin" />
+      <item itemvalue="Python.main_12as" />
+      <item itemvalue="Python.main_1a4e_2" />
       <item itemvalue="Python.main_1a4e _2" />
       <item itemvalue="Python.main_1i60 (1)" />
       <item itemvalue="Python.main_1i60 (2)" />
@@ -450,13 +505,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
-          <line>954</line>
+          <line>955</line>
           <option name="timeStamp" value="115" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
-          <line>957</line>
+          <line>958</line>
           <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
+          <line>271</line>
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/refactored_code/core_functions.py</url>
+          <line>284</line>
+          <option name="timeStamp" value="121" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
