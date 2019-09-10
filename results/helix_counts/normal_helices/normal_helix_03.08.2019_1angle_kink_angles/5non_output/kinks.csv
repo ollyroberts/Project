@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+5nonA,179,191,183,177,189,3.210,TGPLAAMADAISK,1.894,0.296,1.893,0.295,5.456
+5nonB,179,191,184,178,190,3.959,GPLAAMADAISKL,1.895,0.293,1.876,0.293,5.336
+5nonC,179,191,184,178,190,4.277,GPLAAMADAISKL,1.908,0.298,1.904,0.292,5.422

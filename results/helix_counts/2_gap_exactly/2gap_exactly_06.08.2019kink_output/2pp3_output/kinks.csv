@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2pp3A,144,156,151,145,157,96.055,KRAGLPLAKLLGA,2.313,0.707,1.891,0.422,12.011
+2pp3B,144,156,151,145,157,92.839,KRAGLPLAKLLGA,2.338,0.671,1.896,0.417,11.688
+2pp3C,144,156,151,145,157,90.665,KRAGLPLAKLLGA,2.384,0.681,1.937,0.417,11.762

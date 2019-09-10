@@ -1,0 +1,3 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+4gu5A,434,446,439,433,445,79.419,DSSLVTCPVALAK,2.226,0.497,1.916,0.318,9.020
+4gu5B,434,446,439,433,445,74.286,DSSLVTCPVALAK,2.198,0.406,1.924,0.313,7.717

@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+1ucrA,4,16,11,20.156,AKQKVVDFLNSKS
+1ucrA,36,48,44,9.138,QREVKKILTALVN
+1ucrB,4,16,10,21.810,AKQKVVDFLNSKS
+1ucrB,36,48,44,6.660,QREVKKILTALVN

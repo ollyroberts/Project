@@ -1,0 +1,3 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+3btnA,248,260,256,250,262,33.072,HVISPLLDIYFPE,2.046,0.419,2.323,0.626,11.329
+3btnB,248,260,256,250,262,44.400,HVISPLLDIYFPE,1.963,0.401,2.259,0.453,9.466

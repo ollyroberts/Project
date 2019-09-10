@@ -1,0 +1,2 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+5dllA,606,618,612,606,618,63.184,SNALLIPIESTIA,2.003,0.534,2.181,0.665,12.518

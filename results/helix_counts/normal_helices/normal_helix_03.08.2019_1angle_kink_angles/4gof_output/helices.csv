@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+4gofA,7,19,15,2.907,LAYAIIQFLHDQL
+4gofA,28,40,35,11.589,AQESLEVAIQCLE
+4gofB,7,19,11,4.951,LAYAIIQFLHDQL
+4gofB,28,40,32,11.037,AQESLEVAIQCLE

@@ -1,0 +1,33 @@
+summary of normalmixEM object:
+           comp 1     comp 2
+lambda   0.396986   0.603014
+mu     119.828723 166.220947
+sigma   12.221044   7.319929
+loglik at estimate:  -42323.36 
+> data.frame(bend_angle = mixmdl2$x) %>%
++   
++   ggplot() +
++   geom_histogram(aes(bend_angle, ..density..), binwidth = 1, colour = "black", 
++                  fill = "white") +
++   stat_function(geom = "line", fun = plot_mix_comps,
++                 args = list(mixmdl2$mu[1], mixmdl2$sigma[1], lam = mixmdl2$lambda[1]),
++                 colour = "red", lwd = 1.5) +
++   stat_function(geom = "line", fun = plot_mix_comps,
++                 args = list(mixmdl2$mu[2], mixmdl2$sigma[2], lam = mixmdl2$lambda[2]),
++                 colour = "blue", lwd = 1.5) +
++   coord_cartesian(xlim = c(75, 180)) +
++   ggtitle("two gaussian mixed model of 1Gap proline") 
+>   ylab("Density")
+$y
+[1] "Density"
+
+attr(,"class")
+[1] "labels"
+> 
+> summary(mixmdl3)
+summary of normalmixEM object:
+           comp 1     comp 2     comp 3
+lambda   0.383936   0.318997   0.297067
+mu     118.914108 161.031590 170.937535
+sigma   11.329989   7.356652   4.117362
+loglik at estimate:  -42030.07 

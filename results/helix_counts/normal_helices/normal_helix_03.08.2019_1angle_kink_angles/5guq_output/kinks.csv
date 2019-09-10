@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+5guqA,69,81,77,71,83,79.239,TLWSRYGREAFLS,1.901,0.318,1.992,0.590,10.045
+5guqB,69,81,77,71,83,75.355,TLWSRYGREAFLS,1.918,0.293,1.972,0.581,9.691
+5guqC,69,81,76,70,82,78.925,NTLWSRYGREAFL,1.905,0.293,2.046,0.636,10.262
+5guqD,69,81,77,71,83,77.486,TLWSRYGREAFLS,1.902,0.298,1.992,0.591,9.846

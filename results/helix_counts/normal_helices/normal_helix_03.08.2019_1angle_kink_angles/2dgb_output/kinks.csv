@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2dgbA,18,30,24,18,30,9.103,DPQGRAVEGVLKD,1.871,0.288,1.856,0.300,5.374
+2dgbB,18,30,24,18,30,8.391,DPQGRAVEGVLKD,1.848,0.286,1.850,0.295,5.211
+2dgbC,18,30,22,16,28,8.311,ILDPQGRAVEGVL,1.884,0.395,1.866,0.291,7.207
+2dgbD,18,30,25,19,31,6.350,PQGRAVEGVLKDL,1.873,0.417,1.891,0.299,7.662

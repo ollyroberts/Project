@@ -1,0 +1,5 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Angle,sequence
+2spcA,10,22,15,3.950,DCELAESWMSARE
+2spcA,64,76,70,6.464,VADQLIAQNHYAS
+2spcB,10,22,15,6.209,DCELAESWMSARE
+2spcB,64,76,70,7.291,VADQLIAQNHYAS

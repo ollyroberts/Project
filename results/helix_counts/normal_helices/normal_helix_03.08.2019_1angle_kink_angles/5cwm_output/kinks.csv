@@ -1,0 +1,3 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+5cwmA,80,92,85,79,91,142.388,RIAKESGSEEALE,2.097,0.575,1.874,0.398,10.692
+5cwmA,194,206,199,193,205,134.819,RIARESGSEEAKE,2.315,0.544,1.874,0.458,10.957

@@ -1,0 +1,1374 @@
+############
+MSC writeup 
+############
+
+08.08.2018 
+- the script for extracting 6Helix + 1-3 gap (PRO has to be present in gap) + 6 helix works on test scripts but has an abysmall detection rate. none detected in 100 pdb_playground
+- widening to 6H + 1-4gap(PRO present) + 6H gives 4 hits (in 3 files) across the 100 pdb_playground 
+- a part of this may be that prolines are present within our helixes but are not found 
+in the gap regions. 
+- possibly create a program to see how many helixes (with and without a gap) have proline in them
+- expanding the proleine detection window to also check either side resulted in 20 proteins being returned 
+
+
+Other notes 
+- i must prepare a fully annotated bibliography for Andrew martin by end of the summer
+
+----------
+
+10.08.2018 
+-have a working production line by using pdbatomsel then pdbgetresidues
+- using 1mpx.pdb as an example as it has 2h3g3w hits
+	i) 		pdbsecstr 1mpx.pdb 1mpx.sec
+	ii) 	twohresextractor.py 1mpx.sec >1mpx.2hr
+	iii)	pdbatomsel 1mpx.pdb 1mpx.sel
+	iv)		pdbgetresidues 1mpx.2hr 	1mpx.sel 	1mpx.res 
+						res no list	| pdb with ca | output of ca atoms of specifed res
+
+problem 
+as the 1mpx.res output is one file for each starting pdb file, all the different proteins
+are in one output. Can't use if there is a break in the number as there may be missing residues due to Her to residues left out due to different conformations. 
+
+suggestions ..... make a different file for each protien called its pdb file name and 
+the first residue indicating which protein?
+
+answer use the 1mpx.2hr file as there are blank lines between each group of residues. Write a program that makes the 1mpx.res format to 
+
+1mpx 
+
+ATOM 17329 CA LEU D 376 etc etc etc 
+etc etc 
+etc 
+
+ATOM 17329 CA LEU D 376 etc etc etc 
+
+final thoughts
+- attempting to find out who to call each invidicual arguent in argesparse. 
+- check formating for "for file in args". does that only work with one argument etc?
+- see what the Namespace object does ... lets you treat as list
+
+----------
+
+13.08.2018
+- have learnt how to process two arguements that are files 
+- use the first amino acid form the .2hr document to define the start of each chain.
+
+end of 13.08.2018
+- have created a regex that will read though the ca file and group the residue no
+- now i just read though each list if = first reside no then create dictionary of res
+- if = next residue no start and new dicat and name it that one 
+- remember to move counter along 
+
+----------
+
+15.08.2018
+- There appears to be an error in my new generation of two_helix_extrator.py which puts a line of '' at the start throwing of my ca_res_organiser 
+- options remove during the aa_chains_split 
+- remove the starting whitespace when opening file with strip?
+
+day end
+- success!! the pipeline works correctly on all 100 pdbs in the test arena. am now attempting with the 1000pdb file. 
+-possible issues 
+	- exstream loading times 
+	- different way the pdb files are unpacked (some downloaded uncompress, others uncompressed after download)
+
+(starting residude not found ca_res_organiser PROBLEM)
+- core dumped pdbsecstr $file ${baes}.sec
+- ca_res_organiser.py line 104 in first residude pdblines 
+	list of residues += [hit.group(1)]
+	attributeError 'Nonetype' object has no attribue 'group'
+other error is 
+- ca_res_organiser.py line 108 in first_residue_pdblines
+	location.append(list_of_residues.index(x))
+valueError: 'A 1133' is not in list (other examples A 1387, A1212,B1213,B1312,A 1133. all are over 1000, perhaps the way i process the spaces with 4> digits in aa_chains_res in ca_res_organiser.py?)
+- 'B 1312 is 1f0x.pdb' in 1000_pdb_files
+
+next steps
+- find out what is causing the coredump 
+- there was still 139 hits with data out of the 1000pdb
+- decide on format on storing of data (keep seperated by protein by storing in diff file)
+- run the helix extractor for 13h without proline
+- create program that takes the first ca the middle proline and the final ca and calculates angle 
+- 
+
+----------
+
+16.08.2018
+- (residue gap problem)in the case of 1f0x.pdb residues A 320 - A 376 are missing. But this forms a 3 gap with a proline with a 6H chain eitherside. This is an incorrect match which is currently catagorised a a proline 
+
+(starting residude not found ca_res_organiser PROBLEM) Solved 
+2 components to the problem 
+	- ca_res_organiser function first_residue_pdblines assumed that for a 4 digit pdb res eg 'C1234' there would be a gap 'C 1234'
+	- the old regex '^ATOM\s+?\d+?\s+?CA\s+?\w+?\s(\w+?\s*?\d+?)\s' in first_residue_pdblines also assumed there would be a gap so didnt capture residues more than 3 digits long
+
+with these fixes there were 146 hits instead of 139 in the 1000pdb folder. suggesting 7 contain chains with res no over 1000 (may have missing blocks)
+
+- created one_helix_extractor.py to replace onehresextractor
+- updated one_helix_extractor.py and two_helix_extractor to take an output file as an additoinal argument
+- ACRM has created a program he has emailed to me that will remove "bad" pdbs which chain breaks, I shouldnt have to check for breaks now 
+
+- to do after lunch break 
+	- migrate the updates one/twohelixres and move them across for testing then putting in bash shell. 
+- set them to send the output to different folders within the 1000pdb e.g. 1helix, 2helix_3g_3w_pro 
+- start creating program to measure angle between bonds 
+
+
+Things to ask Andrew 
+- greater automising (create a bash command that runs on pdb files in the directory I am currently in?)
+
+----------
+
+- 17.08.2018
+
+- created proline_bend.py which will extract 1st-Pro-last co-ordiates and calculate an angle. 
+- things to ask andrew 
+	- how to automate my bashscript so I can invote it to run on any pdbfiles in the current directory 
+	- examples of double prolines
+	- when it comes to data analysis 
+
+-----------
+18.08.2018
+- have created a list that tests it on all 10 formats in inuse file 
+- have created first_pro_last_cords in proline_bend_angle which grabs highlights the atoms i want within a chain
+- create a function that it called using (first,pro,last,protein_atoms) that then returns with the xyz coordinates
+
+- 2q8g.format A132 has a proline at 23 of 35, not picked up 
+- the problem is my current algorithum just keeps searching from the midle outwards for count of 4, when in reality
+- the proline could be between +3 from start and -3 from end so in reality it should be 1/2(len-1)
+
+-----------
+- noticed in 5dz3.format that there is no \n after the first residue name and the next block STILL NOT FIXED
+- Created atom and chain classes and sucessfully implemented in proline_bend_angle.py
+- an now attempting to put the "angle" function into the chain class to calculate the bend between the three points. 
+	- am experiemnting at the xyz_extractor.py 
+
+
+-----------
+- use ARCM checkpdb.c to remove any with badly broken chains 
+ andrew sent an email about it. 
+- after that break the 33000 folder into smaller ones 
+
+----------
+23/08/2018
+32130 files in full_pdb_copy before running checkpdb.sh ()
+16038 files after checkpdb cull
+
+end of day thoughts 
+-	found the file that may cause a core dump for one_helix
+	- file 1m1j.pdb (creates a .format but not .angle)
+	stored in file Documents/full_pdb_copy/dir_001_copy/dir_002/dir_004/temp_dir0021
+	- erroer in ca_res-organiser.py line 192. 'no such file or directory *.1hr'
+
+To do tomorrow 
+	-analyse the 1m1j.pdb .1hr file to see why it causes a problem for ca_res
+	- no .1hr file is made 
+	- there is no output despire helix at A52 29 long 
+24/08/2018 
+	- SOLVED 
+	the regex in non_proline_bend_angle (and proline_bend_angle) assumed that there was a space between xyz coordinates. if the z has a - and is 6 digit eg. -123.456 then there is no gap between y and z. assume this is the case for y and z both and modify with \s*? instead of \s+?
+	- ATOM\s+?\d+?\s+?CA\s+?(\w+?)\s(\w\s*?\d+?)\s+?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)\s*?(-*?\d+?\.\d+)
+
+
+	1nj9.format
+	1nlb.format
+	1nmb.format
+	1y0m.format no such file or directory
+	error pdbgetresidues failed to read residues from list 
+
+	ca_res_organiser.py 104 
+	list_of_resdidues += hit.group nontype object has no attribute group
+	this means ca_res_organiser is getting an empty file from .1hr (as there
+	will always be something in .sel)
+
+	- I have to ensure that if 104 is a nontype I simply print a blank file
+		- WRONG I must find out what causes it, that is lazy
+		- it was another regex error. Assuming there is always a space between chain "A" and chain no "123". NOT the case if 4 digit e.g "A1234" 
+		- this was causing no matches and creating a null object, which has no groups 
+
+Error 1xzw is now causing erros, check it out
+also 1jv5,1k04
+- produces output when run with ca_res_organiser, attempting non_proline
+- the issue was i was removing empty files. This means if a .1hr or .res was empty and the other was not when I can to cuse ca_res_organiser which uses both to make a .format there would be cases where one was missing.
+- decided to not remove any files till the end of the script. This means I will have to enable my ca_res_organiser to take an empty file
+
+New error pdbgetresicues = railed to read residues from list 
+	- thats fine as if there are no 13H helix structures in .sec then the .1hr and .1sel files are empty
+
+ca_res_organiser 
+line 107 [''] is not in list 
+- could this be an issue due to a space being inserted between chain and 4 digit
+
+check 1y0m.forat
+ ca_res_organiser.py line 116
+ list_of_residues += [hit.group(1)]
+ attribueError:'Nonetype' object has no attribute 'group'
+ - 744 formats before modifications
+ line 129 location.append(list_of_residues.index(x))
+ ValueError:'A112C' is not in list
+ 	- 1whs.1hr
+
+- possible error, current count in protein_count/two_helix/dir001 is 385 lines
+
+- create a script to run the two helix extracts and two angle_send programs on a directory 
+	0) modify one/two_angle_send.sh to change output directories 
+	i) 		one_helix_ext.sh 
+	ii) 	one_angle_send.sh (cat *.ange > ./one_angle_output.txt )
+	iiI) 	rm *.res *.1hr *.format *.angle
+	iv) 	two_helix_ext.sh 
+	v) 		two_angle_send.sh (cat *.ange > ./two_angle_output.txt )
+	vi)		rm *.res *.2hr *.format
+
+
+Error report 
+	- non_proline_bend_angle.py , line 158
+	last_tupple 	=(cords[last])
+	IndexError: list index out of range
+
+----------------------
+26.08.2018 
+created the distribution.py to check if my data has a normal dist 
+
+checking to see if my angles have a normal distribution
+	- skewness & kurotsis z value between -1.96 +1.96
+	- the shapiro-wilk test p-value be aboe 0.05
+	- histogram, normal Q-Q plots and box plots 
+		- should visually indicate that our data are approximatly normally distributed 
+
+
+#########################
+Testing for normalisation 
+##########################
+D’Agostino and Pearson’s
+Skewness and Kurtosis Test
+
+scipy.stats.normaltest 
+
+s^2 + k^2, where s is the z-score returned by skewtest and k is the z-score returned by kurtosistest.
+
+p-value : float or array
+A 2-sided chi squared probability for the hypothesis test.
+
+
+
+one helix :
+mean=153.36546520445594 
+stdv=15.66608347902692 
+skew=-1.3870779826987076
+kurtosis=6.307478914583745
+
+statistic=28351.23664164815, 
+pvalue=0.0)
+
+
+two helix :
+
+mean=90.83201839444725 
+stdv=40.128248867334115 
+skew=0.08745658164338678
+kurtosis=-0.8782005937015516
+
+statistic=874.8330074828683 
+pvalue=1.0775219644566182e-190)
+
+
+this tells me that the one helix is normally distributed and thetwo helix data is not normally distributed as the pvalue is above 0.5 
+
+- an issue with the 
+
+####################
+kolmogorov-Smirnov test (K-S) and Shapiro-Wilk(S-W) another test of normality
+a normal dist has a skewness of zero and kurtosis of three.
+
+The p value (based on the datas difference from the normal skewness and kurtosis)
+if the test is significant (less thatn .05) that the data are non normal. above 0.05 indicates normality
+
+as the sample sizes increases you become more likely to get significant results (in this case not normal). 
+
+
+
+#####################
+Mann–Whitney U test (for non normal data)
+#####################
+the null hypothesis is that both sets are data have the same distribution and any difference is due to random sampling  
+
+the H1 may take the form that one_helix angles will be on average greater than two_helix angle. A large value = does not prove the data sets are from the same population. It just hasnt been disproven 
+
+U = (e.g. 67.5)is used to determine statistical significance 
+p = (e.g. 0.034) the statistical significane value meaning that if we were toreplicate this study 1000 times we would be wrong 34 times 
+
+
+1 helix median = 155.64757502966054
+
+2 helix median =  88.01112501924294
+
+alpha = 0.05
+if p > alpha they have the same distribution (fail to reject H0)
+else:
+    different distribution (reject H0)
+
+
+p=51615138.0, 
+statistical value=0.0
+
+the p value strongly suggests The two data sets are from distinct populations. wit ha very low error rate <0 in 1000
+Thoughts 
+    - possibly try the welch test
+
+
+
+compilation of all data 
+
+one helix 
+    - median    = 155.64757502966054
+    - mean      = 153.36546520445594 
+    - stdv      = 15.66608347902692 
+    - skewness  = -1.3870779826987076
+    - kurtosis  = 6.307478914583745 ,
+    - skew&kertosis test =28351.23664164815p, value = 0.0 (alpha 0.5)
+
+statistic=28351.23664164815, 
+
+two helix 
+    - median    =  88.01112501924294
+    - mean      = 90.83201839444725 
+    - stdv=40.128248867334115 
+    - skew=0.08745658164338678
+    - kurtosis=-0.8782005937015516
+    - skew&kertosis test =874.8330074828683, value=1.077)
+
+Willcox Manwhitney  test (one_helix_data,two_helix_data)
+
+p=51615138.0, 
+statistical value=0.0
+
+the p value strongly suggests The two data sets are from distinct populations. wit ha very low error rate <0 in 1000
+Thoughts 
+
+
+#################
+T-test
+#################
+
+- my data may not be normal but normal ish 
+
+This is a two-sided test for the null hypothesis that 2 independent samples have identical average (expected) values. This test assumes that the populations have identical variances.
+
+We can use this test, if we observe two independent samples from the same or different population, e.g. exam scores of boys and girls or of two ethnic groups. The test measures whether the average (expected) value differs significantly across samples. If we observe a large p-value, for example larger than 0.05 or 0.1, then we cannot reject the null hypothesis of identical average scores. If the p-value is smaller than the threshold, e.g. 1%, 5% or 10%, then we reject the null hypothesis of equal averages.
+
+t-statistic ==272.0094727889828 
+two tailed p value=0.0)
+
+so very not normal 
+
+Notes on meeting with ARCM 28/06/2018
+
+- Andre was not happy with the windows either side of the gap containing the proline, removing windows and making gaps in secstr optional 
+
+
+
+i) modify two_helix checker from 6H1-3G6H
+    - to include 'h' and 'H'
+    - HHHHHH.?P.?HHHHHH (where my cod scans res for P then subs P to replace that secstr position)
+        - this will select a proline regardless of what its secstr is
+        - allows either side to be any secstr 
+        - this means that there does not need to be a break in the secstr helix 
+
+ii) change the angle calculator to take into account the turns on the helix 
+    - do this by using pdbline (from biop tools) to create a line of best fit around ;the first 6, 5 centered around the proline, and the last 6.
+    - then take the LoBF (line of best first)
+
+iii) use mutmodel and change change the proline to a non proline for all
+    helix_with proline. Then check secstr to see if they now identify as hH all the way. Create a list of those that were not H all the way but now are. 
+
+    ------  ----- ------
+    srt       P      end   
+
+    the start of the first LoBF, mid of the proline loBF end of the end LoBF
+    and calculate the angle between them 
+
+
+01/09/2018 
+
+new search gives 
+for 30.08.2018
+txt and graph saved in results 
+one helix will now be known as Helix without Proline 
+two helix will now be known as helix with Proline 
+    - one_angle_all gives 125933 helicies for one helix 
+    - two_angle all gives 12575 helicies for two helix  
+
+
+
+current calculating protein angle 
+"""
+for file in *.format
+do
+    base=`basename $file .format`
+    non_proline_bend_angle.py ${base}.format ${base}.angle
+    #rm ${base}.format
+done
+"""
+
+The new way to calculate angle 
+    - see if pdbline will read my .format file 
+    - if so create 3 pdblines files of first 6 res, 5 res around Pro (or mid) and of last 6.
+    - find center point of those lines by grabing the xyz of the centermost LIN atom (the line)
+    - calculate angle 
+    
+    step i)
+    -   see if the pdbline will read my .format file 
+            - it does not (wasnt likly anyway)
+
+ ways forward 
+    - make it so the .res file (list of residues in the helix)
+        - I no longer need ca_res_organiser
+        - i only require the first and last residue in each helix in .res
+
+        example of .res 
+A21
+A22
+A23
+ect
+A39
+A40
+A41
+
+A70
+A71
+A72
+A73
+
+- options 
+    - could I pass the first and last res of each value as file names?
+
+    -command substitution 
+https://www.quora.com/How-do-I-pass-the-output-of-a-python-script-to-a-shell-variable
+command substitution. This has two forms: either the backquoted form
+
+- create a modified version of angle.py that instead returns the 
+    i) 1st restidue, 6th residue 
+    ii) middle -2, middle, middle +2 (or Middle most Pro)
+    iii) last -6, last 
+
+    I will then run pdbline on each one and return the middle LIN value for each.
+    this will give me three points to create an angle
+
+end of day summery 
+- I have get up non_proline_res_selector.py to output a list of lists:
+1m1j
+[['A52 A57', 'A64 A68', 'A74 A79'], ['A83 A88', 'A120 A124', 'A155 A160'], ['B86 B91', 'B123 B127', 'B158 B163'], ['B165 B170', 'B179 B183', 'B192 B197'], ['C22 C27', 'C43 C47', 'C62 C67'], ['C79 C84', 'C85 C89', 'C90 C95'], ['C97 C102', 'C113 C117', 'C127 C132'], ['D82 D87', 'D119 D123', 'D155 D160'], ['D178 D183', 'D183 D187', 'D186 D191'], ['E115 E120', 'E132 E136', 'E148 E153'], ['E166 E171', 'E180 E184', 'E192 E197'], ['F43 F48', 'F48 F52', 'F52 F57'], ['F79 F84', 'F86 F90', 'F91 F96'], ['F99 F104', 'F114 F118', 'F128 F133']]
+
+With each list representing the ['first_res first_res+5', 'middle_res-2 middle_res+2, 'last_res-5 last_res']  for creating lines of best fit using pdbline.
+
+I have to work out how to pass these arguments to pdbline in format 
+"""
+pdbline first_res first_res+5 inputpdb outputfile
+"""
+    - the outputfile's name would have to seperate them such as im1j_01_start.line , im1j_01_mid.line ,im1j_01_end.line for every list in the list 
+
+options 
+    - find a way of calling python list from sh 
+    - use subprocess module 
+    https://stackoverflow.com/questions/89228/calling-an-external-command-in-python
+    to call shell command from within python 
+
+Solution 
+    - ended up using https://www.cyberciti.biz/faq/python-run-external-command-and-get-output/
+    which runs on subprocess and Popen to interface 
+    - it can input different file names into cmd line 
+        - pdbline A30 A50 1h3l.pdb 1h3l_line_s.pdb (start line of best fit)
+        - pdbline A30 A50 1h3l.pdb 1h3l_line_s.pdb (middle line of best fit)
+        - pdbline A30 A50 1h3l.pdb 1h3l_line_s.pdb (end line of best fit)
+    - open these files within the program and extract the mid LIN cord
+        - split by space and line [4] is LIN. count how many LN and then take the xyz using regex from  (LN count)/2
+
+Attempt to get it working 
+- i keep getting no such file or directory for '1h3l_line_e.pdb'
+- print out when the file is sucessfull 
+- if that works keep walking backwards untill you find where it fails
+- the 1h3l_line_e.pdb does not create?!?!?! da fuq
+    - 1h3l_line_s.pdb does create 
+- could it be to do with the residues I am using?
+
+- its changes but it is always the theird file. 
+    in this case it is (A58 A63,A65 A69, A70 A75) - A70 A75 failes to make a file
+    i am aways able to make it in command line when I type manually
+- this is because some parts of subprocess.popen is buffer and others are not. 
+This means that I get some responces back after other subprocess popin requests
+e.g. my script has not finished writing into the file 1h3l.line when I then open it with another process. this shows the file as empty (as writing is not finished) even though the open command occurs after the write in command. 
+    - apparently I can "flush" the command line by writing the full command name e.g. /home/oliver/bin/pdbline
+
+
+fixes 
+- and -u at the end of #!/usr/bin/python to disable buffering 
+- use subprocess.call that waits for the process to end. 
+- looking at ways to fix buffers but struggeling 
+----------------------------------------
+
+03.09.2018 end of day
+- have the angle calculator working using the pdb lines
+    have to adject the non_proline_middle_of_helix bend to calculate the 
+    bend angle around the proline e.d xxxxxxPxxxxxx (shortest len 13)
+
+                    line around mid/pro   -----
+                    stand end line    ------ ------
+
+
+
+    This will not cause short helix to have a shorter angle
+
+
+----------------------------------------
+
+04.09.2018  end of day
+sucessfully set up non_proline_pdb
+problem 
+- when setting up proline_pdb dont it raises an error if there is a non proline helix. 
+obviously this would not normally occur but i should put in an error message. Looking 
+up a way to keep it simple
+-----------------------------------------
+
+08.09.2018
+126077 non proline helixes 
+
+12609 proline helixes
+
+to do now:
+    i) gaussian distribution to compare the peak between 150-180 in proline and the peak in non proline. 
+
+    ii) change pro to arg and create a list that compares  non-pro list and non_pro list with pro changed to arg. This would include 13h were the proline being classified as - was the only thing disqualifying it. 
+
+    I can do this by printing the first residue, last res in my .angle doc. then taking just the pdb name, first and comparing the two lists.
+
+
+Back onto the gaussian distribution 
+python deconvoluting a graph
+- notes 
+    - my data is a bimodal or multimodal distribution
+    - a mixture of gaussians rather than a sum of gaussians
+    - using mixed models for clustering
+    - gaussian mixed model (GMM)
+        - can used expectation maximization to work out which model a point probably belongs to
+    - double Gaussian distribution
+    - ended up using 
+    https://stackoverflow.com/questions/35990467/fit-two-gaussians-to-a-histogram-from-one-set-of-data-python
+
+###################################################
+###################################################
+13/09/2018 notes on meeting with ARMC on 12/09/2018
+###################################################
+###################################################
+in terms of understanding how pdbsecstr works
+
+pdbsecst is based on DSSSP
+    -DSSSP_hydrogenbond_algorithum 
+    - dict of sec str oproteins 
+
+SSTRUCK
+    - written by David Smith + Janet Thornton
+    - allowed a more flexible framework for pdbSecStr  'h' not just 'H'.
+    - identified ends of helicies as helicies where they start to be less 'helix like'
+
+
+Tasks to do
+i)take examples of proline helicies around 164* and align them by the proline using ProFit
+    - bioinf.org.uk/software/ProFit
+    option 
+    a)replace non proline with alanine (side chains not important) so AAAAAAAAPAAAAAAAAA
+    b) fit only backbone 
+    - m write crates one file for each input pdb, just concatinate all into one 
+
+ii) tripple fit gaussian on proline helicies 
+iii) create list of altered non-proline 
+iv) visulise pdbline on helix to confirm
+    - pdblines are on helix, angle is correct, pdblines are around proline etc 
+v) modify the way that pdbline midpoint is found. currently take mid position, should take (first (x|y|z)-last(x|y|z)/2
+
+
+
+
+iv) replacing prolines with non prolines 
+
+    It will fit into my bash pipline after i have generated the sec from pdb files. It will then create modified pdb files (.mod)
+    a)
+    for file in *.sec:
+    do
+        base=`basename $file .sec`
+        pro_res_replace.py ${base}.sec ${base}.mod
+    done
+
+    b) 
+    pro_res_replace.py will then use model use the output of pdbsecstr to get the locations of all prolines and change to arginine 
+    - mutmodel users format -m [c]nnn[i] so A123 for example, can have multiple options
+
+    "mutmodel -m A30 PRO 1h3l.pdb 1h3l.pdb" 
+    or for multiple 
+    "mutmodel -m A28 PRO -m A29 -m A30 PRO base.pdb base.pdb"
+
+    c) 
+    Then I will run pdbsecstr on theis .mod files to create new .sec 
+        - i can then run 
+
+###################################################
+22/09/2018 update
+###################################################
+    1st step.
+    pro_res_replace will take the 2hr output and create modified versions of those pdb that have the prolines within changed to arginines. 
+
+    - modify run one_helix_ext.sh on all pdb files (some of which will have been modified). 
+    - examine the lists to see if any new helicies have been found (by comparing to old non_proline list)
+
+    - potential edge conditions 
+        - no prolines no blank list in pro_res_replace 
+
+    
+
+###################################################
+24/09/2018 
+###################################################
+- The way I want to set up my pro_res_py is to take three imputs 
+    1) the sec file it will use to find the prolines 
+    2) the pdbfile it will use as a template  
+    3) the name of the output file 
+
+notes 
+    - 4rsx in pdb_playground has no prolines so is a good example of what to do if no prolines
+    are found 
+    - if no prolines are found it copys the .pdb file to the .mod file. meaning I can then write a program that uses all .mod files.  
+
+#################################################
+27/09.2018
+#################################################
+- compiled results of modified pdbline midpoint 
+
+v) modify the way that pdbline midpoint is found. currently take mid position, should take (first (x|y|z)-last(x|y|z)/2
+COMPLETE
+
+- now to complete compliation of modified segemnt and play around with ProFit
+
+
+
+#################################################
+29.09.2018
+#################################################
+tasks for today 
+    - explore ProFit and find what changes I have to make to my script 
+
+#################################################
+07/10/2018
+#################################################
+setting up scripts on virtual ubuntu
+note
+    - DADADIR/HELPDIR can be set to the data file created by bioptools as long as the ProFit help.txt is moved there
+    - had to chmod 777 the programs again 
+    - using pip3 reinstalled python-numpy,python-scipy and python-matplotlib
+    - used dos2unix to convert files which had windows endings 
+    - pdbatomsel has been renamed to pdbatomselect
+        - modified one_helix_ext.sh and two_helix_ext.sh
+
+Tasks for today 
+started calculation at 16:50 pm 
+- compare lists of Pro mutated to Arg and non_proline
+- set up 
+
+
+
+i)take examples of proline helicies around 164* and align them by the proline using ProFit
+    - find if I can use .format and break them up for ProFit
+ii) tripple fit gaussian on proline helicies 
+iii) create list of altered non-proline  DONE
+iv) visulise pdbline on helix to confirm
+    - pdblines are on helix, angle is correct, pdblines are around proline etc 
+v) modify the way that pdbline midpoint is found. currently take mid position, should take (first (x|y|z)-last(x|y|z)/2 DONE
+
+stuff to do in the morning 
+i) create two lists, 
+	- helicies that are in mut_pro but not in non_pro
+	- helicies that are in non_pro but not in mut_pro
+	- 38,762 mut_pro helicies, 126,077 non_pro helicies
+
+ii) do tripple gaussian fit. 
+iii) visulise pdbline on a helix, proline and non_proline
+
+
+14/20/2018
+
+in order priority for next meeting with ARMC
+
+1) complete the mut_pro comparison
+	- modify onehelixres.py and twohelixres.py to also output the mid/proline position 
+		- currently outputs " A129 A128 A130" one in each line seperated by a /n 
+		- modify to call mutmod on middle pdb PRO to A (Alanine) and output .mod file.
+		- then check to see if pbdsecstr 
+		- change 
+	
+	problems)
+	- onehelixres.py outputs .1hr which is used by pdbgetresidue and ca_res_organiser 
+	- this means I cannot modify output of .1hr
+		- SOLUTION i run a modified version of twohelixres_mod which calls mut_mod and pdbsecstr 
+	- How to I convay the proline position to the final .angle file as I cannot modify the .1hr ?
+
+	PROBLEM- MAJOR
+	- in code for twohelixres it appears I am still using a gap system around the PROLINE
+	- ([h|H]{6,}(?:.?){1}P(?:.?+){1}[h|H]{6,}) allows a 1 space gap around Proline
+
+	things to note
+	- the Proline may already be read as a H(never seen) or h. Will have to keep track of what it is changing from too. 
+
+
+	#####################################################
+	16/10/2018
+	#####################################################
+
+	Achived 
+	- Have twohelixres_mod.py printing the location of the prolines at the center of ([H|h]{6,}(?:.?)P{1}(P)(?:.?){1}[h|H]{6,}) and print is chain res in for "A123 P"
+	To Do
+	- check pdbmutmod format, and set up to call it 
+
+	#######
+	update 
+	#######
+	- this program with create an output file showing pdbsecstr for each residue number
+	while it was a proline and after modification to ALA
+	the pdbfile name, the first residue of the helix and the location of its prolines and their readings 
+
+	e.g. for 1h3l.pro
+	1h3l A28  A47  P  -  A h
+	1h3l A50  A60  P  -  A h
+	1h3l A65  A70  P  -  A h
+	1h3l A80  A90  P  -  A h
+
+	ERROR - mutmodel
+	- when running "mutmodel -m A28 ALA 1h3l.pdb 1h3l.mod"
+		- Error: (mutmodel) Unable to open chi link table: Chitab.dat
+		[Residue A28 to A]
+
+	Note example of PRO with H secst
+	- 1h3l.pdb res_no A58
+
+	###########################
+	mutated_pro_secstr_results
+	###########################
+
+	helix to helix : 8824
+	non helix to non_helix : 3938
+	non_helix_to_helix : 3
+	helix_to_non_helix : 4
+
+	#########
+	breakdown
+	#########
+	- helix_to_non_helix
+	3zeu A196 PRO H ALA T
+	3zeu A40 PRO H ALA -
+	3zeu D40 PRO H ALA -
+	3zeu D196 PRO H ALA T
+
+18/11/2018
+
+use ProFit
+	- write a script that compares all the files pairwise
+	- experiment with different LMSD (least mean squared difference)
+		- try comparing with N-Ca-Cb
+			- try comparing with N-Ca-C=O which may cause  rotation into
+			two catagories 0-180 because of angle between C=O
+		- try comparing with just cA
+		- try comparing with three residues  
+		- try comparing with proline ring,
+		N, Ca, Cb,Cc,Cg
+
+	- Define Proline as the shared regions, most aminoacids will have just 
+	the one
+	- use -- to ensure the proline is at the same point 
+	- create a set of about 40 from the 164 point
+		- Currently only collecting the CA, must collect the whole atom set
+	- Use align and ------ to sort out .txt files
+
+##################
+
+how to set up 
+##################
+
+create a .pir layout file that contains for each entry, ensure the P is at the
+same location by spacing it out
+""
+>P1;filename
+   title text .......
+   sequence(e.g AFHAOPODIQJ)
+ ""
+	-find the 3 letter residues using .format file and right_click + shift to select the collum.
+	- copy and pase to a website for 3 res to 1 res letter conversion
+	- pase into the secquence for that file
+	- try and pick ones that are similar length 
+
+ZONE PRO:PRO
+
+full example 
+
+[1] reference test_atom1 
+[2] mobile test_atom2
+[3] ATOM C,N,Ca
+[4] READALIGN readalign_test.txt
+4b] DELZONE ALL (readalign creastes zones where there is any match between the seq)
+[5] ZONE P:P
+	- maybe use Limiting Zones instead e.g. "LIMIT 9 9" to read just the 9th
+		- limit means you only add those residues to the .pdb file.....no dice 
+[6] FIT
+[7] write fitted.pdb
+
+The issue I am having is that the reference chain is not being printed to fitted.pdb
+
+
+notes of fitting
+first fitting using the N,C,Ca atoms of only the proline 
+
+#########################################
+File setup for each pairwise comparison #
+#########################################
+When adding a new helix (for example 1o5i_b89_b113)
+
+- extract amino acids from 1o5i.format and convert into 1 letter for profit using website
+
+- extract full 1o5i.pdb ATOM info for those residues and put them in a helix.txt file 1o5i_b89_b113.txt
+
+- create readalign_1o5i_b89_b113.txt and 1 letter amino acid names and save as readalign. 
+	-Add this pir information to readalign.pir and mega for when I wish to use the safe file with different profit criteria. 
+	- also add the profit script to mega_script.pro
+
+- update profit_script.pro with 1o5i_b89_b113.txt filename as mobile
+	REFERENCE reference_seq.txt
+	MOBILE 1o4i_b89_b113.txt
+	ATOM C,Ca,N
+	READALIGN readalign_1o5i_b113.txt
+	DELZONE ALL
+	ZONE P:P
+	FIT
+	WRITE reference_seq_1o5i_b89_b113_c_ca_n.pdb
+
+
+-run profit SCRIPT profit_script.pro
+
+-
+
+Notes 
+	- 1np3 is the structure made up of three alpha helicies at 90 degree angles
+	- when attempting to run the mega_script i get Errors at (1 being 1knq referencing itself):
+		3 - mobile sequence doesnt match (SOLVED missed > for p1 mobile)
+		4 - mobile sequence doesnt match (SOLVED 1nb5 had a different filename, hence no match)
+		5 - unable to open mobile sequence 1njl1_a116_a124.txt(SOLVED_typo mega_script)
+		7 - mobile start residue not found (: instead of ; in readalign)
+		9 - mobile start 
+
+	- These errors repeat even when in scripts of 1 
+
+
+D230   GLU  h
+D231   LEU  H
+D232   LYS  H
+D233   LEU  H
+D234   ILE  H
+D235   VAL  H
+D236   ASP  H
+D237   LEU  H
+D238   MET  H
+D239   TYR  H
+D240   GLU  H
+D241   GLY  H
+D242   GLY  H
+D243   ILE  H
+D244   ALA  H
+D245   ASN  H
+D246   MET  H
+D247   ASN  H
+D248   TYR  H
+D249   SER  H
+D250   ILE  h
+D251   SER  h
+D252   ASN  H
+D253   ASN  H
+D254   ALA  H
+D255   GLU  H
+D256   TYR  H
+D257   GLY  H
+D258   GLU  H
+D259   TYR  H
+D260   VAL  H
+D261   THR  H
+D262   GLY  H
+D263   PRO  H
+D264   GLU  H
+D265   VAL  H
+D266   ILE  h
+D267   ASN  h
+D268   ALA  H
+D269   GLU  H
+D270   SER  H
+D271   ARG  H
+D272   ALA  H
+D273   ALA  H
+D274   MET  H
+D275   ARG  H
+D276   ASN  H
+D277   ALA  H
+D278   LEU  H
+D279   LYS  H
+D280   ARG  H
+D281   ILE  H
+D282   GLN  H
+D283   ASP  h
+D284   GLY  h
+D285   GLU  H
+D286   TYR  H
+D287   ALA  H
+D288   LYS  H
+D289   MET  H
+D290   PHE  H
+D291   ILE  H
+D292   THR  H
+D293   GLU  H
+D294   GLY  H
+D295   ALA  H
+D296   ALA  h
+
+
+- consider 1okc_a107_a132 has a sharp bend close to proline
+
+20/12/2018
+aims 
+- use R to 
+	- extract the images of the mixed gaussian for proline and non_proline
+	- perform T-test on the dat a
+	- explore other means of data clustering
+		mcluster 
+- create other versions of the Profit
+	- Only need to look at P location, simplifies things
+		- possible automate with time 
+- read the literature 
+
+
+in order of priority 
+1) use R to extract mixed gaussian and perform t-test
+2) create other versions of profit
+
+
+rstudio data analysis 
+
+number of iterations= 420 
+> summary(mixmdl)
+summary of normalmixEM object:
+           comp 1     comp 2     comp 3
+lambda   0.488383   0.276353   0.235265
+mu     117.372331 170.130772 158.892781
+sigma   12.093169   4.571052   8.046908
+loglik at estimate:  -54886.06 
+
+10.02.2019
+
+#####################
+Regularising data 
+######################
+as discussed with Andrew Martin 
+
+for non proline distribution I can either (th)
+- check for two gaussian in a on the data set. 
+- regularise the data ( this is also konwn as a folded normal distribution/half normal distribution, truncated normal distribution)
+
+https://cran.r-project.org/web/packages/MomTrunc/MomTrunc.pdf
+
+i) check for two gaussian gives 
+
+summary of normalmixEM object:
+          comp 1    comp 2
+lambda   0.18237   0.81763
+mu     146.36981 173.97199
+sigma   21.55112   3.14432
+loglik at estimate:  -412536 
+
+ii) Regularising 
+a) take the values greater than the maximum and flip along the max value 
+b) half the remaining values which are < max 
+c) then copy ang the max (y axis) 
+d) now will have two gaussians 
+
+The maximum of the probability pdf is 175 degrees. 
+- minus 175 from every value, keep the positive values 
+- minus those from 175 
+
+Issues 
+- whereever I slect as the maximum of the pdf becomes the mean for the two distributions e.g. 175
+
+
+potential solution 
+- look up r packages for calculating trucated or folded normal dist 
+- only fold around one of the gaussian, the once centered around 173, may solve problem?
+
+
+19.02.2019
+
+To complete results for MsC project 
+- get ProFit chains for each of the 3 catagories of the proline fit and for the 1 non-proline
+- find literature to explain them using something like half folds etc 
+- look at the ramachandran plot to explain the angles?
+
+Note for when publishing 
+- analyse the dihedral angle both before and after the proline 
+
+20.02.2019
+
+recap 
+i) Long term objective 
+	- finish first draft of MsC 
+ii) how will i achive this?
+	- complete results, then finish discussion, then finish introduction 
+iii) what do i need to complete in results? 
+	- I have my graphs of different proline bends. 
+	- use profit to see if helices are different in the different gausians of proline/nonproline
+
+vi) how will i achive point iii)?
+	- automate the profit using a script (only partially)
+	- must precreate the files the script will use
+		- this includes a list of the atoms involved in that helix - currently only the C-alpha atoms are selected
+	a) use pdbatomsel on the already existing .1hr and .2hr files, this will return all of the atoms not just C-alpha.
+	b) areas to observe 
+		- in the non proline observe 
+			- around the wide gausian mean=146.369 sd=21
+			- around the  gaussian mean=173 sd = 3.1 
+		- in the proline containing helicies 
+			- around the gaussian mean=118 sd=12
+			- around the gaussian mean=170 sd=4.5
+			- possibly around the 145-155 range as that is possibly a space between the two other gaussians (and a seperate gaussian using the three gaussian mixed model)
+	c) obtain about 50 helicies from around each of these location and using profit align them and image them
+vi) test by first creating a .full_atom using pdbgetres and a 1hr/2hr file pdb file 
+	current version
+		- pdbgetresidues ${base}.2hr ${base}.sel ${base}.res
+	new version 
+		- pdbgetresidues ${base}.2hr ${base}.pdb ${base}.full_res
+
+v) write a python script that will select 50 random pdb ids from a certain bend angle
+
+
+Progress
+
+obtaining all atoms in a helix as opposed to just C-alpha 
+ 	- using pdbgetresidue example.2hr example.pdb example.fullatom gives the full atoms BUT does not seperate multiple helices in each file  e.g. A23,A24,A25,B74,B75,C95 is read as one atom
+ 	OPTIONS 
+ 	- test to see if ca_res_organiser can be modified to deal with multiple atoms, not just Ca
+ 	- create new program to split files
+ 	ACTION 
+ 	- Look at ca_res_organiser and see how difficult it would be to change 
+ 		- if too hard will write temporary code 
+ 	ANALYSIS
+ 		- ca_res_organiser works by creating a dictionary of lists where each list is started the first time a atom is encounted and then appending it to the correct residue. It assumes only one atom of each residue. Hence it does not work with multiple atoms per residue.
+ 		e.g (ATOM 109 CA leu A 23) but does not work if (ATOM 110 C leu A 23)
+ 	ACTION 
+ 		- create temporary script (full_res_splitter.py ) to split .full_res into multiple files e.g 5klo.full_res becomes 5klo_a25_a36.txt, 5klo_b72_b120.txt.
+
+ 	full_res_splitter.py
+
+ example of input txt 
+ 	main__func
+ 	_
+
+ 24.02.2019
+
+ Progress 
+ - have completed the file splitter to include all atoms class_test_v3.py (working title)
+ 	- attempted to create a more complex class and subclass system to replace calculate bend angle. but will have to revisit. almost complete 
+ NOW
+ 	- test that the new pdb.full_atom format is compatable with ProFit. 
+
+ Next 
+ 	- find 40~ pdbs in each range and create their full._atom folders. 
+ 		- image and see if any are interesting 
+
+ProFit 
+	- only show 13 residues (P in the middle) ( the residues involved in pdbline bestfit )
+	- ATOMS N,Ca,C,Cd
+	- first try comparing first P residues found P:P
+		- if that is a bit rubish will atempt to compare 1 residues either side of P e.g. SPV:KPR
+	- will collect 
+
+in the non proline observe 
+			- around the wide gausian mean=146.369 sd=21
+			- around the  gaussian mean=173 sd = 3.1 
+		- in the proline containing helicies 
+			- around the gaussian mean=118 sd=12
+			- around the gaussian mean=170 sd=4.5
+			- possibly around the 145-155 range as that is possibly a space between the two other gaussians (and a seperate gaussian using the three gaussian mixed model)
+
+Misnaming in pdb bend angle out. outputes the pdb_chain_res e.g. "5kl0_a13" using the name of the first res of the  pdbline (6res-P-6res) instead of the first res of the chain. results in 
+
+#############################
+02.03.2019
+#############################
+- problem- the file output from non_proline_middle_angle.py quotes the location of the pdb best fit instead of the start and end of the helix when making a helix file. 
+Solution
+still using non_proline_middle_angle.py and proline_middle_angle.py instead of non_proline_bend_angle.py and proline_bend_angle.py. 'bend_angle.y' gives both correct first residue and bend angle
+	- have changed the .sh files 
+	- while non proline appears to be accurate using chimera (check more thoroughly)
+		- proline_bend_angle is not running
+		- find out why tomrrow
+
+
+17.03.2019
+Tasks to do 
+- check if residues and angles are correct using pdb line fit. 
+- automate profit bend angle prediction 
+-scp not working (current ip adress is 192.168.0.46)
+
+Checking accuracy of new non/proline_bend_angle.py
+- check format residues match up file names 
+- bend angle for 
+
+IMPORTANT
+I found that I was not using pdbline in non_proline_bend_angle.py 
+The correct program is indeed non/proline_middle_angle.py (uses pdbline to calculate)
+Corrected non_proline_bend_angle.py to correctly save angle as first res of helix instead of 1st res of pdbline. 
+	- note non_proline takes the higher index of an even length list e.g. 1,2,3,4 returns 3. 
+
+###########
+29.05.2019
+###########
+
+I belive the most recent script layout 
+
+combined.sh calls one_helix_ext.sh and two_helix_ext.sh
+'
+#!/bin/bash
+for directory in dir_001 dir_002 dir_003 dir_004 dir_005 dir_006 dir_007 dir_008 dir_009 dir_010 dir_011 dir_012 dir_013 dir_014 dir_015 dir_016 dir_017
+do 	
+	path=`~/Documents/full_pdb_copy`
+	cd ${directory}
+	echo ${directory}
+	one_helix_ext.sh
+	touch ./one_angle_output.txt
+	cat *.angle > ./non_proline_output.txt
+	rm *.res *.1hr *.format *.angle 	
+	two_helix_ext.sh
+	touch ./two_angle_output.txt
+	cat *.angle > ./proline_output.txt
+	rm *.res *.2hr *.format *.angle
+	cd .. 
+done
+'
+
+one_helix_ext.sh is as follows 
+'
+#!/bin/sh
+for file in *.pdb
+do
+	base=`basename $file .pdb`
+	pdbsecstr $file ${base}.sec
+	onehelixres.py ${base}.sec ${base}.1hr
+	rm ${base}.sec
+	#find . -size 0 -delete
+done
+
+for file in *.1hr
+do
+	base=`basename $file .1hr`
+	pdbatomsel ${base}.pdb ${base}.sel
+	pdbgetresidues ${base}.1hr ${base}.sel ${base}.res
+	rm ${base}.sel 
+	#find . -size 0 -delete
+done 
+for file in *.res
+do
+	base=`basename $file .res`
+	ca_res_organiser.py ${base}.1hr ${base}.res ${base}.format
+	#rm ${base}.1hr 
+	#rm ${base}.res	
+	#find . -size 0 - delete
+done
+
+for file in *.format
+do
+	base=`basename $file .format`
+	#non_proline_bend_angle.py ${base}.format ${base}.angle
+	non_proline_middle_angle.py ${base}.format ${base}.angle
+	#rm ${base}.format
+done
+'
+
+two is quite similar.
+'
+#!/bin/sh
+for file in *.pdb
+do
+	base=`basename $file .pdb`
+	pdbsecstr $file ${base}.sec
+	twohelixres.py ${base}.sec ${base}.2hr
+	rm ${base}.sec
+	#find . -size 0 -delete
+done
+
+for file in *.2hr
+do
+	base=`basename $file .2hr`
+	pdbatomsel ${base}.pdb ${base}.sel
+	pdbgetresidues ${base}.2hr ${base}.sel ${base}.res
+	rm ${base}.sel 
+	#find . -size 0 -delete
+done 
+for file in *.res
+do
+	base=`basename $file .res`
+	ca_res_organiser.py ${base}.2hr ${base}.res ${base}.format
+	#rm ${base}.1hr 
+	#rm ${base}.res	
+	#find . -size 0 - delete
+done
+
+for file in *.format
+do
+	base=`basename $file .format`
+	#proline_bend_angle.py ${base}.format ${base}.angle
+	#rm ${base}.format
+	proline_middle_angle.py ${base}.format ${base}.angle
+done
+'
+
+These make use of of the outdated
+
+onehelixres.py, twohelixres.py
+ca_res_organiser
+proline_middle_angle.py, non_proline_middle_angle.py 
+
+what we now have is 
+
+onehelixres.py,twohelixres.py (input: .pdb file output: .sec file)
+all_res_organiser.py (input: .1hr, .res output: .format)
+fullressplitter.py (input: .format output: multiple txt files of each helix)
+
+- fullressplitter.py then creates a text file composed of a single helix for non_/proline_middle_angle.py
+non_proline_middle_angle.py, proline_middle_angle.py
+
+----------------
+Confirmed steps
+----------------
+for non proline 
+1.pdbsecstr 1ct5.pdb 1ct5.sec
+2.onehelixres.py 1ct5.sec 1ct5.1hr
+3.pdbatomselect 1ct5.pdb 1ct5.sel
+4.pdbgetresidues 1ct5.1hr 1ct5.sel 1ct5.res
+5.ca_atom_organiser 1ct5.1hr 1ct5.res 1ct5.format
+
+-----
+Note
+-----
+in newer versions i need all the atoms, not just the CA, so i do not use pdbatomselect and ca_atom_organiser.
+Instead I jump to pdbgetresides .1hr(residues I want) .pdb(input pdb) .res(output of all atoms in selected residues)
+and then use allresorganiser.
+
+this setup involves 
+for proline helicies
+1.pdbsecstr 1ct5.pdb 1ct5.sec
+2.onehelixres.py 1ct5.sec 1ct5.1hr
+3.pdbgetresidues 1ct5.1hr 1ct5.pdb 1ct5.1res
+4.all_res_organiser.py 1ct5.1hr 1ct5.1res 1ct5.1format
+5.proline_middle_angle.py 1ct5.1hr 1ct5.res 1ct5.format
+
+
+####
+Change log
+####
+i)
+bash: /home/oliver/bin/onehelixres.py: /usr/bin/python: bad interpreter: No such file or director
+This is because my scripts shebang reference python which in my previous installtion I had pathed to python3. I have instead changed my shebangs to python3 for greater compatability in the future.
+
+ii)
+in ubuntu 18.04 when I run "system.os=='linux2'" it fails as system.os now =="linux" in 18.04
+this will have to be changed for all clubs
+
+ii)change pdbatomsel to pdbatomselect in one_helix_ext.sh
+
+--------
+To Do
+--------
+i)
+change fullressplitter output to .1txt and .2txt (or some other way to differenticate between pro and non pro)
+
+ii) 
+do the same for the non_/proline_middle_angle.py
+
+iii) check linux2 and python changes in non_proline_middle_angle
+
+
+#############
+31.04.2019 - speed checks
+#############
+found that some import statement at the start of onehelixres.py had be replacined with 'import .....' preventing them from loading.
+
+attempting to decrease runtime of python code, will modify string += 'string' to a list then we append.
+will measure time differences using time.clock
+
+
+onehelixres.py 1ct5.sec 1ct5.1hr
+with print command and using str += function		:~0.045 seconds 
+no print command and str += function 			:~0.045
+with print command and using append list and then join 	:
+
+#########
+02.05.17
+#########
+
+The format that non_proline pdb takes as input (act5.res i think) is 
+
+A116
+ATOM BLARGH BLAEGH BAEGH
+ATOM BLARGH BLAEGH BAEGH
+ATOM BLARGH BLAEGH BAEGH
+
+B12
+ATOM BLARGH BLARGH BLARGH
+
+#########
+03.05.17
+#########
+The issue is when I use pdblineget residues, all_res_organiser and then non_proline_middle_angle.py is that non_proline_middle_angle.py assumes there are only CA atoms in the .format file generated by all_res_organiser. This throws off the 'first_mid_last_finder' function in non_proline_middle_angle.py.
+
+#########
+29.06.19
+#########
+
+general thoughts and musings:
+My project is analyse the occurance of prolines in alpha helices.
+- This includes both the bend angle
+- prolines appearence in kinks and disappearence
+
+
+What end goal do i want for my project?
+
+
+
+What can I do now that would make for good analysis?
+
+i) finish up my current analysis on bend angles using pdbline
+ii) use kinkfinder to re analyse the bend angles and compared to the bend angles i found
+iii) try to explain the difference
+
+
+
+What tools do I have 
+KinkFinder
+ProlineFitter
+
+Problems
+- KinkFinder
+Kink finder uses the PDB file classification of helicies to calculate bend angle in a helix. The problem with this is that as the pdb states often with the proline causes a helix break. for example in 1qsa there are helices 544-555 and 555-567 with a proline at 556 (i+1) in the second helix (causing the break). Interestingly the residue 555 is GLY which is responsible for the break. 
+
+- Kinkfinder will not calculate the bend angle between two seperate helicies, will attempt using ProKink
+
+
+1.07.2019
+
+I have decided to use the GROMACS package gmx bundle to analyse the bend angle between two helices. 
+
+I also experimented with the helanal based python package MDAnalysis.analysis.helanal.helanal_main which was good for analysing kink angle but could not work out the angle between the two helices. 
+
+https://www.researchgate.net/post/How_can_I_use_the_g_bundle_to_calculate_a_two-helix_crossing_angle 
+this is a good resource on research gate on how to use it. 
+
+
+
+

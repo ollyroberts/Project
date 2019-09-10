@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+3lkeA,148,160,154,148,160,98.633,GASYFLPRIIGYE,2.111,0.345,2.050,0.758,11.802
+3lkeB,148,160,154,148,160,90.443,GASYFLPRIIGYE,2.012,0.357,1.739,0.700,11.430
+3lkeC,148,160,154,148,160,115.779,GASYFLPRIIGYE,2.108,0.344,2.442,0.578,10.199

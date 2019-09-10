@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2gtrA,148,160,154,148,160,117.580,CSTVMFPKIMGGA,2.164,0.383,2.449,0.517,9.971
+2gtrB,148,160,154,148,160,94.530,CSTVMFPKIMGGA,1.998,0.401,1.775,0.718,11.927
+2gtrC,148,160,154,148,160,93.737,CSTVMFPKIMGGA,2.037,0.411,1.759,0.726,12.068

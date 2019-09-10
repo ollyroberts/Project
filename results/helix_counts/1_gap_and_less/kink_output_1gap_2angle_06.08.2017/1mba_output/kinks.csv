@@ -1,0 +1,2 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+1mbaA,10,22,14,8,20,35.499,DLAGKSWAPVFAN,1.982,0.337,1.982,0.663,10.937

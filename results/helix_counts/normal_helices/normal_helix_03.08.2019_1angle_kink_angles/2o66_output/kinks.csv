@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2o66A,81,93,89,83,95,9.462,ESVINTIIEGART,1.923,0.276,1.966,0.412,7.240
+2o66B,81,93,89,83,95,10.388,ESVINTIIEGART,1.900,0.275,1.955,0.459,7.946
+2o66C,81,93,85,79,91,9.436,KDQVESVINTIIE,1.934,0.282,1.902,0.294,5.119

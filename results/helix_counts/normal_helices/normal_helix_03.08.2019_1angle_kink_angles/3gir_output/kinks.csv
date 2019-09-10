@@ -1,0 +1,3 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+3girA,127,139,131,125,137,13.048,AGNAQADFAELEK,1.964,0.306,1.898,0.306,5.875
+3girA,205,217,209,203,215,33.659,ALPIGCARALAEK,1.981,0.601,1.901,0.272,9.685

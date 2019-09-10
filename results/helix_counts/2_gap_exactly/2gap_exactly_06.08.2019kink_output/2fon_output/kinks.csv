@@ -1,0 +1,4 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+2fonA,592,604,596,590,602,69.900,RALYSQLRPNAVS,1.902,0.350,1.947,0.314,6.830
+2fonB,592,604,596,590,602,69.353,RALYSQLRPNAVS,1.931,0.314,1.962,0.309,6.079
+2fonC,592,604,596,590,602,65.119,RALYSQLRPNAVS,1.957,0.378,2.021,0.389,8.395

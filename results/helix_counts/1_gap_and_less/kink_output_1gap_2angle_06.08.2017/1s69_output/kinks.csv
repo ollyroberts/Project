@@ -1,0 +1,2 @@
+pdb_code,Helix_Start,Helix_End,Kink_Position,Kink_Start,Kink_End,Kink_Angle,sequence,n_radius,n_rmsd,c_radius,c_rmsd,Estimated_Error
+1s69A,109,121,117,111,123,52.260,VAGAPAHKRDVLN,2.036,0.460,1.986,0.332,8.726
